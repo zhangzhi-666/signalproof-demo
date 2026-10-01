@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-10-01T05:53:21.592339+00:00",
+  "generatedAt": "2026-10-01T06:18:19.616631+00:00",
   "engineVersion": "1.0.0",
   "sympyVersion": "1.13.3",
   "pythonVersion": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
-  "engineSha256": "62f9332fd014426236c99547328107006ae34998c5b4c8f79ab8d97b940c3744",
+  "engineSha256": "26a30b1c6083ba45b48e730439f9787bd95b9df1a2553be11d8f9ad11028951a",
   "examplesSha256": "7333874cfdee1defafd7ecc14c80b7acdacc6213664846b7a4c69f9a9bf33505",
   "runner": "Real engine/service.py dispatch in native Python, using the bundled browser SymPy 1.13.3 wheel. Not a browser runtime test.",
   "total": 24,
@@ -32,7 +32,7 @@
         "summary": "第 2 → 3 行出现首个错误",
         "firstError": 3,
         "firstErrorCertain": true,
-        "elapsedMs": 511.64,
+        "elapsedMs": 597.06,
         "steps": [
           {
             "before": "Conv(2*x(t),delta(t-2),t)",
@@ -56,21 +56,28 @@
               {
                 "ruleId": "C04",
                 "before": "Conv(2*x(t), delta(t - 2), t)",
-                "after": "2*Conv(x(t), delta(t - 2), t)"
+                "after": "2*Conv(x(t), delta(t - 2), t)",
+                "beforeLatex": "\\left[2 x\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+                "afterLatex": "2 \\left[x\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)"
               },
               {
                 "ruleId": "C06",
                 "before": "2*Conv(x(t), delta(t - 2), t)",
-                "after": "2*x(t - 2)"
+                "after": "2*x(t - 2)",
+                "beforeLatex": "2 \\left[x\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+                "afterLatex": "2 x\\left(t - 2\\right)"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{Conv}{\\left(2 x{\\left(t \\right)},\\delta{\\left(t - 2 \\right)},t \\right)}",
-            "afterLatex": "2 \\operatorname{Conv}{\\left(x{\\left(t \\right)},\\delta{\\left(t - 2 \\right)},t \\right)}",
-            "expectedLatex": "2 x{\\left(t - 2 \\right)}",
+            "beforeLatex": "\\left[2 x\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+            "afterLatex": "2 \\left[x\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "2 x\\left(t - 2\\right)",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -93,13 +100,17 @@
             "diff": {
               "path": "root.Mul[1].x[0].Add[0]",
               "before": "2",
-              "after": "-2"
+              "after": "-2",
+              "beforeLatex": "2",
+              "afterLatex": "-2"
             },
             "trace": [
               {
                 "ruleId": "C06",
                 "before": "2*Conv(x(t), delta(t - 2), t)",
-                "after": "2*x(t - 2)"
+                "after": "2*x(t - 2)",
+                "beforeLatex": "2 \\left[x\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+                "afterLatex": "2 x\\left(t - 2\\right)"
               }
             ],
             "samples": [
@@ -117,9 +128,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "该步与已验证的规则候选不一致。下方显示局部结构差异与建议结果。",
-            "beforeLatex": "2 \\operatorname{Conv}{\\left(x{\\left(t \\right)},\\delta{\\left(t - 2 \\right)},t \\right)}",
-            "afterLatex": "2 x{\\left(t + 2 \\right)}",
-            "expectedLatex": "2 x{\\left(t - 2 \\right)}",
+            "beforeLatex": "2 \\left[x\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+            "afterLatex": "2 x\\left(t + 2\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "2 x\\left(t - 2\\right)",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -144,9 +158,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "2 x{\\left(t + 2 \\right)}",
-            "afterLatex": "x{\\left(t + 2 \\right)} + x{\\left(t + 2 \\right)}",
-            "expectedLatex": "x{\\left(t + 2 \\right)} + x{\\left(t + 2 \\right)}",
+            "beforeLatex": "2 x\\left(t + 2\\right)",
+            "afterLatex": "x\\left(t + 2\\right) + x\\left(t + 2\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "x\\left(t + 2\\right) + x\\left(t + 2\\right)",
+            "expectedRocLatex": "",
             "line": 4,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -165,11 +182,18 @@
           "Add\n  x\n    Add\n      t\n      2\n  x\n    Add\n      t\n      2"
         ],
         "latex": [
-          "\\operatorname{Conv}{\\left(2 x{\\left(t \\right)},\\delta{\\left(t - 2 \\right)},t \\right)}",
-          "2 \\operatorname{Conv}{\\left(x{\\left(t \\right)},\\delta{\\left(t - 2 \\right)},t \\right)}",
-          "2 x{\\left(t + 2 \\right)}",
-          "x{\\left(t + 2 \\right)} + x{\\left(t + 2 \\right)}"
+          "\\left[2 x\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+          "2 \\left[x\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+          "2 x\\left(t + 2\\right)",
+          "x\\left(t + 2\\right) + x\\left(t + 2\\right)"
         ],
+        "rocLatex": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "Conv(2*x(t),delta(t-2),t)",
           "2*Conv(x(t),delta(t-2),t)",
@@ -198,7 +222,7 @@
         "summary": "全部相邻步骤已通过验证。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 93.63,
+        "elapsedMs": 115.67,
         "steps": [
           {
             "before": "Conv(x(t)+2*h(t),delta(t-1),t)",
@@ -224,31 +248,42 @@
               {
                 "ruleId": "C03",
                 "before": "Conv(2*h(t) + x(t), delta(t - 1), t)",
-                "after": "Conv(2*h(t), delta(t - 1), t) + Conv(x(t), delta(t - 1), t)"
+                "after": "Conv(2*h(t), delta(t - 1), t) + Conv(x(t), delta(t - 1), t)",
+                "beforeLatex": "\\left[\\left(2 h + x\\right)\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)",
+                "afterLatex": "\\left[2 h\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + \\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)"
               },
               {
                 "ruleId": "C04",
                 "before": "Conv(2*h(t), delta(t - 1), t) + Conv(x(t), delta(t - 1), t)",
-                "after": "2*Conv(h(t), delta(t - 1), t) + Conv(x(t), delta(t - 1), t)"
+                "after": "2*Conv(h(t), delta(t - 1), t) + Conv(x(t), delta(t - 1), t)",
+                "beforeLatex": "\\left[2 h\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + \\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)",
+                "afterLatex": "2 \\left[h\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + \\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)"
               },
               {
                 "ruleId": "C06",
                 "before": "2*Conv(h(t), delta(t - 1), t) + Conv(x(t), delta(t - 1), t)",
-                "after": "Conv(x(t), delta(t - 1), t) + 2*h(t - 1)"
+                "after": "Conv(x(t), delta(t - 1), t) + 2*h(t - 1)",
+                "beforeLatex": "2 \\left[h\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + \\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)",
+                "afterLatex": "\\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + 2 h\\left(t - 1\\right)"
               },
               {
                 "ruleId": "C06",
                 "before": "Conv(x(t), delta(t - 1), t) + 2*h(t - 1)",
-                "after": "2*h(t - 1) + x(t - 1)"
+                "after": "2*h(t - 1) + x(t - 1)",
+                "beforeLatex": "\\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + 2 h\\left(t - 1\\right)",
+                "afterLatex": "2 h\\left(t - 1\\right) + x\\left(t - 1\\right)"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{Conv}{\\left(2 h{\\left(t \\right)} + x{\\left(t \\right)},\\delta{\\left(t - 1 \\right)},t \\right)}",
-            "afterLatex": "2 \\operatorname{Conv}{\\left(h{\\left(t \\right)},\\delta{\\left(t - 1 \\right)},t \\right)} + \\operatorname{Conv}{\\left(x{\\left(t \\right)},\\delta{\\left(t - 1 \\right)},t \\right)}",
-            "expectedLatex": "2 h{\\left(t - 1 \\right)} + x{\\left(t - 1 \\right)}",
+            "beforeLatex": "\\left[\\left(2 h + x\\right)\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)",
+            "afterLatex": "2 \\left[h\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + \\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "2 h\\left(t - 1\\right) + x\\left(t - 1\\right)",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -273,21 +308,28 @@
               {
                 "ruleId": "C06",
                 "before": "2*Conv(h(t), delta(t - 1), t) + Conv(x(t), delta(t - 1), t)",
-                "after": "2*Conv(h(t), delta(t - 1), t) + x(t - 1)"
+                "after": "2*Conv(h(t), delta(t - 1), t) + x(t - 1)",
+                "beforeLatex": "2 \\left[h\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + \\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)",
+                "afterLatex": "2 \\left[h\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + x\\left(t - 1\\right)"
               },
               {
                 "ruleId": "C06",
                 "before": "2*Conv(h(t), delta(t - 1), t) + x(t - 1)",
-                "after": "2*h(t - 1) + x(t - 1)"
+                "after": "2*h(t - 1) + x(t - 1)",
+                "beforeLatex": "2 \\left[h\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + x\\left(t - 1\\right)",
+                "afterLatex": "2 h\\left(t - 1\\right) + x\\left(t - 1\\right)"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "2 \\operatorname{Conv}{\\left(h{\\left(t \\right)},\\delta{\\left(t - 1 \\right)},t \\right)} + \\operatorname{Conv}{\\left(x{\\left(t \\right)},\\delta{\\left(t - 1 \\right)},t \\right)}",
-            "afterLatex": "2 h{\\left(t - 1 \\right)} + x{\\left(t - 1 \\right)}",
-            "expectedLatex": "2 h{\\left(t - 1 \\right)} + x{\\left(t - 1 \\right)}",
+            "beforeLatex": "2 \\left[h\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + \\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)",
+            "afterLatex": "2 h\\left(t - 1\\right) + x\\left(t - 1\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "2 h\\left(t - 1\\right) + x\\left(t - 1\\right)",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -304,10 +346,16 @@
           "Add\n  x\n    Add\n      t\n      -1\n  Mul\n    2\n    h\n      Add\n        t\n        -1"
         ],
         "latex": [
-          "\\operatorname{Conv}{\\left(2 h{\\left(t \\right)} + x{\\left(t \\right)},\\delta{\\left(t - 1 \\right)},t \\right)}",
-          "2 \\operatorname{Conv}{\\left(h{\\left(t \\right)},\\delta{\\left(t - 1 \\right)},t \\right)} + \\operatorname{Conv}{\\left(x{\\left(t \\right)},\\delta{\\left(t - 1 \\right)},t \\right)}",
-          "2 h{\\left(t - 1 \\right)} + x{\\left(t - 1 \\right)}"
+          "\\left[\\left(2 h + x\\right)\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)",
+          "2 \\left[h\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right) + \\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\left(t\\right)",
+          "2 h\\left(t - 1\\right) + x\\left(t - 1\\right)"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "Conv(x(t)+2*h(t),delta(t-1),t)",
           "Conv(x(t),delta(t-1),t)+2*Conv(h(t),delta(t-1),t)",
@@ -335,7 +383,7 @@
         "summary": "全部相邻步骤已通过验证。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 74.65,
+        "elapsedMs": 86.86,
         "steps": [
           {
             "before": "Conv(Conv(x(t),delta(t-1),t),delta(t-2),t)",
@@ -357,21 +405,28 @@
               {
                 "ruleId": "C06",
                 "before": "Conv(Conv(x(t), delta(t - 1), t), delta(t - 2), t)",
-                "after": "Conv(x(t - 1), delta(t - 2), t)"
+                "after": "Conv(x(t - 1), delta(t - 2), t)",
+                "beforeLatex": "\\left[\\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+                "afterLatex": "\\left[x\\left(\\cdot - 1\\right)\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)"
               },
               {
                 "ruleId": "C06",
                 "before": "Conv(x(t - 1), delta(t - 2), t)",
-                "after": "x(t - 3)"
+                "after": "x(t - 3)",
+                "beforeLatex": "\\left[x\\left(\\cdot - 1\\right)\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+                "afterLatex": "x\\left(t - 3\\right)"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{Conv}{\\left(\\operatorname{Conv}{\\left(x{\\left(t \\right)},\\delta{\\left(t - 1 \\right)},t \\right)},\\delta{\\left(t - 2 \\right)},t \\right)}",
-            "afterLatex": "\\operatorname{Conv}{\\left(x{\\left(t - 1 \\right)},\\delta{\\left(t - 2 \\right)},t \\right)}",
-            "expectedLatex": "x{\\left(t - 3 \\right)}",
+            "beforeLatex": "\\left[\\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+            "afterLatex": "\\left[x\\left(\\cdot - 1\\right)\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "x\\left(t - 3\\right)",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -396,16 +451,21 @@
               {
                 "ruleId": "C06",
                 "before": "Conv(x(t - 1), delta(t - 2), t)",
-                "after": "x(t - 3)"
+                "after": "x(t - 3)",
+                "beforeLatex": "\\left[x\\left(\\cdot - 1\\right)\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+                "afterLatex": "x\\left(t - 3\\right)"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{Conv}{\\left(x{\\left(t - 1 \\right)},\\delta{\\left(t - 2 \\right)},t \\right)}",
-            "afterLatex": "x{\\left(t - 3 \\right)}",
-            "expectedLatex": "x{\\left(t - 3 \\right)}",
+            "beforeLatex": "\\left[x\\left(\\cdot - 1\\right)\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+            "afterLatex": "x\\left(t - 3\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "x\\left(t - 3\\right)",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -422,10 +482,16 @@
           "x\n  Add\n    t\n    -3"
         ],
         "latex": [
-          "\\operatorname{Conv}{\\left(\\operatorname{Conv}{\\left(x{\\left(t \\right)},\\delta{\\left(t - 1 \\right)},t \\right)},\\delta{\\left(t - 2 \\right)},t \\right)}",
-          "\\operatorname{Conv}{\\left(x{\\left(t - 1 \\right)},\\delta{\\left(t - 2 \\right)},t \\right)}",
-          "x{\\left(t - 3 \\right)}"
+          "\\left[\\left[x\\ast \\delta\\left(\\cdot - 1\\right)\\right]\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+          "\\left[x\\left(\\cdot - 1\\right)\\ast \\delta\\left(\\cdot - 2\\right)\\right]\\left(t\\right)",
+          "x\\left(t - 3\\right)"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "Conv(Conv(x(t),delta(t-1),t),delta(t-2),t)",
           "Conv(x(t-1),delta(t-2),t)",
@@ -453,7 +519,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 256.19,
+        "elapsedMs": 303.31,
         "steps": [
           {
             "before": "D(Conv(x(t),h(t),t),t)",
@@ -479,7 +545,9 @@
               {
                 "ruleId": "C08",
                 "before": "D(Conv(x(t), h(t), t), t)",
-                "after": "Conv(D(x(t), t), h(t), t)"
+                "after": "Conv(D(x(t), t), h(t), t)",
+                "beforeLatex": "\\frac{\\mathrm{d} \\left[x\\ast h\\right]\\left(t\\right)}{\\mathrm{d}t}",
+                "afterLatex": "\\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right)"
               }
             ],
             "samples": [
@@ -497,9 +565,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "卷积求导只需对一侧求导；不能套用普通乘积求导后相加。",
-            "beforeLatex": "D{\\left(\\operatorname{Conv}{\\left(x{\\left(t \\right)},h{\\left(t \\right)},t \\right)},t \\right)}",
-            "afterLatex": "\\operatorname{Conv}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},h{\\left(t \\right)},t \\right)} + \\operatorname{Conv}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},h{\\left(t \\right)},t \\right)}",
-            "expectedLatex": "\\operatorname{Conv}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},h{\\left(t \\right)},t \\right)}",
+            "beforeLatex": "\\frac{\\mathrm{d} \\left[x\\ast h\\right]\\left(t\\right)}{\\mathrm{d}t}",
+            "afterLatex": "\\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right) + \\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right)",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -524,9 +595,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "\\operatorname{Conv}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},h{\\left(t \\right)},t \\right)} + \\operatorname{Conv}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},h{\\left(t \\right)},t \\right)}",
-            "afterLatex": "2 \\operatorname{Conv}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},h{\\left(t \\right)},t \\right)}",
-            "expectedLatex": "2 \\operatorname{Conv}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},h{\\left(t \\right)},t \\right)}",
+            "beforeLatex": "\\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right) + \\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right)",
+            "afterLatex": "2 \\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "2 \\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right)",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -543,10 +617,16 @@
           "Mul\n  2\n  Conv\n    D\n      x\n        t\n      t\n    h\n      t\n    t"
         ],
         "latex": [
-          "D{\\left(\\operatorname{Conv}{\\left(x{\\left(t \\right)},h{\\left(t \\right)},t \\right)},t \\right)}",
-          "\\operatorname{Conv}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},h{\\left(t \\right)},t \\right)} + \\operatorname{Conv}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},h{\\left(t \\right)},t \\right)}",
-          "2 \\operatorname{Conv}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},h{\\left(t \\right)},t \\right)}"
+          "\\frac{\\mathrm{d} \\left[x\\ast h\\right]\\left(t\\right)}{\\mathrm{d}t}",
+          "\\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right) + \\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right)",
+          "2 \\left[\\frac{\\mathrm{d} x}{\\mathrm{d}t}\\ast h\\right]\\left(t\\right)"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "D(Conv(x(t),h(t),t),t)",
           "Conv(D(x(t), t), h(t), t)",
@@ -572,7 +652,7 @@
         "summary": "存在尚未证实的步骤，不能判定整条推导正确。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 28.73,
+        "elapsedMs": 44.51,
         "steps": [
           {
             "before": "Conv(x(n),delta(n-1/2),n)",
@@ -596,16 +676,21 @@
               {
                 "ruleId": "C06",
                 "before": "Conv(x(n), delta(n - 1/2), n)",
-                "after": "x(n - 1/2)"
+                "after": "x(n - 1/2)",
+                "beforeLatex": "\\left[x\\ast \\delta\\left[\\cdot - \\frac{1}{2}\\right]\\right]\\left[n\\right]",
+                "afterLatex": "x\\left[n - \\frac{1}{2}\\right]"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "unknown",
             "explanation": "表达式符合规则形式，但前提尚未满足：离散时移必须是整数",
-            "beforeLatex": "\\operatorname{Conv}{\\left(x{\\left(n \\right)},\\delta{\\left(n - \\frac{1}{2} \\right)},n \\right)}",
-            "afterLatex": "x{\\left(n - \\frac{1}{2} \\right)}",
-            "expectedLatex": "x{\\left(n - \\frac{1}{2} \\right)}",
+            "beforeLatex": "\\left[x\\ast \\delta\\left[\\cdot - \\frac{1}{2}\\right]\\right]\\left[n\\right]",
+            "afterLatex": "x\\left[n - \\frac{1}{2}\\right]",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "x\\left[n - \\frac{1}{2}\\right]",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "unknown",
             "statusLabel": "暂无法判断"
@@ -620,9 +705,14 @@
           "x\n  Add\n    n\n    Mul\n      -1\n      Pow\n        2\n        -1"
         ],
         "latex": [
-          "\\operatorname{Conv}{\\left(x{\\left(n \\right)},\\delta{\\left(n - \\frac{1}{2} \\right)},n \\right)}",
-          "x{\\left(n - \\frac{1}{2} \\right)}"
+          "\\left[x\\ast \\delta\\left[\\cdot - \\frac{1}{2}\\right]\\right]\\left[n\\right]",
+          "x\\left[n - \\frac{1}{2}\\right]"
         ],
+        "rocLatex": [
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "Conv(x(n),delta(n-1/2),n)",
           "x(n-1/2)"
@@ -649,7 +739,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 603.16,
+        "elapsedMs": 741.0,
         "steps": [
           {
             "before": "Conv(x(t),h(t)+g(t),t)",
@@ -669,13 +759,17 @@
             "diff": {
               "path": "root",
               "before": "(g(t) + h(t))*x(t)",
-              "after": "Conv(x(t), g(t), t) + Conv(x(t), h(t), t)"
+              "after": "Conv(x(t), g(t), t) + Conv(x(t), h(t), t)",
+              "beforeLatex": "\\left(g\\left(t\\right) + h\\left(t\\right)\\right) x\\left(t\\right)",
+              "afterLatex": "\\left[x\\ast g\\right]\\left(t\\right) + \\left[x\\ast h\\right]\\left(t\\right)"
             },
             "trace": [
               {
                 "ruleId": "C03",
                 "before": "Conv(x(t), g(t) + h(t), t)",
-                "after": "Conv(x(t), g(t), t) + Conv(x(t), h(t), t)"
+                "after": "Conv(x(t), g(t), t) + Conv(x(t), h(t), t)",
+                "beforeLatex": "\\left[x\\ast \\left(g + h\\right)\\right]\\left(t\\right)",
+                "afterLatex": "\\left[x\\ast g\\right]\\left(t\\right) + \\left[x\\ast h\\right]\\left(t\\right)"
               }
             ],
             "samples": [
@@ -693,9 +787,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "该步与已验证的规则候选不一致。下方显示局部结构差异与建议结果。",
-            "beforeLatex": "\\operatorname{Conv}{\\left(x{\\left(t \\right)},g{\\left(t \\right)} + h{\\left(t \\right)},t \\right)}",
-            "afterLatex": "\\left(g{\\left(t \\right)} + h{\\left(t \\right)}\\right) x{\\left(t \\right)}",
-            "expectedLatex": "\\operatorname{Conv}{\\left(x{\\left(t \\right)},g{\\left(t \\right)},t \\right)} + \\operatorname{Conv}{\\left(x{\\left(t \\right)},h{\\left(t \\right)},t \\right)}",
+            "beforeLatex": "\\left[x\\ast \\left(g + h\\right)\\right]\\left(t\\right)",
+            "afterLatex": "\\left(g\\left(t\\right) + h\\left(t\\right)\\right) x\\left(t\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\left[x\\ast g\\right]\\left(t\\right) + \\left[x\\ast h\\right]\\left(t\\right)",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -720,9 +817,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "\\left(g{\\left(t \\right)} + h{\\left(t \\right)}\\right) x{\\left(t \\right)}",
-            "afterLatex": "g{\\left(t \\right)} x{\\left(t \\right)} + h{\\left(t \\right)} x{\\left(t \\right)}",
-            "expectedLatex": "g{\\left(t \\right)} x{\\left(t \\right)} + h{\\left(t \\right)} x{\\left(t \\right)}",
+            "beforeLatex": "\\left(g\\left(t\\right) + h\\left(t\\right)\\right) x\\left(t\\right)",
+            "afterLatex": "g\\left(t\\right) x\\left(t\\right) + h\\left(t\\right) x\\left(t\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "g\\left(t\\right) x\\left(t\\right) + h\\left(t\\right) x\\left(t\\right)",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -739,10 +839,16 @@
           "Add\n  Mul\n    x\n      t\n    h\n      t\n  Mul\n    x\n      t\n    g\n      t"
         ],
         "latex": [
-          "\\operatorname{Conv}{\\left(x{\\left(t \\right)},g{\\left(t \\right)} + h{\\left(t \\right)},t \\right)}",
-          "\\left(g{\\left(t \\right)} + h{\\left(t \\right)}\\right) x{\\left(t \\right)}",
-          "g{\\left(t \\right)} x{\\left(t \\right)} + h{\\left(t \\right)} x{\\left(t \\right)}"
+          "\\left[x\\ast \\left(g + h\\right)\\right]\\left(t\\right)",
+          "\\left(g\\left(t\\right) + h\\left(t\\right)\\right) x\\left(t\\right)",
+          "g\\left(t\\right) x\\left(t\\right) + h\\left(t\\right) x\\left(t\\right)"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "Conv(x(t),h(t)+g(t),t)",
           "Conv(x(t), g(t), t) + Conv(x(t), h(t), t)",
@@ -770,7 +876,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 228.52,
+        "elapsedMs": 320.76,
         "steps": [
           {
             "before": "FT(x(t-2),t,w)",
@@ -790,13 +896,17 @@
             "diff": {
               "path": "root.Mul[1].exp[0].Mul[0]",
               "before": "2",
-              "after": "-2"
+              "after": "-2",
+              "beforeLatex": "2",
+              "afterLatex": "-2"
             },
             "trace": [
               {
                 "ruleId": "F02",
                 "before": "FT(x(t - 2), t, w)",
-                "after": "X(w)*exp(-2*I*w)"
+                "after": "X(w)*exp(-2*I*w)",
+                "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t - 2\\right)\\right\\}",
+                "afterLatex": "X\\left(\\omega\\right) e^{- 2 j \\omega}"
               }
             ],
             "samples": [
@@ -811,9 +921,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "时移相位因子的方向不一致。延迟 a 对应负指数 exp(-I*w*a)。",
-            "beforeLatex": "\\operatorname{FT}{\\left(x{\\left(t - 2 \\right)},t,w \\right)}",
-            "afterLatex": "X{\\left(w \\right)} e^{2 i w}",
-            "expectedLatex": "X{\\left(w \\right)} e^{- 2 i w}",
+            "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t - 2\\right)\\right\\}",
+            "afterLatex": "X\\left(\\omega\\right) e^{2 j \\omega}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "X\\left(\\omega\\right) e^{- 2 j \\omega}",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -838,9 +951,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "X{\\left(w \\right)} e^{2 i w}",
-            "afterLatex": "\\frac{e^{2 i w}}{i w + 1}",
-            "expectedLatex": "\\frac{e^{2 i w}}{i w + 1}",
+            "beforeLatex": "X\\left(\\omega\\right) e^{2 j \\omega}",
+            "afterLatex": "\\frac{e^{2 j \\omega}}{j \\omega + 1}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\frac{e^{2 j \\omega}}{j \\omega + 1}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -857,10 +973,16 @@
           "Mul\n  exp\n    Mul\n      Mul\n        2\n        I\n      w\n  Pow\n    Add\n      1\n      Mul\n        I\n        w\n    -1"
         ],
         "latex": [
-          "\\operatorname{FT}{\\left(x{\\left(t - 2 \\right)},t,w \\right)}",
-          "X{\\left(w \\right)} e^{2 i w}",
-          "\\frac{e^{2 i w}}{i w + 1}"
+          "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t - 2\\right)\\right\\}",
+          "X\\left(\\omega\\right) e^{2 j \\omega}",
+          "\\frac{e^{2 j \\omega}}{j \\omega + 1}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "FT(x(t-2),t,w)",
           "X(w)*exp(-2*I*w)",
@@ -888,7 +1010,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 153.36,
+        "elapsedMs": 156.99,
         "steps": [
           {
             "before": "FT(x(-2*t),t,w)",
@@ -908,13 +1030,17 @@
             "diff": {
               "path": "root.Mul[0]",
               "before": "-1/2",
-              "after": "1/2"
+              "after": "1/2",
+              "beforeLatex": "- \\frac{1}{2}",
+              "afterLatex": "\\frac{1}{2}"
             },
             "trace": [
               {
                 "ruleId": "F04",
                 "before": "FT(x(-2*t), t, w)",
-                "after": "X(-w/2)/2"
+                "after": "X(-w/2)/2",
+                "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(- 2 t\\right)\\right\\}",
+                "afterLatex": "\\frac{X\\left(\\frac{\\left(-1\\right) \\omega}{2}\\right)}{2}"
               }
             ],
             "samples": [
@@ -929,9 +1055,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "尺度变换需同时替换频率并乘 1/abs(a)，负尺度也不能使用负幅度。",
-            "beforeLatex": "\\operatorname{FT}{\\left(x{\\left(- 2 t \\right)},t,w \\right)}",
-            "afterLatex": "\\frac{\\left(-1\\right) X{\\left(\\frac{\\left(-1\\right) w}{2} \\right)}}{2}",
-            "expectedLatex": "\\frac{X{\\left(\\frac{\\left(-1\\right) w}{2} \\right)}}{2}",
+            "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(- 2 t\\right)\\right\\}",
+            "afterLatex": "\\frac{\\left(-1\\right) X\\left(\\frac{\\left(-1\\right) \\omega}{2}\\right)}{2}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\frac{X\\left(\\frac{\\left(-1\\right) \\omega}{2}\\right)}{2}",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -956,9 +1085,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "\\frac{\\left(-1\\right) X{\\left(\\frac{\\left(-1\\right) w}{2} \\right)}}{2}",
-            "afterLatex": "- \\frac{1}{2 \\left(- \\frac{i w}{2} + 1\\right)}",
-            "expectedLatex": "- \\frac{1}{2 \\left(- \\frac{i w}{2} + 1\\right)}",
+            "beforeLatex": "\\frac{\\left(-1\\right) X\\left(\\frac{\\left(-1\\right) \\omega}{2}\\right)}{2}",
+            "afterLatex": "- \\frac{1}{2 \\left(- \\frac{j \\omega}{2} + 1\\right)}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "- \\frac{1}{2 \\left(- \\frac{j \\omega}{2} + 1\\right)}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -975,10 +1107,16 @@
           "Mul\n  -1\n  Pow\n    Mul\n      2\n      Add\n        1\n        Mul\n          -1\n          Mul\n            I\n            w\n          Pow\n            2\n            -1\n    -1"
         ],
         "latex": [
-          "\\operatorname{FT}{\\left(x{\\left(- 2 t \\right)},t,w \\right)}",
-          "\\frac{\\left(-1\\right) X{\\left(\\frac{\\left(-1\\right) w}{2} \\right)}}{2}",
-          "- \\frac{1}{2 \\left(- \\frac{i w}{2} + 1\\right)}"
+          "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(- 2 t\\right)\\right\\}",
+          "\\frac{\\left(-1\\right) X\\left(\\frac{\\left(-1\\right) \\omega}{2}\\right)}{2}",
+          "- \\frac{1}{2 \\left(- \\frac{j \\omega}{2} + 1\\right)}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "FT(x(-2*t),t,w)",
           "X(-w/2)/2",
@@ -1008,7 +1146,7 @@
         "summary": "全部相邻步骤已通过验证。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 418.58,
+        "elapsedMs": 402.94,
         "steps": [
           {
             "before": "FT(2*x(t-3)+exp(-2*t^2),t,w)",
@@ -1034,31 +1172,42 @@
               {
                 "ruleId": "F01",
                 "before": "FT(2*x(t - 3) + exp(-2*t^2), t, w)",
-                "after": "FT(2*x(t - 3), t, w) + FT(exp(-2*t^2), t, w)"
+                "after": "FT(2*x(t - 3), t, w) + FT(exp(-2*t^2), t, w)",
+                "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{2 x\\left(t - 3\\right) + e^{- 2 t^{2}}\\right\\}",
+                "afterLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{2 x\\left(t - 3\\right)\\right\\} + \\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\}"
               },
               {
                 "ruleId": "F01",
                 "before": "FT(2*x(t - 3), t, w) + FT(exp(-2*t^2), t, w)",
-                "after": "2*FT(x(t - 3), t, w) + FT(exp(-2*t^2), t, w)"
+                "after": "2*FT(x(t - 3), t, w) + FT(exp(-2*t^2), t, w)",
+                "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{2 x\\left(t - 3\\right)\\right\\} + \\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\}",
+                "afterLatex": "2 \\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t - 3\\right)\\right\\} + \\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\}"
               },
               {
                 "ruleId": "F02",
                 "before": "2*FT(x(t - 3), t, w) + FT(exp(-2*t^2), t, w)",
-                "after": "FT(exp(-2*t^2), t, w) + 2*X(w)*exp(-3*I*w)"
+                "after": "FT(exp(-2*t^2), t, w) + 2*X(w)*exp(-3*I*w)",
+                "beforeLatex": "2 \\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t - 3\\right)\\right\\} + \\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\}",
+                "afterLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\} + 2 X\\left(\\omega\\right) e^{- 3 j \\omega}"
               },
               {
                 "ruleId": "F12",
                 "before": "FT(exp(-2*t^2), t, w) + 2*X(w)*exp(-3*I*w)",
-                "after": "2*X(w)*exp(-3*I*w) + sqrt(2)*sqrt(pi)*exp(-w^2/8)/2"
+                "after": "2*X(w)*exp(-3*I*w) + sqrt(2)*sqrt(pi)*exp(-w^2/8)/2",
+                "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\} + 2 X\\left(\\omega\\right) e^{- 3 j \\omega}",
+                "afterLatex": "\\frac{\\sqrt{2} \\sqrt{\\pi} e^{\\frac{\\left(-1\\right) \\omega^{2}}{8}}}{2} + 2 X\\left(\\omega\\right) e^{- 3 j \\omega}"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{FT}{\\left(2 x{\\left(t - 3 \\right)} + e^{- 2 t^{2}},t,w \\right)}",
-            "afterLatex": "2 \\operatorname{FT}{\\left(x{\\left(t - 3 \\right)},t,w \\right)} + \\operatorname{FT}{\\left(e^{- 2 t^{2}},t,w \\right)}",
-            "expectedLatex": "\\frac{\\sqrt{2} \\sqrt{\\pi} e^{\\frac{\\left(-1\\right) w^{2}}{8}}}{2} + 2 X{\\left(w \\right)} e^{- 3 i w}",
+            "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{2 x\\left(t - 3\\right) + e^{- 2 t^{2}}\\right\\}",
+            "afterLatex": "2 \\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t - 3\\right)\\right\\} + \\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\frac{\\sqrt{2} \\sqrt{\\pi} e^{\\frac{\\left(-1\\right) \\omega^{2}}{8}}}{2} + 2 X\\left(\\omega\\right) e^{- 3 j \\omega}",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -1085,21 +1234,28 @@
               {
                 "ruleId": "F02",
                 "before": "2*FT(x(t - 3), t, w) + FT(exp(-2*t^2), t, w)",
-                "after": "FT(exp(-2*t^2), t, w) + 2*X(w)*exp(-3*I*w)"
+                "after": "FT(exp(-2*t^2), t, w) + 2*X(w)*exp(-3*I*w)",
+                "beforeLatex": "2 \\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t - 3\\right)\\right\\} + \\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\}",
+                "afterLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\} + 2 X\\left(\\omega\\right) e^{- 3 j \\omega}"
               },
               {
                 "ruleId": "F12",
                 "before": "FT(exp(-2*t^2), t, w) + 2*X(w)*exp(-3*I*w)",
-                "after": "2*X(w)*exp(-3*I*w) + sqrt(2)*sqrt(pi)*exp(-w^2/8)/2"
+                "after": "2*X(w)*exp(-3*I*w) + sqrt(2)*sqrt(pi)*exp(-w^2/8)/2",
+                "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\} + 2 X\\left(\\omega\\right) e^{- 3 j \\omega}",
+                "afterLatex": "\\frac{\\sqrt{2} \\sqrt{\\pi} e^{\\frac{\\left(-1\\right) \\omega^{2}}{8}}}{2} + 2 X\\left(\\omega\\right) e^{- 3 j \\omega}"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "2 \\operatorname{FT}{\\left(x{\\left(t - 3 \\right)},t,w \\right)} + \\operatorname{FT}{\\left(e^{- 2 t^{2}},t,w \\right)}",
-            "afterLatex": "X{\\left(w \\right)} 2 e^{- 3 i w} + \\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) w^{2}}{8}}",
-            "expectedLatex": "\\frac{\\sqrt{2} \\sqrt{\\pi} e^{\\frac{\\left(-1\\right) w^{2}}{8}}}{2} + 2 X{\\left(w \\right)} e^{- 3 i w}",
+            "beforeLatex": "2 \\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t - 3\\right)\\right\\} + \\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\}",
+            "afterLatex": "X\\left(\\omega\\right) 2 e^{- 3 j \\omega} + \\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) \\omega^{2}}{8}}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\frac{\\sqrt{2} \\sqrt{\\pi} e^{\\frac{\\left(-1\\right) \\omega^{2}}{8}}}{2} + 2 X\\left(\\omega\\right) e^{- 3 j \\omega}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -1124,9 +1280,12 @@
             "inherited": false,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "X{\\left(w \\right)} 2 e^{- 3 i w} + \\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) w^{2}}{8}}",
-            "afterLatex": "\\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) w^{2}}{8}} + \\frac{2 e^{- 3 i w}}{i w + 1}",
-            "expectedLatex": "\\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) w^{2}}{8}} + \\frac{2 e^{- 3 i w}}{i w + 1}",
+            "beforeLatex": "X\\left(\\omega\\right) 2 e^{- 3 j \\omega} + \\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) \\omega^{2}}{8}}",
+            "afterLatex": "\\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) \\omega^{2}}{8}} + \\frac{2 e^{- 3 j \\omega}}{j \\omega + 1}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) \\omega^{2}}{8}} + \\frac{2 e^{- 3 j \\omega}}{j \\omega + 1}",
+            "expectedRocLatex": "",
             "line": 4,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -1145,11 +1304,18 @@
           "Add\n  Mul\n    Mul\n      2\n      exp\n        Mul\n          Mul\n            -3\n            I\n          w\n    Pow\n      Add\n        1\n        Mul\n          I\n          w\n      -1\n  Mul\n    Mul\n      1/2\n      Pow\n        2\n        1/2\n      Pow\n        pi\n        1/2\n    exp\n      Mul\n        Mul\n          -1\n          Pow\n            w\n            2\n        Pow\n          8\n          -1"
         ],
         "latex": [
-          "\\operatorname{FT}{\\left(2 x{\\left(t - 3 \\right)} + e^{- 2 t^{2}},t,w \\right)}",
-          "2 \\operatorname{FT}{\\left(x{\\left(t - 3 \\right)},t,w \\right)} + \\operatorname{FT}{\\left(e^{- 2 t^{2}},t,w \\right)}",
-          "X{\\left(w \\right)} 2 e^{- 3 i w} + \\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) w^{2}}{8}}",
-          "\\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) w^{2}}{8}} + \\frac{2 e^{- 3 i w}}{i w + 1}"
+          "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{2 x\\left(t - 3\\right) + e^{- 2 t^{2}}\\right\\}",
+          "2 \\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t - 3\\right)\\right\\} + \\mathcal{F}_{t\\to \\omega}\\!\\left\\{e^{- 2 t^{2}}\\right\\}",
+          "X\\left(\\omega\\right) 2 e^{- 3 j \\omega} + \\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) \\omega^{2}}{8}}",
+          "\\frac{\\sqrt{2} \\sqrt{\\pi}}{2} e^{\\frac{\\left(-1\\right) \\omega^{2}}{8}} + \\frac{2 e^{- 3 j \\omega}}{j \\omega + 1}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "FT(2*x(t-3)+exp(-2*t^2),t,w)",
           "2*FT(x(t-3),t,w)+FT(exp(-2*t^2),t,w)",
@@ -1176,7 +1342,7 @@
         "summary": "存在尚未证实的步骤，不能判定整条推导正确。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 47.6,
+        "elapsedMs": 56.21,
         "steps": [
           {
             "before": "FT(exp(I*t^2)*x(t),t,w)",
@@ -1195,9 +1361,12 @@
             "inherited": false,
             "status": "unknown",
             "explanation": "当前规则库与有界搜索尚不能证明或否定此步，请补充条件或拆成更小步骤。",
-            "beforeLatex": "\\operatorname{FT}{\\left(x{\\left(t \\right)} e^{i t^{2}},t,w \\right)}",
-            "afterLatex": "X{\\left(w \\right)}",
+            "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t\\right) e^{j t^{2}}\\right\\}",
+            "afterLatex": "X\\left(\\omega\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
             "expectedLatex": "",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "unknown",
             "statusLabel": "暂无法判断"
@@ -1212,9 +1381,14 @@
           "X\n  w"
         ],
         "latex": [
-          "\\operatorname{FT}{\\left(x{\\left(t \\right)} e^{i t^{2}},t,w \\right)}",
-          "X{\\left(w \\right)}"
+          "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t\\right) e^{j t^{2}}\\right\\}",
+          "X\\left(\\omega\\right)"
         ],
+        "rocLatex": [
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "FT(exp(I*t^2)*x(t),t,w)",
           "X(w)"
@@ -1241,7 +1415,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 247.02,
+        "elapsedMs": 242.09,
         "steps": [
           {
             "before": "FT(exp(3*I*t)*x(t),t,w)",
@@ -1261,13 +1435,17 @@
             "diff": {
               "path": "root.X[0].Add[0]",
               "before": "3",
-              "after": "-3"
+              "after": "-3",
+              "beforeLatex": "3",
+              "afterLatex": "-3"
             },
             "trace": [
               {
                 "ruleId": "F03",
                 "before": "FT(x(t)*exp((3*I)*t), t, w)",
-                "after": "X(w - 3)"
+                "after": "X(w - 3)",
+                "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t\\right) e^{3 j t}\\right\\}",
+                "afterLatex": "X\\left(\\omega - 3\\right)"
               }
             ],
             "samples": [
@@ -1282,9 +1460,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "调制对应频谱平移，请核对频移方向。",
-            "beforeLatex": "\\operatorname{FT}{\\left(x{\\left(t \\right)} e^{3 i t},t,w \\right)}",
-            "afterLatex": "X{\\left(w + 3 \\right)}",
-            "expectedLatex": "X{\\left(w - 3 \\right)}",
+            "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t\\right) e^{3 j t}\\right\\}",
+            "afterLatex": "X\\left(\\omega + 3\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "X\\left(\\omega - 3\\right)",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -1309,9 +1490,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "X{\\left(w + 3 \\right)}",
-            "afterLatex": "1 \\frac{1}{i \\left(w + 3\\right) + 1}",
-            "expectedLatex": "1 \\frac{1}{i \\left(w + 3\\right) + 1}",
+            "beforeLatex": "X\\left(\\omega + 3\\right)",
+            "afterLatex": "\\frac{1}{j \\left(\\omega + 3\\right) + 1}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\frac{1}{j \\left(\\omega + 3\\right) + 1}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -1328,10 +1512,16 @@
           "Mul\n  1\n  Pow\n    Add\n      1\n      Mul\n        I\n        Add\n          w\n          3\n    -1"
         ],
         "latex": [
-          "\\operatorname{FT}{\\left(x{\\left(t \\right)} e^{3 i t},t,w \\right)}",
-          "X{\\left(w + 3 \\right)}",
-          "1 \\frac{1}{i \\left(w + 3\\right) + 1}"
+          "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{x\\left(t\\right) e^{3 j t}\\right\\}",
+          "X\\left(\\omega + 3\\right)",
+          "\\frac{1}{j \\left(\\omega + 3\\right) + 1}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "FT(exp(3*I*t)*x(t),t,w)",
           "X(w - 3)",
@@ -1359,7 +1549,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 263.25,
+        "elapsedMs": 243.71,
         "steps": [
           {
             "before": "FT(x(t)*h(t),t,w)",
@@ -1379,13 +1569,17 @@
             "diff": {
               "path": "root",
               "before": "Conv(X(w), H(w), w)",
-              "after": "Conv(X(w), H(w), w)/(2*pi)"
+              "after": "Conv(X(w), H(w), w)/(2*pi)",
+              "beforeLatex": "\\left[X\\ast H\\right]\\left(\\omega\\right)",
+              "afterLatex": "\\frac{\\left[X\\ast H\\right]\\left(\\omega\\right)}{2 \\pi}"
             },
             "trace": [
               {
                 "ruleId": "F09",
                 "before": "FT(h(t)*x(t), t, w)",
-                "after": "Conv(X(w), H(w), w)/(2*pi)"
+                "after": "Conv(X(w), H(w), w)/(2*pi)",
+                "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{h\\left(t\\right) x\\left(t\\right)\\right\\}",
+                "afterLatex": "\\frac{\\left[X\\ast H\\right]\\left(\\omega\\right)}{2 \\pi}"
               }
             ],
             "samples": [
@@ -1403,9 +1597,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "时域相乘对应频域卷积，角频率约定下必须带 1/(2*pi)。",
-            "beforeLatex": "\\operatorname{FT}{\\left(h{\\left(t \\right)} x{\\left(t \\right)},t,w \\right)}",
-            "afterLatex": "\\operatorname{Conv}{\\left(X{\\left(w \\right)},H{\\left(w \\right)},w \\right)}",
-            "expectedLatex": "\\frac{\\operatorname{Conv}{\\left(X{\\left(w \\right)},H{\\left(w \\right)},w \\right)}}{2 \\pi}",
+            "beforeLatex": "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{h\\left(t\\right) x\\left(t\\right)\\right\\}",
+            "afterLatex": "\\left[X\\ast H\\right]\\left(\\omega\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\frac{\\left[X\\ast H\\right]\\left(\\omega\\right)}{2 \\pi}",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -1430,16 +1627,21 @@
               {
                 "ruleId": "C01",
                 "before": "Conv(X(w), H(w), w)",
-                "after": "Conv(H(w), X(w), w)"
+                "after": "Conv(H(w), X(w), w)",
+                "beforeLatex": "\\left[X\\ast H\\right]\\left(\\omega\\right)",
+                "afterLatex": "\\left[H\\ast X\\right]\\left(\\omega\\right)"
               }
             ],
             "samples": [],
             "inherited": true,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{Conv}{\\left(X{\\left(w \\right)},H{\\left(w \\right)},w \\right)}",
-            "afterLatex": "\\operatorname{Conv}{\\left(H{\\left(w \\right)},X{\\left(w \\right)},w \\right)}",
-            "expectedLatex": "\\operatorname{Conv}{\\left(H{\\left(w \\right)},X{\\left(w \\right)},w \\right)}",
+            "beforeLatex": "\\left[X\\ast H\\right]\\left(\\omega\\right)",
+            "afterLatex": "\\left[H\\ast X\\right]\\left(\\omega\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\left[H\\ast X\\right]\\left(\\omega\\right)",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -1456,10 +1658,16 @@
           "Conv\n  H\n    w\n  X\n    w\n  w"
         ],
         "latex": [
-          "\\operatorname{FT}{\\left(h{\\left(t \\right)} x{\\left(t \\right)},t,w \\right)}",
-          "\\operatorname{Conv}{\\left(X{\\left(w \\right)},H{\\left(w \\right)},w \\right)}",
-          "\\operatorname{Conv}{\\left(H{\\left(w \\right)},X{\\left(w \\right)},w \\right)}"
+          "\\mathcal{F}_{t\\to \\omega}\\!\\left\\{h\\left(t\\right) x\\left(t\\right)\\right\\}",
+          "\\left[X\\ast H\\right]\\left(\\omega\\right)",
+          "\\left[H\\ast X\\right]\\left(\\omega\\right)"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "FT(x(t)*h(t),t,w)",
           "Conv(X(w), H(w), w)/(2*pi)",
@@ -1489,7 +1697,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 81.19,
+        "elapsedMs": 118.53,
         "steps": [
           {
             "before": "LT(D(x(t),t),t,s)",
@@ -1509,13 +1717,17 @@
             "diff": {
               "path": "root",
               "before": "s*X(s)",
-              "after": "s*X(s) - 2"
+              "after": "s*X(s) - 2",
+              "beforeLatex": "s X\\left(s\\right)",
+              "afterLatex": "s X\\left(s\\right) - 2"
             },
             "trace": [
               {
                 "ruleId": "L02",
                 "before": "LT(D(x(t), t), t, s)",
-                "after": "s*X(s) - 2"
+                "after": "s*X(s) - 2",
+                "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{\\frac{\\mathrm{d} x\\left(t\\right)}{\\mathrm{d}t}\\right\\}\\!\\left(s\\right)",
+                "afterLatex": "s X\\left(s\\right) - 2"
               }
             ],
             "samples": [
@@ -1530,9 +1742,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "单边拉普拉斯导数公式包含 x(0-) 初值项。",
-            "beforeLatex": "\\operatorname{LT}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},t,s \\right)}",
-            "afterLatex": "s X{\\left(s \\right)}",
-            "expectedLatex": "s X{\\left(s \\right)} - 2",
+            "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{\\frac{\\mathrm{d} x\\left(t\\right)}{\\mathrm{d}t}\\right\\}\\!\\left(s\\right)",
+            "afterLatex": "s X\\left(s\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "s X\\left(s\\right) - 2",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -1557,9 +1772,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "s X{\\left(s \\right)}",
+            "beforeLatex": "s X\\left(s\\right)",
             "afterLatex": "\\frac{2 s}{s + 1}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
             "expectedLatex": "\\frac{2 s}{s + 1}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -1586,7 +1804,10 @@
             "explanation": "相邻两式在给定条件下符号等价。",
             "beforeLatex": "\\frac{2 s}{s + 1}",
             "afterLatex": "2 - \\frac{2}{s + 1}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
             "expectedLatex": "2 - \\frac{2}{s + 1}",
+            "expectedRocLatex": "",
             "line": 4,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -1605,11 +1826,18 @@
           "Add\n  2\n  Mul\n    -2\n    Pow\n      Add\n        s\n        1\n      -1"
         ],
         "latex": [
-          "\\operatorname{LT}{\\left(D{\\left(x{\\left(t \\right)},t \\right)},t,s \\right)}",
-          "s X{\\left(s \\right)}",
+          "\\mathcal{L}_{0^{-}}\\!\\left\\{\\frac{\\mathrm{d} x\\left(t\\right)}{\\mathrm{d}t}\\right\\}\\!\\left(s\\right)",
+          "s X\\left(s\\right)",
           "\\frac{2 s}{s + 1}",
           "2 - \\frac{2}{s + 1}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "LT(D(x(t),t),t,s)",
           "s*X(s) - 2",
@@ -1636,7 +1864,7 @@
         "summary": "全部相邻步骤已通过验证。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 68.24,
+        "elapsedMs": 53.7,
         "steps": [
           {
             "before": "LT(exp(-2*t)*u(t),t,s)",
@@ -1660,16 +1888,21 @@
               {
                 "ruleId": "L10",
                 "before": "LT(u(t)*exp(-2*t), t, s)",
-                "after": "1/(s + 2)"
+                "after": "1/(s + 2)",
+                "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{u\\left(t\\right) e^{- 2 t}\\right\\}\\!\\left(s\\right)",
+                "afterLatex": "\\frac{1}{s + 2}"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{LT}{\\left(u{\\left(t \\right)} e^{- 2 t},t,s \\right)}",
-            "afterLatex": "1 \\frac{1}{s + 2}",
-            "expectedLatex": "1 \\frac{1}{s + 2}",
+            "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{u\\left(t\\right) e^{- 2 t}\\right\\}\\!\\left(s\\right)",
+            "afterLatex": "\\frac{1}{s + 2}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "\\operatorname{Re}\\!\\left(s\\right) > -2",
+            "expectedLatex": "\\frac{1}{s + 2}",
+            "expectedRocLatex": "\\operatorname{Re}\\!\\left(s\\right) > -2",
             "line": 2,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -1684,9 +1917,14 @@
           "Mul\n  1\n  Pow\n    Add\n      s\n      2\n    -1"
         ],
         "latex": [
-          "\\operatorname{LT}{\\left(u{\\left(t \\right)} e^{- 2 t},t,s \\right)}",
-          "1 \\frac{1}{s + 2}"
+          "\\mathcal{L}_{0^{-}}\\!\\left\\{u\\left(t\\right) e^{- 2 t}\\right\\}\\!\\left(s\\right)",
+          "\\frac{1}{s + 2}"
         ],
+        "rocLatex": [
+          "",
+          "\\operatorname{Re}\\!\\left(s\\right) > -2"
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "LT(exp(-2*t)*u(t),t,s)",
           "1/(s+2); ROC: re(s)>-2"
@@ -1715,7 +1953,7 @@
         "summary": "第 2 → 3 行出现首个错误",
         "firstError": 3,
         "firstErrorCertain": true,
-        "elapsedMs": 64.96,
+        "elapsedMs": 66.68,
         "steps": [
           {
             "before": "LT(D(x(t),t,2),t,s)",
@@ -1737,16 +1975,21 @@
               {
                 "ruleId": "L03",
                 "before": "LT(D(x(t), t, 2), t, s)",
-                "after": "s^2*X(s) - 2*s + 1"
+                "after": "s^2*X(s) - 2*s + 1",
+                "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{\\frac{\\mathrm{d}^{2} x\\left(t\\right)}{\\mathrm{d}t^{2}}\\right\\}\\!\\left(s\\right)",
+                "afterLatex": "\\left(s^{2} X\\left(s\\right) - 2 s\\right) + 1"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{LT}{\\left(D{\\left(x{\\left(t \\right)},t,2 \\right)},t,s \\right)}",
-            "afterLatex": "\\left(s^{2} X{\\left(s \\right)} - s 2\\right) + 1",
-            "expectedLatex": "\\left(s^{2} X{\\left(s \\right)} - 2 s\\right) + 1",
+            "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{\\frac{\\mathrm{d}^{2} x\\left(t\\right)}{\\mathrm{d}t^{2}}\\right\\}\\!\\left(s\\right)",
+            "afterLatex": "\\left(s^{2} X\\left(s\\right) - s 2\\right) + 1",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\left(s^{2} X\\left(s\\right) - 2 s\\right) + 1",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -1775,9 +2018,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "高精度代入发现反例，两式不能作为恒等式互换。",
-            "beforeLatex": "\\left(s^{2} X{\\left(s \\right)} - s 2\\right) + 1",
-            "afterLatex": "\\left(s^{2} X{\\left(s \\right)} - 2 s\\right) - 1",
+            "beforeLatex": "\\left(s^{2} X\\left(s\\right) - s 2\\right) + 1",
+            "afterLatex": "\\left(s^{2} X\\left(s\\right) - 2 s\\right) - 1",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
             "expectedLatex": "",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -1802,9 +2048,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "\\left(s^{2} X{\\left(s \\right)} - 2 s\\right) - 1",
-            "afterLatex": "s \\left(s X{\\left(s \\right)} - 2\\right) - 1",
-            "expectedLatex": "s \\left(s X{\\left(s \\right)} - 2\\right) - 1",
+            "beforeLatex": "\\left(s^{2} X\\left(s\\right) - 2 s\\right) - 1",
+            "afterLatex": "s \\left(s X\\left(s\\right) - 2\\right) - 1",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "s \\left(s X\\left(s\\right) - 2\\right) - 1",
+            "expectedRocLatex": "",
             "line": 4,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -1823,11 +2072,18 @@
           "Add\n  Mul\n    s\n    Add\n      Mul\n        s\n        X\n          s\n      -2\n  -1"
         ],
         "latex": [
-          "\\operatorname{LT}{\\left(D{\\left(x{\\left(t \\right)},t,2 \\right)},t,s \\right)}",
-          "\\left(s^{2} X{\\left(s \\right)} - s 2\\right) + 1",
-          "\\left(s^{2} X{\\left(s \\right)} - 2 s\\right) - 1",
-          "s \\left(s X{\\left(s \\right)} - 2\\right) - 1"
+          "\\mathcal{L}_{0^{-}}\\!\\left\\{\\frac{\\mathrm{d}^{2} x\\left(t\\right)}{\\mathrm{d}t^{2}}\\right\\}\\!\\left(s\\right)",
+          "\\left(s^{2} X\\left(s\\right) - s 2\\right) + 1",
+          "\\left(s^{2} X\\left(s\\right) - 2 s\\right) - 1",
+          "s \\left(s X\\left(s\\right) - 2\\right) - 1"
         ],
+        "rocLatex": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "LT(D(x(t),t,2),t,s)",
           "s^2*X(s)-s*x0-x1",
@@ -1856,7 +2112,7 @@
         "summary": "存在尚未证实的步骤，不能判定整条推导正确。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 190.08,
+        "elapsedMs": 78.31,
         "steps": [
           {
             "before": "LT(x(t-2),t,s)",
@@ -1875,9 +2131,12 @@
             "inherited": false,
             "status": "unknown",
             "explanation": "当前规则库与有界搜索尚不能证明或否定此步，请补充条件或拆成更小步骤。",
-            "beforeLatex": "\\operatorname{LT}{\\left(x{\\left(t - 2 \\right)},t,s \\right)}",
-            "afterLatex": "X{\\left(s \\right)} e^{- 2 s}",
+            "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{x\\left(t - 2\\right)\\right\\}\\!\\left(s\\right)",
+            "afterLatex": "X\\left(s\\right) e^{- 2 s}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
             "expectedLatex": "",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "unknown",
             "statusLabel": "暂无法判断"
@@ -1902,9 +2161,12 @@
             "inherited": false,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "X{\\left(s \\right)} e^{- 2 s}",
-            "afterLatex": "\\frac{X{\\left(s \\right)}}{e^{2 s}}",
-            "expectedLatex": "\\frac{X{\\left(s \\right)}}{e^{2 s}}",
+            "beforeLatex": "X\\left(s\\right) e^{- 2 s}",
+            "afterLatex": "\\frac{X\\left(s\\right)}{e^{2 s}}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\frac{X\\left(s\\right)}{e^{2 s}}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -1921,10 +2183,16 @@
           "Mul\n  X\n    s\n  Pow\n    exp\n      Mul\n        2\n        s\n    -1"
         ],
         "latex": [
-          "\\operatorname{LT}{\\left(x{\\left(t - 2 \\right)},t,s \\right)}",
-          "X{\\left(s \\right)} e^{- 2 s}",
-          "\\frac{X{\\left(s \\right)}}{e^{2 s}}"
+          "\\mathcal{L}_{0^{-}}\\!\\left\\{x\\left(t - 2\\right)\\right\\}\\!\\left(s\\right)",
+          "X\\left(s\\right) e^{- 2 s}",
+          "\\frac{X\\left(s\\right)}{e^{2 s}}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "LT(x(t-2),t,s)",
           "exp(-2*s)*X(s)",
@@ -1952,7 +2220,7 @@
         "summary": "全部相邻步骤已通过验证。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 45.32,
+        "elapsedMs": 35.19,
         "steps": [
           {
             "before": "LT(t*x(t),t,s)",
@@ -1974,16 +2242,21 @@
               {
                 "ruleId": "L04",
                 "before": "LT(t*x(t), t, s)",
-                "after": "-D(X(s), s)"
+                "after": "-D(X(s), s)",
+                "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{t x\\left(t\\right)\\right\\}\\!\\left(s\\right)",
+                "afterLatex": "- \\frac{\\mathrm{d} X\\left(s\\right)}{\\mathrm{d}s}"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{LT}{\\left(t x{\\left(t \\right)},t,s \\right)}",
-            "afterLatex": "- D{\\left(X{\\left(s \\right)},s \\right)}",
-            "expectedLatex": "- D{\\left(X{\\left(s \\right)},s \\right)}",
+            "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{t x\\left(t\\right)\\right\\}\\!\\left(s\\right)",
+            "afterLatex": "- \\frac{\\mathrm{d} X\\left(s\\right)}{\\mathrm{d}s}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "- \\frac{\\mathrm{d} X\\left(s\\right)}{\\mathrm{d}s}",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -2008,9 +2281,12 @@
             "inherited": false,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "- D{\\left(X{\\left(s \\right)},s \\right)}",
-            "afterLatex": "1 \\frac{1}{\\left(s + 1\\right)^{2}}",
-            "expectedLatex": "1 \\frac{1}{\\left(s + 1\\right)^{2}}",
+            "beforeLatex": "- \\frac{\\mathrm{d} X\\left(s\\right)}{\\mathrm{d}s}",
+            "afterLatex": "\\frac{1}{\\left(s + 1\\right)^{2}}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\frac{1}{\\left(s + 1\\right)^{2}}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -2027,10 +2303,16 @@
           "Mul\n  1\n  Pow\n    Pow\n      Add\n        s\n        1\n      2\n    -1"
         ],
         "latex": [
-          "\\operatorname{LT}{\\left(t x{\\left(t \\right)},t,s \\right)}",
-          "- D{\\left(X{\\left(s \\right)},s \\right)}",
-          "1 \\frac{1}{\\left(s + 1\\right)^{2}}"
+          "\\mathcal{L}_{0^{-}}\\!\\left\\{t x\\left(t\\right)\\right\\}\\!\\left(s\\right)",
+          "- \\frac{\\mathrm{d} X\\left(s\\right)}{\\mathrm{d}s}",
+          "\\frac{1}{\\left(s + 1\\right)^{2}}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "LT(t*x(t),t,s)",
           "-D(X(s),s)",
@@ -2056,7 +2338,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 12.31,
+        "elapsedMs": 14.56,
         "steps": [
           {
             "before": "LT(u(t),t,s)",
@@ -2084,16 +2366,21 @@
               {
                 "ruleId": "L09",
                 "before": "LT(u(t), t, s)",
-                "after": "1/s"
+                "after": "1/s",
+                "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{u\\left(t\\right)\\right\\}\\!\\left(s\\right)",
+                "afterLatex": "\\frac{1}{s}"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "wrong",
             "explanation": "代数表达式正确，但收敛域方向或边界不正确。",
-            "beforeLatex": "\\operatorname{LT}{\\left(u{\\left(t \\right)},t,s \\right)}",
-            "afterLatex": "1 \\frac{1}{s}",
-            "expectedLatex": "1 \\frac{1}{s}",
+            "beforeLatex": "\\mathcal{L}_{0^{-}}\\!\\left\\{u\\left(t\\right)\\right\\}\\!\\left(s\\right)",
+            "afterLatex": "\\frac{1}{s}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "\\operatorname{Re}\\!\\left(s\\right) < 0",
+            "expectedLatex": "\\frac{1}{s}",
+            "expectedRocLatex": "\\operatorname{Re}\\!\\left(s\\right) > 0",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -2108,9 +2395,14 @@
           "Mul\n  1\n  Pow\n    s\n    -1"
         ],
         "latex": [
-          "\\operatorname{LT}{\\left(u{\\left(t \\right)},t,s \\right)}",
-          "1 \\frac{1}{s}"
+          "\\mathcal{L}_{0^{-}}\\!\\left\\{u\\left(t\\right)\\right\\}\\!\\left(s\\right)",
+          "\\frac{1}{s}"
         ],
+        "rocLatex": [
+          "",
+          "\\operatorname{Re}\\!\\left(s\\right) < 0"
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "LT(u(t),t,s)",
           "1/s; ROC: re(s)>0"
@@ -2135,7 +2427,7 @@
         "summary": "代数推导成立，但收敛域信息不完整。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 51.2,
+        "elapsedMs": 44.44,
         "steps": [
           {
             "before": "ZT((1/2)^n*u(n),n,z)",
@@ -2163,16 +2455,21 @@
               {
                 "ruleId": "Z09",
                 "before": "ZT((1/2)^n*u(n), n, z)",
-                "after": "z/(z - 1/2)"
+                "after": "z/(z - 1/2)",
+                "beforeLatex": "\\mathcal{Z}\\!\\left\\{\\left(\\frac{1}{2}\\right)^{n} u\\left[n\\right]\\right\\}\\!\\left(z\\right)",
+                "afterLatex": "\\frac{z}{z - \\frac{1}{2}}"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "incomplete",
             "explanation": "代数表达式正确，但缺少收敛域。变换结果必须包含 ROC。",
-            "beforeLatex": "\\operatorname{ZT}{\\left(\\left(1 \\cdot \\frac{1}{2}\\right)^{n} u{\\left(n \\right)},n,z \\right)}",
+            "beforeLatex": "\\mathcal{Z}\\!\\left\\{\\left(\\frac{1}{2}\\right)^{n} u\\left[n\\right]\\right\\}\\!\\left(z\\right)",
             "afterLatex": "\\frac{z}{z - \\frac{1}{2}}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
             "expectedLatex": "\\frac{z}{z - \\frac{1}{2}}",
+            "expectedRocLatex": "\\left|z\\right| > \\frac{1}{2}",
             "line": 2,
             "localStatus": "incomplete",
             "statusLabel": "缺少收敛域"
@@ -2187,9 +2484,14 @@
           "Mul\n  z\n  Pow\n    Add\n      z\n      Mul\n        -1\n        Pow\n          2\n          -1\n    -1"
         ],
         "latex": [
-          "\\operatorname{ZT}{\\left(\\left(1 \\cdot \\frac{1}{2}\\right)^{n} u{\\left(n \\right)},n,z \\right)}",
+          "\\mathcal{Z}\\!\\left\\{\\left(\\frac{1}{2}\\right)^{n} u\\left[n\\right]\\right\\}\\!\\left(z\\right)",
           "\\frac{z}{z - \\frac{1}{2}}"
         ],
+        "rocLatex": [
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "ZT((1/2)^n*u(n),n,z)",
           "z/(z-1/2)"
@@ -2214,7 +2516,7 @@
         "summary": "全部相邻步骤已通过验证。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 84.75,
+        "elapsedMs": 71.65,
         "steps": [
           {
             "before": "ZT(-(1/2)^n*u(-n-1),n,z)",
@@ -2238,16 +2540,21 @@
               {
                 "ruleId": "Z10",
                 "before": "ZT((-(1/2)^n)*u(-n - 1), n, z)",
-                "after": "z/(z - 1/2)"
+                "after": "z/(z - 1/2)",
+                "beforeLatex": "\\mathcal{Z}\\!\\left\\{- \\left(\\frac{1}{2}\\right)^{n} u\\left[- n - 1\\right]\\right\\}\\!\\left(z\\right)",
+                "afterLatex": "\\frac{z}{z - \\frac{1}{2}}"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{ZT}{\\left(- \\left(1 \\cdot \\frac{1}{2}\\right)^{n} u{\\left(- n - 1 \\right)},n,z \\right)}",
+            "beforeLatex": "\\mathcal{Z}\\!\\left\\{- \\left(\\frac{1}{2}\\right)^{n} u\\left[- n - 1\\right]\\right\\}\\!\\left(z\\right)",
             "afterLatex": "\\frac{z}{z - \\frac{1}{2}}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "\\left|z\\right| < \\frac{1}{2}",
             "expectedLatex": "\\frac{z}{z - \\frac{1}{2}}",
+            "expectedRocLatex": "\\left|z\\right| < \\frac{1}{2}",
             "line": 2,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -2262,9 +2569,14 @@
           "Mul\n  z\n  Pow\n    Add\n      z\n      Mul\n        -1\n        Pow\n          2\n          -1\n    -1"
         ],
         "latex": [
-          "\\operatorname{ZT}{\\left(- \\left(1 \\cdot \\frac{1}{2}\\right)^{n} u{\\left(- n - 1 \\right)},n,z \\right)}",
+          "\\mathcal{Z}\\!\\left\\{- \\left(\\frac{1}{2}\\right)^{n} u\\left[- n - 1\\right]\\right\\}\\!\\left(z\\right)",
           "\\frac{z}{z - \\frac{1}{2}}"
         ],
+        "rocLatex": [
+          "",
+          "\\left|z\\right| < \\frac{1}{2}"
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "ZT(-(1/2)^n*u(-n-1),n,z)",
           "z/(z-1/2); ROC: abs(z)<1/2"
@@ -2291,7 +2603,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 118.65,
+        "elapsedMs": 117.35,
         "steps": [
           {
             "before": "ZT(x(n-2),n,z)",
@@ -2311,13 +2623,17 @@
             "diff": {
               "path": "root.Mul[0].Pow[1]",
               "before": "2",
-              "after": "-2"
+              "after": "-2",
+              "beforeLatex": "2",
+              "afterLatex": "-2"
             },
             "trace": [
               {
                 "ruleId": "Z02",
                 "before": "ZT(x(n - 2), n, z)",
-                "after": "X(z)/z^2"
+                "after": "X(z)/z^2",
+                "beforeLatex": "\\mathcal{Z}\\!\\left\\{x\\left[n - 2\\right]\\right\\}\\!\\left(z\\right)",
+                "afterLatex": "\\frac{X\\left(z\\right)}{z^{2}}"
               }
             ],
             "samples": [
@@ -2332,9 +2648,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "序列延迟对应 z 的负次幂，请核对移位方向。",
-            "beforeLatex": "\\operatorname{ZT}{\\left(x{\\left(n - 2 \\right)},n,z \\right)}",
-            "afterLatex": "z^{2} X{\\left(z \\right)}",
-            "expectedLatex": "\\frac{X{\\left(z \\right)}}{z^{2}}",
+            "beforeLatex": "\\mathcal{Z}\\!\\left\\{x\\left[n - 2\\right]\\right\\}\\!\\left(z\\right)",
+            "afterLatex": "z^{2} X\\left(z\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "\\frac{X\\left(z\\right)}{z^{2}}",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -2359,9 +2678,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "z^{2} X{\\left(z \\right)}",
+            "beforeLatex": "z^{2} X\\left(z\\right)",
             "afterLatex": "\\frac{z^{3}}{z - \\frac{1}{2}}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
             "expectedLatex": "\\frac{z^{3}}{z - \\frac{1}{2}}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -2378,10 +2700,16 @@
           "Mul\n  Pow\n    z\n    3\n  Pow\n    Add\n      z\n      Mul\n        -1\n        Pow\n          2\n          -1\n    -1"
         ],
         "latex": [
-          "\\operatorname{ZT}{\\left(x{\\left(n - 2 \\right)},n,z \\right)}",
-          "z^{2} X{\\left(z \\right)}",
+          "\\mathcal{Z}\\!\\left\\{x\\left[n - 2\\right]\\right\\}\\!\\left(z\\right)",
+          "z^{2} X\\left(z\\right)",
           "\\frac{z^{3}}{z - \\frac{1}{2}}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "ZT(x(n-2),n,z)",
           "X(z)/z^2",
@@ -2409,7 +2737,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 98.33,
+        "elapsedMs": 114.61,
         "steps": [
           {
             "before": "ZT(x(-n),n,z)",
@@ -2429,13 +2757,17 @@
             "diff": {
               "path": "root.X[0]",
               "before": "-z",
-              "after": "1/z"
+              "after": "1/z",
+              "beforeLatex": "- z",
+              "afterLatex": "\\frac{1}{z}"
             },
             "trace": [
               {
                 "ruleId": "Z03",
                 "before": "ZT(x(-n), n, z)",
-                "after": "X(1/z)"
+                "after": "X(1/z)",
+                "beforeLatex": "\\mathcal{Z}\\!\\left\\{x\\left[- n\\right]\\right\\}\\!\\left(z\\right)",
+                "afterLatex": "X\\left(\\frac{1}{z}\\right)"
               }
             ],
             "samples": [
@@ -2450,9 +2782,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "该步与已验证的规则候选不一致。下方显示局部结构差异与建议结果。",
-            "beforeLatex": "\\operatorname{ZT}{\\left(x{\\left(- n \\right)},n,z \\right)}",
-            "afterLatex": "X{\\left(- z \\right)}",
-            "expectedLatex": "X{\\left(1 \\frac{1}{z} \\right)}",
+            "beforeLatex": "\\mathcal{Z}\\!\\left\\{x\\left[- n\\right]\\right\\}\\!\\left(z\\right)",
+            "afterLatex": "X\\left(- z\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "X\\left(\\frac{1}{z}\\right)",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -2477,9 +2812,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "X{\\left(- z \\right)}",
+            "beforeLatex": "X\\left(- z\\right)",
             "afterLatex": "\\frac{\\left(-1\\right) z}{- z - \\frac{1}{2}}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
             "expectedLatex": "\\frac{\\left(-1\\right) z}{- z - \\frac{1}{2}}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -2496,10 +2834,16 @@
           "Mul\n  Mul\n    -1\n    z\n  Pow\n    Add\n      Mul\n        -1\n        z\n      Mul\n        -1\n        Pow\n          2\n          -1\n    -1"
         ],
         "latex": [
-          "\\operatorname{ZT}{\\left(x{\\left(- n \\right)},n,z \\right)}",
-          "X{\\left(- z \\right)}",
+          "\\mathcal{Z}\\!\\left\\{x\\left[- n\\right]\\right\\}\\!\\left(z\\right)",
+          "X\\left(- z\\right)",
           "\\frac{\\left(-1\\right) z}{- z - \\frac{1}{2}}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "ZT(x(-n),n,z)",
           "X(1/z)",
@@ -2527,7 +2871,7 @@
         "summary": "全部相邻步骤已通过验证。",
         "firstError": null,
         "firstErrorCertain": true,
-        "elapsedMs": 44.75,
+        "elapsedMs": 39.66,
         "steps": [
           {
             "before": "ZT(2^n*x(n),n,z)",
@@ -2549,16 +2893,21 @@
               {
                 "ruleId": "Z04",
                 "before": "ZT(2^n*x(n), n, z)",
-                "after": "X(z/2)"
+                "after": "X(z/2)",
+                "beforeLatex": "\\mathcal{Z}\\!\\left\\{2^{n} x\\left[n\\right]\\right\\}\\!\\left(z\\right)",
+                "afterLatex": "X\\left(\\frac{z}{2}\\right)"
               }
             ],
             "samples": [],
             "inherited": false,
             "status": "correct",
             "explanation": "规则重写链与目标表达式符号一致。",
-            "beforeLatex": "\\operatorname{ZT}{\\left(2^{n} x{\\left(n \\right)},n,z \\right)}",
-            "afterLatex": "X{\\left(\\frac{z}{2} \\right)}",
-            "expectedLatex": "X{\\left(\\frac{z}{2} \\right)}",
+            "beforeLatex": "\\mathcal{Z}\\!\\left\\{2^{n} x\\left[n\\right]\\right\\}\\!\\left(z\\right)",
+            "afterLatex": "X\\left(\\frac{z}{2}\\right)",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "X\\left(\\frac{z}{2}\\right)",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -2583,9 +2932,12 @@
             "inherited": false,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "X{\\left(\\frac{z}{2} \\right)}",
+            "beforeLatex": "X\\left(\\frac{z}{2}\\right)",
             "afterLatex": "\\frac{z}{z - 1}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
             "expectedLatex": "\\frac{z}{z - 1}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "已验证正确"
@@ -2602,10 +2954,16 @@
           "Mul\n  z\n  Pow\n    Add\n      z\n      -1\n    -1"
         ],
         "latex": [
-          "\\operatorname{ZT}{\\left(2^{n} x{\\left(n \\right)},n,z \\right)}",
-          "X{\\left(\\frac{z}{2} \\right)}",
+          "\\mathcal{Z}\\!\\left\\{2^{n} x\\left[n\\right]\\right\\}\\!\\left(z\\right)",
+          "X\\left(\\frac{z}{2}\\right)",
           "\\frac{z}{z - 1}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "ZT(2^n*x(n),n,z)",
           "X(z/2)",
@@ -2633,7 +2991,7 @@
         "summary": "第 1 → 2 行出现首个错误",
         "firstError": 2,
         "firstErrorCertain": true,
-        "elapsedMs": 131.39,
+        "elapsedMs": 137.05,
         "steps": [
           {
             "before": "ZT(n*x(n),n,z)",
@@ -2659,7 +3017,9 @@
               {
                 "ruleId": "Z05",
                 "before": "ZT(n*x(n), n, z)",
-                "after": "-z*D(X(z), z)"
+                "after": "-z*D(X(z), z)",
+                "beforeLatex": "\\mathcal{Z}\\!\\left\\{n x\\left[n\\right]\\right\\}\\!\\left(z\\right)",
+                "afterLatex": "- z \\frac{\\mathrm{d} X\\left(z\\right)}{\\mathrm{d}z}"
               }
             ],
             "samples": [
@@ -2674,9 +3034,12 @@
             "inherited": false,
             "status": "wrong",
             "explanation": "该步与已验证的规则候选不一致。下方显示局部结构差异与建议结果。",
-            "beforeLatex": "\\operatorname{ZT}{\\left(n x{\\left(n \\right)},n,z \\right)}",
-            "afterLatex": "z D{\\left(X{\\left(z \\right)},z \\right)}",
-            "expectedLatex": "- z D{\\left(X{\\left(z \\right)},z \\right)}",
+            "beforeLatex": "\\mathcal{Z}\\!\\left\\{n x\\left[n\\right]\\right\\}\\!\\left(z\\right)",
+            "afterLatex": "z \\frac{\\mathrm{d} X\\left(z\\right)}{\\mathrm{d}z}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
+            "expectedLatex": "- z \\frac{\\mathrm{d} X\\left(z\\right)}{\\mathrm{d}z}",
+            "expectedRocLatex": "",
             "line": 2,
             "localStatus": "wrong",
             "statusLabel": "已确认错误"
@@ -2701,9 +3064,12 @@
             "inherited": true,
             "status": "correct",
             "explanation": "相邻两式在给定条件下符号等价。",
-            "beforeLatex": "z D{\\left(X{\\left(z \\right)},z \\right)}",
+            "beforeLatex": "z \\frac{\\mathrm{d} X\\left(z\\right)}{\\mathrm{d}z}",
             "afterLatex": "\\frac{\\left(-1\\right) z}{2 \\left(z - \\frac{1}{2}\\right)^{2}}",
+            "beforeRocLatex": "",
+            "afterRocLatex": "",
             "expectedLatex": "\\frac{\\left(-1\\right) z}{2 \\left(z - \\frac{1}{2}\\right)^{2}}",
+            "expectedRocLatex": "",
             "line": 3,
             "localStatus": "correct",
             "statusLabel": "局部正确 · 继承前错"
@@ -2720,10 +3086,16 @@
           "Mul\n  Mul\n    -1\n    z\n  Pow\n    Mul\n      2\n      Pow\n        Add\n          z\n          Mul\n            -1\n            Pow\n              2\n              -1\n        2\n    -1"
         ],
         "latex": [
-          "\\operatorname{ZT}{\\left(n x{\\left(n \\right)},n,z \\right)}",
-          "z D{\\left(X{\\left(z \\right)},z \\right)}",
+          "\\mathcal{Z}\\!\\left\\{n x\\left[n\\right]\\right\\}\\!\\left(z\\right)",
+          "z \\frac{\\mathrm{d} X\\left(z\\right)}{\\mathrm{d}z}",
           "\\frac{\\left(-1\\right) z}{2 \\left(z - \\frac{1}{2}\\right)^{2}}"
         ],
+        "rocLatex": [
+          "",
+          "",
+          ""
+        ],
+        "formatVersion": "signal-latex-1",
         "correction": [
           "ZT(n*x(n),n,z)",
           "-z*D(X(z), z)",
@@ -2738,7 +3110,7 @@
     "failed": 0,
     "correctCount": 50,
     "wrongCount": 50,
-    "elapsedMs": 8801.97,
+    "elapsedMs": 9745.72,
     "results": [
       {
         "id": "C01-OK",

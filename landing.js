@@ -13,16 +13,31 @@ function element(tag, className, text) {
 }
 function math(node, latex, fallback = latex) {
   if (window.katex && latex) {
-    try { window.katex.render(latex, node, { throwOnError: false, trust: false, strict: false, output: 'htmlAndMathml' }); return; }
+    try { window.katex.render(latex, node, { displayMode: true, throwOnError: true, trust: false, strict: false, output: 'htmlAndMathml' }); return; }
     catch (_) { /* Preserve the original expression when math rendering is unavailable. */ }
   }
   node.textContent = fallback || '';
+}
+function formulaBlock(latex, expression, rocLatex) {
+  const block = element('div', 'formula-stack');
+  const formula = element('div', 'step-formula');
+  if (latex) math(formula, latex, expression);
+  else formula.append(element('code', '', expression));
+  block.append(formula);
+  if (rocLatex) {
+    const condition = element('div', 'formula-roc');
+    const value = element('div', 'formula-roc-value');
+    math(value, rocLatex);
+    condition.append(element('span', 'formula-roc-label', '收敛域'), value);
+    block.append(condition);
+  }
+  return block;
 }
 function renderStaticMath() {
   $$('[data-math]').forEach(node => math(node, node.dataset.math));
 }
 async function getJSON(path) {
-  const response = await fetch(path);
+  const response = await fetch(`${path}?v=3`);
   if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
   return response.json();
 }
@@ -55,10 +70,10 @@ function setCase(id, reveal = false) {
     const line = index + 1;
     const row = element('li');
     const number = element('span', 'step-number', String(line).padStart(2, '0'));
-    const formula = element('div', 'step-formula');
-    const latex = index === 0 ? transitions[0]?.beforeLatex : transitions.find(step => step.line === line)?.afterLatex;
-    if (latex) math(formula, latex, expression);
-    else formula.append(element('code', '', expression));
+    const transition = index === 0 ? transitions[0] : transitions.find(step => step.line === line);
+    const latex = index === 0 ? transition?.beforeLatex : transition?.afterLatex;
+    const rocLatex = index === 0 ? transition?.beforeRocLatex : transition?.afterRocLatex;
+    const formula = formulaBlock(latex, expression, rocLatex);
     const annotation = element('span', 'step-state');
     if (reveal && firstError === line) {
       row.classList.add('is-first-error');
@@ -84,10 +99,12 @@ function setCase(id, reveal = false) {
     const heading = status === 'wrong' ? `首个错误出现在第 ${firstError} 行` : status === 'incomplete' ? '表达式成立，但答案还不完整' : status === 'unknown' ? '当前条件下，保留“无法判断”' : '各步符合预期的等价关系';
     analysis.append(element('strong', '', heading), element('p', '', sample.takeaway));
     const target = transitions.find(step => step.line === firstError) || transitions.find(step => step.status === 'incomplete');
-    if (target?.expectedLatex) {
+    if (target?.expectedLatex || target?.expectedRocLatex) {
       const correction = element('div', 'analysis-formula');
-      correction.style.cssText = 'overflow-x:auto;padding:12px 0 3px';
-      math(correction, target.expectedLatex, target.expected);
+      correction.append(
+        element('span', 'analysis-formula-label', status === 'incomplete' ? '完整写法' : '建议修正'),
+        formulaBlock(target.expectedLatex, target.expected, target.expectedRocLatex)
+      );
       analysis.append(correction);
     }
     if (target?.ruleIds?.length) {

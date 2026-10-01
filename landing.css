@@ -8,9 +8,36 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.button:hover,.case-card:hover,.test-tile:hover{transform:none}}
 
 
-/* Readable teaching copy and room for inline fractions without vertical scrollbars. */
+/* Readable teaching copy. */
 .hero-description,.section-intro,.demo-context p{font-size:15px}
 .demo-hint,.pipeline p,.case-card p,.boundary p,.teaching-evidence>p{font-size:13px}
 .demo-analysis{font-size:14px}.section-note{font-size:12px}
 .step-formula{overflow-x:auto;overflow-y:hidden;padding-block:9px;font-size:18px;min-height:42px}
 @media(max-width:760px){.hero-description,.section-intro,.demo-context p{font-size:14px}.demo-hint,.pipeline p,.case-card p{font-size:13px}.step-formula{font-size:16px}.section-note{font-size:11px}}
+
+/* Display-style mathematics: keep the expression, its conditions and its verdict distinct. */
+.formula-stack{min-width:0;max-width:100%}
+.step-formula{padding:14px 2px;min-height:56px;line-height:1.7;scrollbar-width:thin}
+.step-formula .katex-display>.katex,.formula-roc .katex-display>.katex{text-align:left}
+.step-formula .katex-display,.formula-roc .katex-display{margin:0}
+.step-formula .katex{font-size:1.12em}
+.formula-roc{display:flex;align-items:center;gap:12px;padding:0 2px 8px;color:#617e72}
+.formula-roc-label{flex:none;font-size:10px;font-weight:600;line-height:1.5;letter-spacing:.5px}
+.formula-roc-value{min-width:0;overflow-x:auto;overflow-y:hidden;padding:6px 1px;font-size:14px;scrollbar-width:thin}
+.formula-roc-value .katex{font-size:1.08em}
+.demo-steps li{padding-block:12px;row-gap:0}
+.step-number{font-variant-numeric:tabular-nums;font-size:11px}
+.step-state:empty{display:none}
+.analysis-formula{margin-top:15px;padding:13px 15px 9px;border:1px solid #c8e0d1;border-radius:5px;background:#f8fcfa;color:#265b47}
+.analysis-formula-label{display:block;font-size:10px;font-weight:650;letter-spacing:.7px;color:#658774;line-height:1.5}
+.analysis-formula .step-formula{font-size:18px;padding-block:12px;min-height:50px}
+.analysis-formula .formula-roc{padding-bottom:4px}
+.proof-expression>[data-math]{display:block;flex-shrink:0}
+.proof-expression .katex-display,.proof-fix .katex-display{margin:0}
+.proof-expression{padding-bottom:23px}
+.proof-fix{min-width:0;padding-bottom:4px}
+.proof-fix>[data-math]{min-width:0;overflow-x:auto;overflow-y:hidden;padding-block:7px;scrollbar-width:thin}
+.fix-label,.fix-check{flex-shrink:0}
+@media(max-width:950px){.step-state{padding:0 2px 5px}}
+@media(max-width:760px){.step-formula,.analysis-formula .step-formula{font-size:17px}.formula-roc-value{font-size:13px}.step-state{padding:0}}
+@media(max-width:420px){.step-formula,.analysis-formula .step-formula{font-size:16px}.analysis-formula{padding-inline:11px}.formula-roc{gap:9px}.step-state{padding:0 2px 5px}}

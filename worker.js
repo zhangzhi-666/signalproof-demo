@@ -5,7 +5,7 @@ async function initialize(){
   python=await loadPyodide({indexURL:new URL('runtime/',self.location.href).href});
   postMessage({stage:'正在初始化 SymPy 符号引擎'});
   await python.loadPackage('sympy');
-  const [source,tests,robust]=await Promise.all(['engine/service.py','data/tests.json','data/robustness.json'].map(async p=>{const r=await fetch(p+'?v=2');if(!r.ok)throw Error('无法读取 '+p);return r.text();}));
+  const [source,tests,robust]=await Promise.all(['engine/service.py','data/tests.json','data/robustness.json'].map(async p=>{const r=await fetch(p+'?v=3');if(!r.ok)throw Error('无法读取 '+p);return r.text();}));
   python.FS.mkdirTree('/app/engine');python.FS.mkdirTree('/app/data');
   python.FS.writeFile('/app/engine/service.py',source);python.FS.writeFile('/app/data/tests.json',tests);python.FS.writeFile('/app/data/robustness.json',robust);
   await python.runPythonAsync("import sys,json\nsys.path.insert(0,'/app/engine')\nimport service");
