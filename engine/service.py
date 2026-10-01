@@ -89,13 +89,16 @@ def lineparse(line):
 def canonical(e,c):
     e=S.sympify(e)
     for _ in range(2):
-        e=e.replace(lambda q:isfn(q,'D'),lambda q:S.diff(q.args[0],q.args[1],int(q.args[2]) if len(q.args)==3 else 1))
         for key,value in c.get('definitions',{}).items():
             a,_=parse(key); b,_=parse(value)
             if not a.is_Function or len(a.args)!=1 or not isinstance(a.args[0],S.Symbol): raise InputError('变换对键应为 X(w)、X(s) 等单参数函数。')
             e=e.replace(lambda q: q.is_Function and q.func==a.func and len(q.args)==1 and
                         q.args[0].free_symbols.intersection({w,s,z})=={a.args[0]},
                         lambda q:b.subs(a.args[0],q.args[0]))
+        # Substitute a known spectrum before differentiation. Differentiating an
+        # undefined function first can leave unevaluated Derivative/Subs nodes.
+        e=e.replace(lambda q:isfn(q,'D'),lambda q:S.diff(q.args[0],q.args[1],int(q.args[2]) if len(q.args)==3 else 1))
+        e=e.replace(lambda q:isinstance(q,S.Derivative),lambda q:q.doit())
     assumptions=[S.Q.positive(SYMBOLS[k]) for k in c.get('positive',[]) if k in SYMBOLS]
     if assumptions: e=S.refine(e,S.And(*assumptions))
     return S.simplify(e)
@@ -417,7 +420,12 @@ def formal_counterexample(a,b,c):
     differentiation, convolution and exponential identities. A failed construction
     yields no verdict. Mixed time/frequency expressions are outside this witness model.
     """
+    # A witness must respect supplied transform pairs, rather than replacing a
+    # declared spectrum with a convenient but inconsistent rational function.
+    a=canonical(a,c);b=canonical(b,c)
     functions={name(q) for e in (a,b) for q in S.preorder_traversal(e) if q.is_Function}
+    defined_spectra={name(parse(key)[0]).lower() for key in c.get('definitions',{})}
+    if functions.intersection(('x','h','g','y')).intersection(defined_spectra): return []
     if functions.intersection(('FT','LT','ZT','Int0','delta','u')): return []
     if functions.intersection(('x','h','g','y')) and functions.intersection(('X','H','G','Y')): return []
     if not functions.intersection(('x','h','g','y','X','H','G','Y')): return []

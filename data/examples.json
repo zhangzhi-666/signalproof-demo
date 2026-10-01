@@ -1,0 +1,577 @@
+[
+  {
+    "id": "conv",
+    "title": "回声究竟提前还是延后？",
+    "category": "卷积",
+    "difficulty": "基础",
+    "kind": "纠错挑战",
+    "plot": "convolution-shift",
+    "steps": [
+      "Conv(2*x(t),delta(t-2),t)",
+      "2*Conv(x(t),delta(t-2),t)",
+      "2*x(t+2)",
+      "x(t+2)+x(t+2)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 3,
+    "task": "输入信号先放大两倍，再经过冲激响应 δ(t−2) 的理想延迟器。检查输出推导，定位最早出错的一行。",
+    "description": "常数提取没有问题，真正的错误藏在延迟方向；最后一行虽能化简，却无法修复前面的错误。",
+    "concept": "移位冲激卷积与错误传播",
+    "pitfall": "把 δ(t−2) 对应的延迟误写为超前。",
+    "hint": "想象一个发生在 t=0 的脉冲：经过延迟器后，它应该出现在哪里？",
+    "takeaway": "δ(t−a) 把整个输入延迟 a：x*δ(t−a)=x(t−a)。后续局部等价不代表整条链正确。"
+  },
+  {
+    "id": "conv-distribute",
+    "title": "两路输入，共用一个延迟器",
+    "category": "卷积",
+    "difficulty": "进阶",
+    "kind": "正确推导",
+    "plot": "convolution",
+    "steps": [
+      "Conv(x(t)+2*h(t),delta(t-1),t)",
+      "Conv(x(t),delta(t-1),t)+2*Conv(h(t),delta(t-1),t)",
+      "x(t-1)+2*h(t-1)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null,
+    "task": "将 x(t) 与两倍的 h(t) 相加后，送入延迟 1 的系统。验证先相加后处理与分别处理后相加是否一致。",
+    "description": "同一条推导联合使用分配律、常数提取和冲激移位，展示线性系统的叠加原理。",
+    "concept": "卷积分配律与线性叠加",
+    "pitfall": "只移动其中一路输入，或遗漏第二路的系数 2。",
+    "hint": "分配之后，两个卷积项是否使用了完全相同的冲激响应？",
+    "takeaway": "线性系统对每个输入分量分别响应；幅度系数与时间移位都必须保留。"
+  },
+  {
+    "id": "conv-cascade",
+    "title": "两级延迟会怎样叠加？",
+    "category": "卷积",
+    "difficulty": "进阶",
+    "kind": "正确推导",
+    "plot": "convolution-shift",
+    "steps": [
+      "Conv(Conv(x(t),delta(t-1),t),delta(t-2),t)",
+      "Conv(x(t-1),delta(t-2),t)",
+      "x(t-3)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null,
+    "task": "输入先经过延迟 1 的模块，再经过延迟 2 的模块。验证级联系统的总延迟。",
+    "description": "嵌套卷积逐层展开，第二次移位作用于已经延迟的整个信号。",
+    "concept": "级联卷积与复合时移",
+    "pitfall": "第二次移位覆盖第一次移位，误把总延迟写成 2。",
+    "hint": "把 x(t−1) 暂时记为 y(t)，再计算 y(t−2)。",
+    "takeaway": "两个理想延迟器级联时延迟相加：1+2=3；这一结论来自整体变量替换。"
+  },
+  {
+    "id": "conv-derivative",
+    "title": "卷积求导也要“乘积法则”？",
+    "category": "卷积",
+    "difficulty": "挑战",
+    "kind": "纠错挑战",
+    "plot": "derivative",
+    "steps": [
+      "D(Conv(x(t),h(t),t),t)",
+      "Conv(D(x(t),t),h(t),t)+Conv(D(x(t),t),h(t),t)",
+      "2*Conv(D(x(t),t),h(t),t)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "假设求导与卷积可交换。有人认为“两个因子都要求导”，得到两个相同卷积项。检查这一论证。",
+    "description": "最后一步合并同类项完全正确，但多出来的因子 2 在前一步就已产生。",
+    "concept": "卷积求导与普通乘积求导的区别",
+    "pitfall": "把普通乘积求导法则照搬到卷积后，将两侧求导结果相加。",
+    "hint": "卷积积分中，选定一种积分变量表示后，外部时间 t 出现在哪一侧？",
+    "takeaway": "在适当条件下，(x*h)′=x′*h=x*h′。两个表达式彼此相等，不需要相加。"
+  },
+  {
+    "id": "conv-integer",
+    "title": "离散时间能直接延迟半格吗？",
+    "category": "卷积",
+    "difficulty": "挑战",
+    "kind": "条件辨析",
+    "plot": "general",
+    "steps": [
+      "Conv(x(n),delta(n-1/2),n)",
+      "x(n-1/2)"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "task": "把连续时间冲激移位公式直接用于离散序列，令移位量为 1/2。现有条件是否足以验证？",
+    "description": "离散序列以整数为索引。没有给出插值模型时，半个采样点的延迟不能直接由离散冲激规则推出。",
+    "concept": "离散移位的整数条件",
+    "pitfall": "把连续时间的任意实数移位，当成离散序列天然支持的操作。",
+    "hint": "先检查 x(n) 的定义域，再考虑是否存在已声明的插值或分数延迟模型。",
+    "takeaway": "条件不足应保留未知。若要实现分数延迟，需要额外的插值定义，不能只改一个下标。"
+  },
+  {
+    "id": "conv-product",
+    "title": "名字相近，运算不同",
+    "category": "卷积",
+    "difficulty": "基础",
+    "kind": "纠错挑战",
+    "plot": "convolution",
+    "steps": [
+      "Conv(x(t),h(t)+g(t),t)",
+      "x(t)*(h(t)+g(t))",
+      "x(t)*h(t)+x(t)*g(t)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "检查一段将 x 与 h+g 的卷积改写为逐点乘积的推导。最后一行展开正确，是否足以证明结论？",
+    "description": "用同一条链对照卷积分配律与普通乘法分配律，避免被熟悉的代数展开迷惑。",
+    "concept": "卷积与逐点乘积的运算语义",
+    "pitfall": "把卷积符号理解成普通乘号。",
+    "hint": "先核对运算是什么，再判断展开是否合法。卷积会累积不同时间位置的贡献。",
+    "takeaway": "正确展开是 Conv(x,h)+Conv(x,g)。代数外形相似，不能忽略运算本身的定义。"
+  },
+  {
+    "id": "ft-shift",
+    "title": "延迟为什么对应负相位？",
+    "category": "傅里叶",
+    "difficulty": "基础",
+    "kind": "纠错挑战",
+    "plot": "shift",
+    "steps": [
+      "FT(x(t-2),t,w)",
+      "exp(2*I*w)*X(w)",
+      "exp(2*I*w)/(1+I*w)"
+    ],
+    "context": {
+      "definitions": {
+        "X(w)": "1/(1+I*w)"
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "采用 F{x(t)}=∫x(t)e^(−jωt)dt。已知 X(ω)=1/(1+jω)，求延迟 2 后的频谱并检查每一步。",
+    "description": "第一处相位符号错误会传播到后续变换对代入，频谱幅值却可能看不出区别。",
+    "concept": "傅里叶时移与相位斜率",
+    "pitfall": "把延迟的负相位写为正相位。",
+    "hint": "在积分中令 τ=t−2，观察指数中的额外因子。",
+    "takeaway": "延迟 a 对应 e^(−jωa)X(ω)，幅值不变，相位斜率减少 a。只看幅频图不够。"
+  },
+  {
+    "id": "ft-scale",
+    "title": "反转信号，幅度不能反号",
+    "category": "傅里叶",
+    "difficulty": "进阶",
+    "kind": "纠错挑战",
+    "plot": "scale",
+    "steps": [
+      "FT(x(-2*t),t,w)",
+      "-X(-w/2)/2",
+      "-1/(2*(1-I*w/2))"
+    ],
+    "context": {
+      "definitions": {
+        "X(w)": "1/(1+I*w)"
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "将 x(t) 时间反转并压缩两倍。已知其频谱，检查尺度系数与频率变量是否同时处理正确。",
+    "description": "频率反转写对了，幅度却多了负号；这是遗漏绝对值的典型错误。",
+    "concept": "尺度性质中的绝对值",
+    "pitfall": "使用 1/a 而不是 1/|a|，忽略换元时积分上下限互换。",
+    "hint": "当 a<0 时，换元是否同时改变了积分方向？",
+    "takeaway": "F{x(at)}=X(ω/a)/|a|。a=−2 时频率反转，但幅度系数仍为正的 1/2。"
+  },
+  {
+    "id": "multi",
+    "title": "时移、线性与高斯一起出现",
+    "category": "傅里叶",
+    "difficulty": "挑战",
+    "kind": "正确推导",
+    "plot": "linearity",
+    "steps": [
+      "FT(2*x(t-3)+exp(-2*t^2),t,w)",
+      "2*FT(x(t-3),t,w)+FT(exp(-2*t^2),t,w)",
+      "2*exp(-3*I*w)*X(w)+sqrt(pi/2)*exp(-w^2/8)",
+      "2*exp(-3*I*w)/(1+I*w)+sqrt(pi/2)*exp(-w^2/8)"
+    ],
+    "context": {
+      "definitions": {
+        "X(w)": "1/(1+I*w)"
+      }
+    },
+    "expected": "correct",
+    "expectedFirstError": null,
+    "task": "信号由两倍的延迟输入与一个高斯脉冲叠加而成。已知 X(ω)=1/(1+jω)，逐步写出总频谱。",
+    "description": "先拆分，再分别应用时移和高斯变换对，最后代入已知频谱；一条链覆盖三种不同性质。",
+    "concept": "线性、时移、高斯变换对的组合",
+    "pitfall": "把 e^(−2t²) 当成普通因果指数，或遗漏线性系数。",
+    "hint": "先识别加法结构，再为每一项选择独立的变换性质。",
+    "takeaway": "复杂变换可拆成可解释的小步骤。高斯变换中的常数和指数宽度都要随参数变化。"
+  },
+  {
+    "id": "unknown",
+    "title": "线性调频不能硬套频移公式",
+    "category": "傅里叶",
+    "difficulty": "挑战",
+    "kind": "条件辨析",
+    "plot": "general",
+    "steps": [
+      "FT(exp(I*t^2)*x(t),t,w)",
+      "X(w)"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "task": "输入乘上 e^(jt²) 后，有人声称频谱仍为 X(ω)。现有规则库能否证明或否定这一条推导？",
+    "description": "指数相位是二次函数，超出了常数频移规则的适用形式。系统保留未知，避免伪造证明。",
+    "concept": "规则适用范围与未知结论",
+    "pitfall": "把 e^(jbt) 的常数频移规则泛化到任意时间相位。",
+    "hint": "频移性质要求相位对 t 线性；这里的瞬时频率是不是常数？",
+    "takeaway": "“暂无法判断”不等于正确。需要额外理论、具体信号或更细的推导，才能继续验证。"
+  },
+  {
+    "id": "ft-modulation",
+    "title": "调制把频谱搬向哪边？",
+    "category": "傅里叶",
+    "difficulty": "进阶",
+    "kind": "纠错挑战",
+    "plot": "frequency-shift",
+    "steps": [
+      "FT(exp(3*I*t)*x(t),t,w)",
+      "X(w+3)",
+      "1/(1+I*(w+3))"
+    ],
+    "context": {
+      "definitions": {
+        "X(w)": "1/(1+I*w)"
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "把 x(t) 与 e^(j3t) 相乘。已知基带频谱 X(ω)，检查搬移后的频谱表达式。",
+    "description": "正频率调制对应 X(ω−3)，自变量中的负号与图像向右移动并不矛盾。",
+    "concept": "复指数调制与频移方向",
+    "pitfall": "将 e^(jω₀t) 错配为 X(ω+ω₀)。",
+    "hint": "若 X 在 ω=0 处最大，新的表达式应在什么频率处最大？",
+    "takeaway": "e^(jω₀t)x(t) 的频谱是 X(ω−ω₀)。可用峰值位置检查方向。"
+  },
+  {
+    "id": "ft-product",
+    "title": "频域卷积少了什么？",
+    "category": "傅里叶",
+    "difficulty": "进阶",
+    "kind": "纠错挑战",
+    "plot": "convolution",
+    "steps": [
+      "FT(x(t)*h(t),t,w)",
+      "Conv(X(w),H(w),w)",
+      "Conv(H(w),X(w),w)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "采用角频率形式、正变换无系数的傅里叶约定。验证时域逐点相乘对应的频域表达式。",
+    "description": "频域卷积的运算选对了，但归一化系数漏掉；交换两个卷积因子无法弥补。",
+    "concept": "傅里叶乘积定理与归一化约定",
+    "pitfall": "遗漏 1/(2π)，或混用不同傅里叶变换约定。",
+    "hint": "先写出正、逆变换的系数，再使用乘积定理。",
+    "takeaway": "本系统采用 F{xh}=(X*H)/(2π)。变换约定是公式的一部分，不能省略。"
+  },
+  {
+    "id": "lt-initial",
+    "title": "初始能量去了哪里？",
+    "category": "拉普拉斯",
+    "difficulty": "基础",
+    "kind": "纠错挑战",
+    "plot": "initial",
+    "steps": [
+      "LT(D(x(t),t),t,s)",
+      "s*X(s)",
+      "2*s/(s+1)",
+      "2-2/(s+1)"
+    ],
+    "context": {
+      "initial": {
+        "x0": 2
+      },
+      "definitions": {
+        "X(s)": "2/(s+1)"
+      },
+      "causal": false
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "已知 x(0−)=2，X(s)=2/(s+1)。使用单边拉普拉斯变换求 x′(t) 的变换，检查是否保留初值。",
+    "description": "漏掉初值后，后续代入和分式拆分仍可能每一步都局部正确。",
+    "concept": "一阶导数初值项与错误传播",
+    "pitfall": "默认初值为零，把 L{x′} 直接写成 sX(s)。",
+    "hint": "对拉普拉斯积分分部积分，边界项是什么？",
+    "takeaway": "L{x′}=sX−x(0−)。已知非零初值必须显式减去；当前例子的正确结果为 −2/(s+1)。"
+  },
+  {
+    "id": "lt-correct",
+    "title": "极点之外，还要写出半平面",
+    "category": "拉普拉斯",
+    "difficulty": "基础",
+    "kind": "正确推导",
+    "plot": "laplace-roc-right",
+    "steps": [
+      "LT(exp(-2*t)*u(t),t,s)",
+      "1/(s+2); ROC: re(s)>-2"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null,
+    "task": "对因果指数 e^(−2t)u(t) 求拉普拉斯变换，同时给出使积分收敛的区域。",
+    "description": "结果由有理式与开半平面共同组成，极点所在的边界不包含在收敛域中。",
+    "concept": "因果指数变换对与拉普拉斯 ROC",
+    "pitfall": "只给 1/(s+2)，或误把边界写成 ≥。",
+    "hint": "观察积分中的衰减因子 e^(−(s+2)t)，它何时随 t→∞ 衰减？",
+    "takeaway": "收敛要求 Re(s+2)>0，所以 ROC 为 Re(s)>−2。边界上的极点不能纳入。"
+  },
+  {
+    "id": "lt-second",
+    "title": "二阶导数的两个初值",
+    "category": "拉普拉斯",
+    "difficulty": "进阶",
+    "kind": "纠错挑战",
+    "plot": "initial",
+    "steps": [
+      "LT(D(x(t),t,2),t,s)",
+      "s^2*X(s)-s*x0-x1",
+      "s^2*X(s)-2*s-1",
+      "s*(s*X(s)-2)-1"
+    ],
+    "context": {
+      "initial": {
+        "x0": 2,
+        "x1": -1
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 3,
+    "task": "已知 x(0−)=2、x′(0−)=−1。先应用二阶导数公式，再代入数值并整理。哪一行最先出错？",
+    "description": "公式本身正确，代入负初值时却忘了外面的减号；系统应定位到第 3 行，而非第 2 行。",
+    "concept": "二阶导数公式与负初值代入",
+    "pitfall": "将 −x′(0−) 在 x′(0−)=−1 时算成 −1。",
+    "hint": "为负初值加上括号，单独计算 −(−1)。",
+    "takeaway": "L{x″}=s²X−s·x(0−)−x′(0−)。本例末项应为 +1，规则错误和代数错误要分开定位。"
+  },
+  {
+    "id": "lt-delay-condition",
+    "title": "没有门控，能直接套时移公式吗？",
+    "category": "拉普拉斯",
+    "difficulty": "进阶",
+    "kind": "条件辨析",
+    "plot": "general",
+    "steps": [
+      "LT(x(t-2),t,s)",
+      "exp(-2*s)*X(s)",
+      "X(s)/exp(2*s)"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "task": "设 X(s) 为 x(t) 从 0 开始积分的单边拉普拉斯变换。直接延迟 x(t)，没有乘上 u(t−2)，也未给出负时刻的信号历史。检查常用时移公式能否直接使用。",
+    "description": "未门控的延迟会把原信号的负时刻带入单边积分。指数整理即使正确，也不能证明被忽略的历史贡献为零。",
+    "concept": "单边变换中的时移、门控与信号历史",
+    "pitfall": "把单边积分的起点误当成对原信号负时刻的自动门控。",
+    "hint": "令 τ=t−2，积分下限变为 −2；区间 [−2,0) 的贡献是否已知为零？",
+    "takeaway": "单边积分不会自动丢掉延迟后出现的历史。换元后需处理 x 在 [−2,0) 的贡献；若确认 x 因果，可先写成带 u(t−2) 的形式，再验证常用时移规则。当前信息与规则覆盖不足，保留未知。"
+  },
+  {
+    "id": "lt-time",
+    "title": "时间乘法变成频域求导",
+    "category": "拉普拉斯",
+    "difficulty": "进阶",
+    "kind": "正确推导",
+    "plot": "derivative",
+    "steps": [
+      "LT(t*x(t),t,s)",
+      "-D(X(s),s)",
+      "1/(s+1)^2"
+    ],
+    "context": {
+      "definitions": {
+        "X(s)": "1/(s+1)"
+      }
+    },
+    "expected": "correct",
+    "expectedFirstError": null,
+    "task": "已知 X(s)=1/(s+1)。用乘以时间的性质计算 t·x(t) 的变换，验证规则应用和求导计算。",
+    "description": "先保留抽象频谱的导数，再代入具体有理式，展示符号规则与代数求导如何衔接。",
+    "concept": "L{tx}=−dX/ds",
+    "pitfall": "遗漏变换规则前的负号，或把对 s 求导误写成对 t 求导。",
+    "hint": "求导 1/(s+1) 后，别忘了最外层还有一个负号。",
+    "takeaway": "时间因子对应变换域微分。本例两个负号抵消，得到二重极点的有理式；原 ROC 需随具体信号另行保留。"
+  },
+  {
+    "id": "lt-roc-direction",
+    "title": "式子对了，收敛方向却反了",
+    "category": "拉普拉斯",
+    "difficulty": "挑战",
+    "kind": "纠错挑战",
+    "plot": "laplace-roc-right",
+    "steps": [
+      "LT(u(t),t,s)",
+      "1/s; ROC: re(s)<0"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "对单位阶跃求拉普拉斯变换，有人给出 1/s 和左半平面 Re(s)<0。判断完整答案是否成立。",
+    "description": "代数差值为零仍不足以判定变换结果正确；积分能否收敛取决于半平面方向。",
+    "concept": "代数相等与 ROC 不等价",
+    "pitfall": "根据极点位置任意选一侧半平面。",
+    "hint": "检查 ∫₀∞ e^(−st)dt 在 Re(s)<0 时是衰减还是增长。",
+    "takeaway": "u(t) 的变换为 1/s，ROC 是 Re(s)>0。收敛域错误是完整变换答案中的实质错误。"
+  },
+  {
+    "id": "z-roc",
+    "title": "一个有理式，还不是完整答案",
+    "category": "Z变换",
+    "difficulty": "基础",
+    "kind": "条件辨析",
+    "plot": "roc-right",
+    "steps": [
+      "ZT((1/2)^n*u(n),n,z)",
+      "z/(z-1/2)"
+    ],
+    "context": {},
+    "expected": "incomplete",
+    "expectedFirstError": null,
+    "task": "求右边序列 (1/2)^n u[n] 的 Z 变换。检查只写出有理式的答案是否完整。",
+    "description": "数值系数和分母都正确，但还需要说明几何级数在什么范围内收敛。",
+    "concept": "右边指数序列与 ROC 完整性",
+    "pitfall": "把有理式相同误认为变换对已经唯一确定。",
+    "hint": "把级数写成 Σ((1/2)/z)^n，判断其公比的模。",
+    "takeaway": "完整结果是 z/(z−1/2)，ROC 为 |z|>1/2。缺失 ROC 属于信息不完整。"
+  },
+  {
+    "id": "z-left",
+    "title": "相同分式，另一条序列",
+    "category": "Z变换",
+    "difficulty": "进阶",
+    "kind": "正确推导",
+    "plot": "roc-left",
+    "steps": [
+      "ZT(-(1/2)^n*u(-n-1),n,z)",
+      "z/(z-1/2); ROC: abs(z)<1/2"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null,
+    "task": "求左边序列 −(1/2)^n u[−n−1] 的 Z 变换，并与右边指数序列的结果比较。",
+    "description": "有理式与右边序列完全一致，ROC 却位于圆内，展示收敛域如何区分时域序列。",
+    "concept": "左边指数序列与时域支撑",
+    "pitfall": "看到 z/(z−1/2) 就默认序列是因果的。",
+    "hint": "这次非零项位于 n≤−1，求和方向是否与右边序列相同？",
+    "takeaway": "有理式必须与 ROC 配对使用。圆内与圆外的两个区域可对应完全不同的序列。"
+  },
+  {
+    "id": "z-delay",
+    "title": "延迟两拍，z 应该几次方？",
+    "category": "Z变换",
+    "difficulty": "基础",
+    "kind": "纠错挑战",
+    "plot": "general",
+    "steps": [
+      "ZT(x(n-2),n,z)",
+      "z^2*X(z)",
+      "z^3/(z-1/2)"
+    ],
+    "context": {
+      "definitions": {
+        "X(z)": "z/(z-1/2)"
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "已知双边 Z 变换 X(z)=z/(z−1/2)。求延迟两拍 x[n−2] 对应的代数表达式，并检查幂次方向。",
+    "description": "错误来自移位因子的正负次幂；将已知频谱代入只会把错误继续保留下去。",
+    "concept": "双边 Z 变换移位",
+    "pitfall": "将延迟写成 z² 而不是 z^(−2)。",
+    "hint": "在求和式中令 k=n−2，检查 z^(−n) 中留下的因子。",
+    "takeaway": "延迟 k 拍对应 z^(−k)X(z)。这里还应独立检查 ROC 在 0 与无穷处的端点变化。"
+  },
+  {
+    "id": "z-reversal",
+    "title": "序列反转不是频率取负",
+    "category": "Z变换",
+    "difficulty": "进阶",
+    "kind": "纠错挑战",
+    "plot": "general",
+    "steps": [
+      "ZT(x(-n),n,z)",
+      "X(-z)",
+      "(-z)/(-z-1/2)"
+    ],
+    "context": {
+      "definitions": {
+        "X(z)": "z/(z-1/2)"
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "已知 X(z)，求反转序列 x[−n] 的双边 Z 变换。能否照搬傅里叶反转中的“变量取负”？",
+    "description": "双边 Z 变换的核是 z^(−n)，序列反转让 z 取倒数；它与傅里叶自变量取负的外观不同。",
+    "concept": "序列反转与倒数映射",
+    "pitfall": "把 X(1/z) 错写成 X(−z)。",
+    "hint": "把 n 换成 −k 后，z^(−n) 能写成哪个新变量的 −k 次幂？",
+    "takeaway": "Z{x[−n]}=X(1/z)，相应 ROC 的内外半径也应取倒数；本例先定位代数映射错误。"
+  },
+  {
+    "id": "z-exponential",
+    "title": "指数加权如何改变 z？",
+    "category": "Z变换",
+    "difficulty": "进阶",
+    "kind": "正确推导",
+    "plot": "general",
+    "steps": [
+      "ZT(2^n*x(n),n,z)",
+      "X(z/2)",
+      "z/(z-1)"
+    ],
+    "context": {
+      "definitions": {
+        "X(z)": "z/(z-1/2)"
+      }
+    },
+    "expected": "correct",
+    "expectedFirstError": null,
+    "task": "已知 X(z)=z/(z−1/2)。为序列乘上 2^n，先用性质替换自变量，再化简有理式。",
+    "description": "这是指数加权而非时间移位；它改变 z 的尺度，不是在频谱前简单乘一个常数。",
+    "concept": "指数序列乘积与 z 域尺度",
+    "pitfall": "把 X(z/2) 错写成 2X(z) 或 X(2z)。",
+    "hint": "将 2^n·z^(−n) 合并成一个整体的 −n 次幂。",
+    "takeaway": "Z{a^n x[n]}=X(z/a)。ROC 半径也应乘 |a|；本例验证代数链，未声称给出完整 ROC。"
+  },
+  {
+    "id": "z-index",
+    "title": "序号乘法中的负号",
+    "category": "Z变换",
+    "difficulty": "挑战",
+    "kind": "纠错挑战",
+    "plot": "derivative",
+    "steps": [
+      "ZT(n*x(n),n,z)",
+      "z*D(X(z),z)",
+      "-z/(2*(z-1/2)^2)"
+    ],
+    "context": {
+      "definitions": {
+        "X(z)": "z/(z-1/2)"
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "task": "已知 X(z)=z/(z−1/2)，计算 n·x[n] 的变换。检查性质中的符号与后续商函数求导。",
+    "description": "求导的代数计算可以正确，但使用错误的变换性质仍会让最终答案整体反号。",
+    "concept": "序号相乘与 −z·dX/dz",
+    "pitfall": "漏掉公式 −z·dX/dz 前的负号。",
+    "hint": "对定义中的 z^(−n) 求导，指数 −n 会带来什么符号？",
+    "takeaway": "Z{n x[n]}=−zX′(z)。本例正确代数式为 z/[2(z−1/2)²]；完整答案需另行说明 ROC。"
+  }
+]

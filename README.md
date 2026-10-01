@@ -2,13 +2,16 @@
 
 一个可在浏览器中运行的《信号与系统》推导检查 Web Demo：验证每一步，定位最早确认的错误，并给出规则依据、局部差异与修正建议。
 
-**[打开在线 Demo](https://zhangzhi-666.github.io/signalproof-demo/)** · [源代码仓库](https://github.com/zhangzhi-666/signalproof-demo)
+**[项目展示首页](https://zhangzhi-666.github.io/signalproof-demo/)** · [在线实验室](https://zhangzhi-666.github.io/signalproof-demo/lab.html) · [24 道案例广场](https://zhangzhi-666.github.io/signalproof-demo/lab.html#cases) · [源代码仓库](https://github.com/zhangzhi-666/signalproof-demo)
 
-![SignalProof 演示界面](docs/demo.png)
+![SignalProof 演示界面](docs/homepage.jpg)
 
 ## 体验内容
 
 - 卷积、傅里叶、单边拉普拉斯与双边 Z 变换。
+- 展示首页：交互式纠错预览、方法流程、精选案例与可下载的验收证据。
+- 24 道分层教学案例：四领域各 6 道，可按领域、难度、题型筛选并搜索。
+- 每题包含情境、题意、折叠提示、易错点与验证后复盘；支持案例直达链接。
 - 40 条领域规则 + 3 条已声明变换对映射，均有可执行匹配与重写。
 - 逐步验证、首错定位、错误传播提示和最小不匹配子树。
 - 初值、参数条件、收敛域检查；支持“暂无法判断”。
@@ -26,7 +29,7 @@
 3. Source 选择 **Deploy from a branch**，选择 **main / (root)** 并保存。
 4. 等待 Pages 部署完成，打开 GitHub 显示的正式地址。
 
-请保留根目录的 `.nojekyll`、`runtime/`、`katex/`、`engine/` 和 `data/`。无需额外构建步骤。首次打开需要下载约 20 MB 的数学与排版资源。
+请保留根目录的 `.nojekyll`、`runtime/`、`katex/`、`engine/` 和 `data/`。无需额外构建步骤。首页轻量展示；首次进入实验室时才加载数学运行时，整套资源约 20 MB。
 
 ## 本地运行
 
@@ -57,6 +60,10 @@ z/(z-1/2); ROC: abs(z)>1/2
 ## 测试与范围
 
 交付前浏览器实测主验收 100/100，通过的错误链首错位置为 50/50。完整记录见 [测试结果](docs/test-results.json)。页面测试台可以重新运行，不使用预设通过率。
+
+新增教学案例在同版 SymPy 1.13.3 引擎中核验 24/24，46 次相邻步骤状态与人工预期一致，记录见 [案例验证报告](docs/examples-validation.json)。该报告记录了原生 Python 执行环境，与浏览器主验收分别统计。
+
+本次还修正了已知频谱代入与求导的执行顺序：先代入已声明变换对，再求导；数值反例必须遵守这些声明，避免把正确代数步骤误判为错误。
 
 Fourier 采用角频率核 `exp(-I*w*t)`；Laplace 从 `0-` 开始；Z 采用双边约定。数学输入范围有限，不支持任意 LaTeX、自然语言证明或手写识别。数值抽样一致不等于证明；条件不足、超出规则范围或超时时保留未知。
 
