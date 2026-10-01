@@ -1,0 +1,1264 @@
+[
+  {
+    "id": "C01-OK",
+    "category": "卷积",
+    "title": "卷积交换律 · 正确",
+    "steps": [
+      "Conv(x(t),h(t),t)",
+      "Conv(h(t),x(t),t)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "C01-ERR",
+    "category": "卷积",
+    "title": "卷积交换律 · 错误",
+    "steps": [
+      "Conv(x(t),h(t),t)",
+      "x(t)*h(t)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "C02-OK",
+    "category": "卷积",
+    "title": "卷积结合律 · 正确",
+    "steps": [
+      "Conv(Conv(x(t),h(t),t),g(t),t)",
+      "Conv(x(t),Conv(h(t),g(t),t),t)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "C02-ERR",
+    "category": "卷积",
+    "title": "卷积结合律 · 错误",
+    "steps": [
+      "Conv(Conv(x(t),h(t),t),g(t),t)",
+      "Conv(x(t),h(t)*g(t),t)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "C03-OK",
+    "category": "卷积",
+    "title": "卷积分配律 · 正确",
+    "steps": [
+      "Conv(x(t),h(t)+g(t),t)",
+      "Conv(x(t),h(t),t)+Conv(x(t),g(t),t)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "C03-ERR",
+    "category": "卷积",
+    "title": "卷积分配律 · 错误",
+    "steps": [
+      "Conv(x(t),h(t)+g(t),t)",
+      "Conv(x(t),h(t),t)-Conv(x(t),g(t),t)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "C04-OK",
+    "category": "卷积",
+    "title": "卷积常数提出 · 正确",
+    "steps": [
+      "Conv(3*x(t),h(t),t)",
+      "3*Conv(x(t),h(t),t)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "C04-ERR",
+    "category": "卷积",
+    "title": "卷积常数提出 · 错误",
+    "steps": [
+      "Conv(3*x(t),h(t),t)",
+      "Conv(x(t),h(t),t)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "C05-OK",
+    "category": "卷积",
+    "title": "单位冲激恒等 · 正确",
+    "steps": [
+      "Conv(x(t),delta(t),t)",
+      "x(t)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "C05-ERR",
+    "category": "卷积",
+    "title": "单位冲激恒等 · 错误",
+    "steps": [
+      "Conv(x(t),delta(t),t)",
+      "x(t)+1"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "C06-OK",
+    "category": "卷积",
+    "title": "冲激延迟 · 正确",
+    "steps": [
+      "Conv(x(t),delta(t-2),t)",
+      "x(t-2)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "C06-ERR",
+    "category": "卷积",
+    "title": "冲激延迟 · 错误",
+    "steps": [
+      "Conv(x(t),delta(t-2),t)",
+      "x(t+2)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "C07-OK",
+    "category": "卷积",
+    "title": "零信号卷积 · 正确",
+    "steps": [
+      "Conv(x(t),0,t)",
+      "0"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "C07-ERR",
+    "category": "卷积",
+    "title": "零信号卷积 · 错误",
+    "steps": [
+      "Conv(x(t),0,t)",
+      "x(t)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "C08-OK",
+    "category": "卷积",
+    "title": "卷积微分不重复求和 · 正确",
+    "steps": [
+      "D(Conv(x(t),h(t),t),t)",
+      "Conv(D(x(t),t),h(t),t)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "C08-ERR",
+    "category": "卷积",
+    "title": "卷积微分不重复求和 · 错误",
+    "steps": [
+      "D(Conv(x(t),h(t),t),t)",
+      "Conv(D(x(t),t),h(t),t)+Conv(x(t),D(h(t),t),t)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "C09-OK",
+    "category": "卷积",
+    "title": "离散冲激延迟 · 正确",
+    "steps": [
+      "Conv(x(n),delta(n-3),n)",
+      "x(n-3)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "C09-ERR",
+    "category": "卷积",
+    "title": "离散冲激延迟 · 错误",
+    "steps": [
+      "Conv(x(n),delta(n-3),n)",
+      "x(n+3)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "C10-OK",
+    "category": "卷积",
+    "title": "两级冲激移位与错误传播 · 正确",
+    "steps": [
+      "Conv(Conv(x(t),delta(t-2),t),delta(t-3),t)",
+      "Conv(x(t-2),delta(t-3),t)",
+      "x(t-5)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "C10-ERR",
+    "category": "卷积",
+    "title": "两级冲激移位与错误传播 · 错误",
+    "steps": [
+      "Conv(Conv(x(t),delta(t-2),t),delta(t-3),t)",
+      "Conv(x(t+2),delta(t-3),t)",
+      "x(t-1)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F01-OK",
+    "category": "傅里叶",
+    "title": "傅里叶线性系数 · 正确",
+    "steps": [
+      "FT(2*x(t)+3*h(t),t,w)",
+      "2*X(w)+3*H(w)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F01-ERR",
+    "category": "傅里叶",
+    "title": "傅里叶线性系数 · 错误",
+    "steps": [
+      "FT(2*x(t)+3*h(t),t,w)",
+      "2*X(w)+H(w)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F02-OK",
+    "category": "傅里叶",
+    "title": "时移相位方向 · 正确",
+    "steps": [
+      "FT(x(t-2),t,w)",
+      "exp(-2*I*w)*X(w)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F02-ERR",
+    "category": "傅里叶",
+    "title": "时移相位方向 · 错误",
+    "steps": [
+      "FT(x(t-2),t,w)",
+      "exp(2*I*w)*X(w)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F03-OK",
+    "category": "傅里叶",
+    "title": "调制频移方向 · 正确",
+    "steps": [
+      "FT(exp(3*I*t)*x(t),t,w)",
+      "X(w-3)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F03-ERR",
+    "category": "傅里叶",
+    "title": "调制频移方向 · 错误",
+    "steps": [
+      "FT(exp(3*I*t)*x(t),t,w)",
+      "X(w+3)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F04-OK",
+    "category": "傅里叶",
+    "title": "负尺度绝对值 · 正确",
+    "steps": [
+      "FT(x(-2*t),t,w)",
+      "X(-w/2)/2"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F04-ERR",
+    "category": "傅里叶",
+    "title": "负尺度绝对值 · 错误",
+    "steps": [
+      "FT(x(-2*t),t,w)",
+      "-X(-w/2)/2"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F05-OK",
+    "category": "傅里叶",
+    "title": "共轭与频率反转 · 正确",
+    "steps": [
+      "FT(conjugate(x(t)),t,w)",
+      "conjugate(X(-w))"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F05-ERR",
+    "category": "傅里叶",
+    "title": "共轭与频率反转 · 错误",
+    "steps": [
+      "FT(conjugate(x(t)),t,w)",
+      "conjugate(X(w))"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F06-OK",
+    "category": "傅里叶",
+    "title": "时域微分的虚数因子 · 正确",
+    "steps": [
+      "FT(D(x(t),t),t,w)",
+      "I*w*X(w)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F06-ERR",
+    "category": "傅里叶",
+    "title": "时域微分的虚数因子 · 错误",
+    "steps": [
+      "FT(D(x(t),t),t,w)",
+      "w*X(w)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F07-OK",
+    "category": "傅里叶",
+    "title": "时间相乘与频域微分 · 正确",
+    "steps": [
+      "FT(t*x(t),t,w)",
+      "I*D(X(w),w)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F07-ERR",
+    "category": "傅里叶",
+    "title": "时间相乘与频域微分 · 错误",
+    "steps": [
+      "FT(t*x(t),t,w)",
+      "-I*D(X(w),w)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F08-OK",
+    "category": "傅里叶",
+    "title": "时域卷积定理 · 正确",
+    "steps": [
+      "FT(Conv(x(t),h(t),t),t,w)",
+      "X(w)*H(w)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F08-ERR",
+    "category": "傅里叶",
+    "title": "时域卷积定理 · 错误",
+    "steps": [
+      "FT(Conv(x(t),h(t),t),t,w)",
+      "X(w)+H(w)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F09-OK",
+    "category": "傅里叶",
+    "title": "乘积定理归一化 · 正确",
+    "steps": [
+      "FT(x(t)*h(t),t,w)",
+      "Conv(X(w),H(w),w)/(2*pi)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F09-ERR",
+    "category": "傅里叶",
+    "title": "乘积定理归一化 · 错误",
+    "steps": [
+      "FT(x(t)*h(t),t,w)",
+      "Conv(X(w),H(w),w)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F10-OK",
+    "category": "傅里叶",
+    "title": "冲激变换 · 正确",
+    "steps": [
+      "FT(delta(t),t,w)",
+      "1"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F10-ERR",
+    "category": "傅里叶",
+    "title": "冲激变换 · 错误",
+    "steps": [
+      "FT(delta(t),t,w)",
+      "0"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F11-OK",
+    "category": "傅里叶",
+    "title": "因果衰减指数 · 正确",
+    "steps": [
+      "FT(exp(-2*t)*u(t),t,w)",
+      "1/(2+I*w)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F11-ERR",
+    "category": "傅里叶",
+    "title": "因果衰减指数 · 错误",
+    "steps": [
+      "FT(exp(-2*t)*u(t),t,w)",
+      "1/(2-I*w)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F12-OK",
+    "category": "傅里叶",
+    "title": "高斯变换系数 · 正确",
+    "steps": [
+      "FT(exp(-2*t^2),t,w)",
+      "sqrt(pi/2)*exp(-w^2/8)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F12-ERR",
+    "category": "傅里叶",
+    "title": "高斯变换系数 · 错误",
+    "steps": [
+      "FT(exp(-2*t^2),t,w)",
+      "sqrt(pi/2)*exp(-w^2/4)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F13-OK",
+    "category": "傅里叶",
+    "title": "尺度与移位复合 · 正确",
+    "steps": [
+      "FT(x(2*(t-3)),t,w)",
+      "exp(-3*I*w)*X(w/2)/2"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F13-ERR",
+    "category": "傅里叶",
+    "title": "尺度与移位复合 · 错误",
+    "steps": [
+      "FT(x(2*(t-3)),t,w)",
+      "exp(-6*I*w)*X(w/2)/2"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "F14-OK",
+    "category": "傅里叶",
+    "title": "四行推导末步代数错误 · 正确",
+    "steps": [
+      "FT(2*x(t-2),t,w)",
+      "2*exp(-2*I*w)*X(w)",
+      "2*X(w)/exp(2*I*w)",
+      "(X(w)+X(w))/exp(2*I*w)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "F14-ERR",
+    "category": "傅里叶",
+    "title": "四行推导末步代数错误 · 错误",
+    "steps": [
+      "FT(2*x(t-2),t,w)",
+      "2*exp(-2*I*w)*X(w)",
+      "2*X(w)/exp(2*I*w)",
+      "(X(w)-X(w))/exp(2*I*w)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 4
+  },
+  {
+    "id": "L01-OK",
+    "category": "拉普拉斯",
+    "title": "拉普拉斯线性 · 正确",
+    "steps": [
+      "LT(2*x(t)+3*h(t),t,s)",
+      "2*X(s)+3*H(s)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L01-ERR",
+    "category": "拉普拉斯",
+    "title": "拉普拉斯线性 · 错误",
+    "steps": [
+      "LT(2*x(t)+3*h(t),t,s)",
+      "2*X(s)+H(s)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L02-OK",
+    "category": "拉普拉斯",
+    "title": "一阶导数非零初值 · 正确",
+    "steps": [
+      "LT(D(x(t),t),t,s)",
+      "s*X(s)-2"
+    ],
+    "context": {
+      "initial": {
+        "x0": 2,
+        "x1": 0
+      }
+    },
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L02-ERR",
+    "category": "拉普拉斯",
+    "title": "一阶导数非零初值 · 错误",
+    "steps": [
+      "LT(D(x(t),t),t,s)",
+      "s*X(s)"
+    ],
+    "context": {
+      "initial": {
+        "x0": 2,
+        "x1": 0
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L03-OK",
+    "category": "拉普拉斯",
+    "title": "二阶导数两个初值 · 正确",
+    "steps": [
+      "LT(D(x(t),t,2),t,s)",
+      "s^2*X(s)-2*s-3"
+    ],
+    "context": {
+      "initial": {
+        "x0": 2,
+        "x1": 3
+      }
+    },
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L03-ERR",
+    "category": "拉普拉斯",
+    "title": "二阶导数两个初值 · 错误",
+    "steps": [
+      "LT(D(x(t),t,2),t,s)",
+      "s^2*X(s)-2*s+3"
+    ],
+    "context": {
+      "initial": {
+        "x0": 2,
+        "x1": 3
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L04-OK",
+    "category": "拉普拉斯",
+    "title": "时间相乘的负号 · 正确",
+    "steps": [
+      "LT(t*x(t),t,s)",
+      "-D(X(s),s)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L04-ERR",
+    "category": "拉普拉斯",
+    "title": "时间相乘的负号 · 错误",
+    "steps": [
+      "LT(t*x(t),t,s)",
+      "D(X(s),s)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L05-OK",
+    "category": "拉普拉斯",
+    "title": "复频移方向 · 正确",
+    "steps": [
+      "LT(exp(2*t)*x(t),t,s)",
+      "X(s-2)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L05-ERR",
+    "category": "拉普拉斯",
+    "title": "复频移方向 · 错误",
+    "steps": [
+      "LT(exp(2*t)*x(t),t,s)",
+      "X(s+2)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L06-OK",
+    "category": "拉普拉斯",
+    "title": "因果延迟门控 · 正确",
+    "steps": [
+      "LT(u(t-3)*x(t-3),t,s)",
+      "exp(-3*s)*X(s)"
+    ],
+    "context": {
+      "causal": true
+    },
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L06-ERR",
+    "category": "拉普拉斯",
+    "title": "因果延迟门控 · 错误",
+    "steps": [
+      "LT(u(t-3)*x(t-3),t,s)",
+      "exp(3*s)*X(s)"
+    ],
+    "context": {
+      "causal": true
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L07-OK",
+    "category": "拉普拉斯",
+    "title": "因果卷积定理 · 正确",
+    "steps": [
+      "LT(Conv(x(t),h(t),t),t,s)",
+      "X(s)*H(s)"
+    ],
+    "context": {
+      "causal": true
+    },
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L07-ERR",
+    "category": "拉普拉斯",
+    "title": "因果卷积定理 · 错误",
+    "steps": [
+      "LT(Conv(x(t),h(t),t),t,s)",
+      "X(s)+H(s)"
+    ],
+    "context": {
+      "causal": true
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L08-OK",
+    "category": "拉普拉斯",
+    "title": "从零积分 · 正确",
+    "steps": [
+      "LT(Int0(x(t),t),t,s)",
+      "X(s)/s"
+    ],
+    "context": {
+      "causal": true
+    },
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L08-ERR",
+    "category": "拉普拉斯",
+    "title": "从零积分 · 错误",
+    "steps": [
+      "LT(Int0(x(t),t),t,s)",
+      "s*X(s)"
+    ],
+    "context": {
+      "causal": true
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L09-OK",
+    "category": "拉普拉斯",
+    "title": "单位阶跃及收敛域 · 正确",
+    "steps": [
+      "LT(u(t),t,s)",
+      "1/s; ROC: re(s)>0"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L09-ERR",
+    "category": "拉普拉斯",
+    "title": "单位阶跃及收敛域 · 错误",
+    "steps": [
+      "LT(u(t),t,s)",
+      "-1/s; ROC: re(s)>0"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L10-OK",
+    "category": "拉普拉斯",
+    "title": "衰减指数及收敛域 · 正确",
+    "steps": [
+      "LT(exp(-2*t)*u(t),t,s)",
+      "1/(s+2); ROC: re(s)>-2"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L10-ERR",
+    "category": "拉普拉斯",
+    "title": "衰减指数及收敛域 · 错误",
+    "steps": [
+      "LT(exp(-2*t)*u(t),t,s)",
+      "1/(s-2); ROC: re(s)>-2"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L11-OK",
+    "category": "拉普拉斯",
+    "title": "零初值不能凭空增加项 · 正确",
+    "steps": [
+      "LT(D(x(t),t),t,s)",
+      "s*X(s)"
+    ],
+    "context": {
+      "initial": {
+        "x0": 0,
+        "x1": 0
+      }
+    },
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L11-ERR",
+    "category": "拉普拉斯",
+    "title": "零初值不能凭空增加项 · 错误",
+    "steps": [
+      "LT(D(x(t),t),t,s)",
+      "s*X(s)-1"
+    ],
+    "context": {
+      "initial": {
+        "x0": 0,
+        "x1": 0
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L12-OK",
+    "category": "拉普拉斯",
+    "title": "初始速度无需额外乘s · 正确",
+    "steps": [
+      "LT(D(x(t),t,2),t,s)",
+      "s^2*X(s)-5"
+    ],
+    "context": {
+      "initial": {
+        "x0": 0,
+        "x1": 5
+      }
+    },
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L12-ERR",
+    "category": "拉普拉斯",
+    "title": "初始速度无需额外乘s · 错误",
+    "steps": [
+      "LT(D(x(t),t,2),t,s)",
+      "s^2*X(s)-5*s"
+    ],
+    "context": {
+      "initial": {
+        "x0": 0,
+        "x1": 5
+      }
+    },
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L13-OK",
+    "category": "拉普拉斯",
+    "title": "衰减指数收敛域方向 · 正确",
+    "steps": [
+      "LT(exp(-3*t)*u(t),t,s)",
+      "1/(s+3); ROC: re(s)>-3"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L13-ERR",
+    "category": "拉普拉斯",
+    "title": "衰减指数收敛域方向 · 错误",
+    "steps": [
+      "LT(exp(-3*t)*u(t),t,s)",
+      "1/(s+3); ROC: re(s)<-3"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "L14-OK",
+    "category": "拉普拉斯",
+    "title": "变换后有理式等价 · 正确",
+    "steps": [
+      "LT(exp(-2*t)*u(t),t,s)",
+      "1/(s+2); ROC: re(s)>-2",
+      "(s+2)/(s+2)^2; ROC: re(s)>-2"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "L14-ERR",
+    "category": "拉普拉斯",
+    "title": "变换后有理式等价 · 错误",
+    "steps": [
+      "LT(exp(-2*t)*u(t),t,s)",
+      "1/(s+2); ROC: re(s)>-2",
+      "(s-2)/(s+2)^2; ROC: re(s)>-2"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 3
+  },
+  {
+    "id": "Z01-OK",
+    "category": "Z变换",
+    "title": "Z变换线性 · 正确",
+    "steps": [
+      "ZT(2*x(n)+3*h(n),n,z)",
+      "2*X(z)+3*H(z)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z01-ERR",
+    "category": "Z变换",
+    "title": "Z变换线性 · 错误",
+    "steps": [
+      "ZT(2*x(n)+3*h(n),n,z)",
+      "2*X(z)+H(z)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z02-OK",
+    "category": "Z变换",
+    "title": "延迟指数方向 · 正确",
+    "steps": [
+      "ZT(x(n-2),n,z)",
+      "z^(-2)*X(z)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z02-ERR",
+    "category": "Z变换",
+    "title": "延迟指数方向 · 错误",
+    "steps": [
+      "ZT(x(n-2),n,z)",
+      "z^2*X(z)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z03-OK",
+    "category": "Z变换",
+    "title": "时间反转 · 正确",
+    "steps": [
+      "ZT(x(-n),n,z)",
+      "X(1/z)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z03-ERR",
+    "category": "Z变换",
+    "title": "时间反转 · 错误",
+    "steps": [
+      "ZT(x(-n),n,z)",
+      "X(-z)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z04-OK",
+    "category": "Z变换",
+    "title": "指数加权尺度 · 正确",
+    "steps": [
+      "ZT(2^n*x(n),n,z)",
+      "X(z/2)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z04-ERR",
+    "category": "Z变换",
+    "title": "指数加权尺度 · 错误",
+    "steps": [
+      "ZT(2^n*x(n),n,z)",
+      "X(2*z)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z05-OK",
+    "category": "Z变换",
+    "title": "乘n对应微分 · 正确",
+    "steps": [
+      "ZT(n*x(n),n,z)",
+      "-z*D(X(z),z)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z05-ERR",
+    "category": "Z变换",
+    "title": "乘n对应微分 · 错误",
+    "steps": [
+      "ZT(n*x(n),n,z)",
+      "z*D(X(z),z)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z06-OK",
+    "category": "Z变换",
+    "title": "离散卷积定理 · 正确",
+    "steps": [
+      "ZT(Conv(x(n),h(n),n),n,z)",
+      "X(z)*H(z)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z06-ERR",
+    "category": "Z变换",
+    "title": "离散卷积定理 · 错误",
+    "steps": [
+      "ZT(Conv(x(n),h(n),n),n,z)",
+      "X(z)+H(z)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z07-OK",
+    "category": "Z变换",
+    "title": "序列共轭 · 正确",
+    "steps": [
+      "ZT(conjugate(x(n)),n,z)",
+      "conjugate(X(conjugate(z)))"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z07-ERR",
+    "category": "Z变换",
+    "title": "序列共轭 · 错误",
+    "steps": [
+      "ZT(conjugate(x(n)),n,z)",
+      "conjugate(X(z))"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z08-OK",
+    "category": "Z变换",
+    "title": "单位序列冲激 · 正确",
+    "steps": [
+      "ZT(delta(n),n,z)",
+      "1"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z08-ERR",
+    "category": "Z变换",
+    "title": "单位序列冲激 · 错误",
+    "steps": [
+      "ZT(delta(n),n,z)",
+      "z"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z09-OK",
+    "category": "Z变换",
+    "title": "右边序列ROC · 正确",
+    "steps": [
+      "ZT((1/2)^n*u(n),n,z)",
+      "z/(z-1/2); ROC: abs(z)>1/2"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z09-ERR",
+    "category": "Z变换",
+    "title": "右边序列ROC · 错误",
+    "steps": [
+      "ZT((1/2)^n*u(n),n,z)",
+      "z/(z-1/2); ROC: abs(z)<1/2"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z10-OK",
+    "category": "Z变换",
+    "title": "左边序列符号和ROC · 正确",
+    "steps": [
+      "ZT(-2^n*u(-n-1),n,z)",
+      "z/(z-2); ROC: abs(z)<2"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z10-ERR",
+    "category": "Z变换",
+    "title": "左边序列符号和ROC · 错误",
+    "steps": [
+      "ZT(-2^n*u(-n-1),n,z)",
+      "-z/(z-2); ROC: abs(z)<2"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z11-OK",
+    "category": "Z变换",
+    "title": "移位冲激序列 · 正确",
+    "steps": [
+      "ZT(delta(n-3),n,z)",
+      "z^(-3)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z11-ERR",
+    "category": "Z变换",
+    "title": "移位冲激序列 · 错误",
+    "steps": [
+      "ZT(delta(n-3),n,z)",
+      "z^3"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2
+  },
+  {
+    "id": "Z12-OK",
+    "category": "Z变换",
+    "title": "卷积变换后三行推导 · 正确",
+    "steps": [
+      "ZT(Conv(x(n),h(n),n),n,z)",
+      "X(z)*H(z)",
+      "H(z)*X(z)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "Z12-ERR",
+    "category": "Z变换",
+    "title": "卷积变换后三行推导 · 错误",
+    "steps": [
+      "ZT(Conv(x(n),h(n),n),n,z)",
+      "X(z)*H(z)",
+      "H(z)+X(z)"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 3
+  }
+]

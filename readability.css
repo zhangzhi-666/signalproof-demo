@@ -1,0 +1,8 @@
+.mobile-case-picker{display:none}
+@media(max-width:960px){.mobile-case-picker{display:flex;align-items:center;gap:14px;font-size:.875rem;color:#617d87;margin-bottom:20px}.mobile-case-picker select{flex:1;min-width:0;border:1px solid #dfe7e9;border-radius:7px;padding:10px;background:white;font-size:.875rem;color:#284b59}}
+.case-description,.result-body>p,.plot-caption,.guide-card p{font-size:.875rem}
+.nav,.example,.path-row h4,.path-row p,.rule-card p,.rule-card button,.test-disclaimer{font-size:.875rem}
+.formula{font-size:1rem}.editor-row textarea{font-size:.94rem}
+.minor,.result-kicker,.formula-box label,.diff-line,.evidence-tags span,.path-label,.trace-details,.editor-footer>span,.workspace-footnote,.context-strip,.context-details,.text-button{font-size:.75rem}
+.guide-card p{font-size:1rem}.rule-card .rule-formula{font-size:.875rem}
+@media(max-width:760px){.nav{font-size:0}.example{font-size:.875rem}.page-heading p,.case-description,.result-body>p,.plot-caption{font-size:.875rem}.context-strip{font-size:.75rem}.path-row .path-label{font-size:.7rem}.context-details summary span{float:none;display:block;margin-top:7px}}

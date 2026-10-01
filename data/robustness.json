@@ -1,0 +1,332 @@
+[
+  {
+    "id": "R01",
+    "category": "边界检查",
+    "title": "未注册函数不得静默执行",
+    "steps": [
+      "mystery(t)",
+      "0"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "解析安全"
+  },
+  {
+    "id": "R02",
+    "category": "边界检查",
+    "title": "不完整括号返回诊断",
+    "steps": [
+      "FT(x(t),t,w",
+      "X(w)"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "解析安全"
+  },
+  {
+    "id": "R03",
+    "category": "边界检查",
+    "title": "禁止导入与系统命令",
+    "steps": [
+      "__import__('os').system('echo unsafe')",
+      "0"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "解析安全"
+  },
+  {
+    "id": "R04",
+    "category": "边界检查",
+    "title": "禁止属性访问",
+    "steps": [
+      "x(t).__class__",
+      "0"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "解析安全"
+  },
+  {
+    "id": "R05",
+    "category": "边界检查",
+    "title": "禁止任意文件函数",
+    "steps": [
+      "open('signalproof_should_not_exist.txt','w')",
+      "0"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "解析安全"
+  },
+  {
+    "id": "R06",
+    "category": "边界检查",
+    "title": "除零不进入数值证明",
+    "steps": [
+      "1/0",
+      "0"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "定义域"
+  },
+  {
+    "id": "R07",
+    "category": "边界检查",
+    "title": "平方根平方需要绝对值",
+    "steps": [
+      "sqrt(t^2)",
+      "t"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "boundaryKind": "定义域"
+  },
+  {
+    "id": "R08",
+    "category": "边界检查",
+    "title": "因果指数Fourier缺正参数条件",
+    "steps": [
+      "FT(exp(-a*t)*u(t),t,w)",
+      "1/(a+I*w)"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "适用条件"
+  },
+  {
+    "id": "R09",
+    "category": "边界检查",
+    "title": "正参数条件允许因果指数Fourier",
+    "steps": [
+      "FT(exp(-a*t)*u(t),t,w)",
+      "1/(a+I*w)"
+    ],
+    "context": {
+      "positive": [
+        "a"
+      ]
+    },
+    "expected": "correct",
+    "expectedFirstError": null,
+    "boundaryKind": "适用条件"
+  },
+  {
+    "id": "R10",
+    "category": "边界检查",
+    "title": "未知尺度是否为零",
+    "steps": [
+      "FT(x(a*t),t,w)",
+      "X(w/a)/abs(a)"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "适用条件"
+  },
+  {
+    "id": "R11",
+    "category": "边界检查",
+    "title": "正尺度条件允许去掉绝对值",
+    "steps": [
+      "FT(x(a*t),t,w)",
+      "X(w/a)/a"
+    ],
+    "context": {
+      "positive": [
+        "a"
+      ]
+    },
+    "expected": "correct",
+    "expectedFirstError": null,
+    "boundaryKind": "适用条件"
+  },
+  {
+    "id": "R12",
+    "category": "边界检查",
+    "title": "Laplace基础变换缺少ROC",
+    "steps": [
+      "LT(exp(-2*t)*u(t),t,s)",
+      "1/(s+2)"
+    ],
+    "context": {},
+    "expected": "incomplete",
+    "expectedFirstError": null,
+    "boundaryKind": "收敛域"
+  },
+  {
+    "id": "R13",
+    "category": "边界检查",
+    "title": "Z基础变换缺少ROC",
+    "steps": [
+      "ZT((1/2)^n*u(n),n,z)",
+      "z/(z-1/2)"
+    ],
+    "context": {},
+    "expected": "incomplete",
+    "expectedFirstError": null,
+    "boundaryKind": "收敛域"
+  },
+  {
+    "id": "R14",
+    "category": "边界检查",
+    "title": "因果卷积缺少因果声明",
+    "steps": [
+      "LT(Conv(x(t),h(t),t),t,s)",
+      "X(s)*H(s)"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "适用条件"
+  },
+  {
+    "id": "R15",
+    "category": "边界检查",
+    "title": "不允许将非因果声明用于因果卷积",
+    "steps": [
+      "LT(Conv(x(t),h(t),t),t,s)",
+      "X(s)*H(s)"
+    ],
+    "context": {
+      "causal": false
+    },
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "适用条件"
+  },
+  {
+    "id": "R16",
+    "category": "边界检查",
+    "title": "单边微分未提供初值",
+    "steps": [
+      "LT(D(x(t),t),t,s)",
+      "s*X(s)"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "适用条件"
+  },
+  {
+    "id": "R17",
+    "category": "边界检查",
+    "title": "能力外傅里叶积分不能靠抽样通过",
+    "steps": [
+      "FT(Int0(x(t),t),t,w)",
+      "X(w)/(I*w)"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null,
+    "boundaryKind": "能力边界"
+  },
+  {
+    "id": "R18",
+    "category": "边界检查",
+    "title": "代数恒等可证明不需要抽样",
+    "steps": [
+      "(s+2)/(s+2)^2",
+      "1/(s+2)"
+    ],
+    "context": {},
+    "expected": "correct",
+    "expectedFirstError": null,
+    "boundaryKind": "符号证明"
+  },
+  {
+    "id": "R19",
+    "category": "边界检查",
+    "title": "定义函数允许显式值验证",
+    "steps": [
+      "X(w)",
+      "1/(1+I*w)"
+    ],
+    "context": {
+      "definitions": {
+        "X(w)": "1/(1+I*w)"
+      }
+    },
+    "expected": "correct",
+    "expectedFirstError": null,
+    "boundaryKind": "符号替换"
+  },
+  {
+    "id": "R20",
+    "category": "边界检查",
+    "title": "Z收敛圆边界不能包含极点",
+    "steps": [
+      "ZT((1/2)^n*u(n),n,z)",
+      "z/(z-1/2); ROC: abs(z)>=1/2"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "boundaryKind": "收敛域"
+  },
+  {
+    "id": "R21",
+    "category": "边界检查",
+    "title": "相反ROC不能视为同一序列",
+    "steps": [
+      "ZT(-2^n*u(-n-1),n,z)",
+      "z/(z-2); ROC: abs(z)>2"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "boundaryKind": "收敛域"
+  },
+  {
+    "id": "R22",
+    "category": "边界检查",
+    "title": "一个采样点一致不足以证明恒等",
+    "steps": [
+      "sin(pi*t)",
+      "0"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "boundaryKind": "数值边界"
+  },
+  {
+    "id": "R23",
+    "category": "边界检查",
+    "title": "有限样点碰撞不构成符号证明",
+    "steps": [
+      "t*(t-1)*(t+1)*(t-2)*(t+2)",
+      "0"
+    ],
+    "context": {},
+    "expected": "wrong",
+    "expectedFirstError": 2,
+    "boundaryKind": "数值边界"
+  },
+  {
+    "id": "R24",
+    "category": "边界检查",
+    "title": "非零初值符号必须来自上下文",
+    "steps": [
+      "LT(D(x(t),t),t,s)",
+      "s*X(s)-2"
+    ],
+    "context": {
+      "initial": {
+        "x0": 2
+      }
+    },
+    "expected": "correct",
+    "expectedFirstError": null,
+    "boundaryKind": "适用条件"
+  }
+]

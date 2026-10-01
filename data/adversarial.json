@@ -1,0 +1,83 @@
+[
+  {
+    "id": "A01",
+    "category": "参数类型",
+    "title": "Fourier 不接受复数时移",
+    "steps": [
+      "FT(x(t-I),t,w)",
+      "exp(w)*X(w)"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null
+  },
+  {
+    "id": "A02",
+    "category": "参数类型",
+    "title": "非零条件不能取代实尺度条件",
+    "steps": [
+      "FT(x(I*t),t,w)",
+      "X(-I*w)"
+    ],
+    "context": {
+      "nonzero": [
+        "I"
+      ]
+    },
+    "expected": "unknown",
+    "expectedFirstError": null
+  },
+  {
+    "id": "A03",
+    "category": "定义域",
+    "title": "ROC 正确不能覆盖被约去分母的条件",
+    "steps": [
+      "a/a; ROC: abs(z)>1/2",
+      "1; ROC: abs(z)>1/2"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null
+  },
+  {
+    "id": "A04",
+    "category": "收敛域",
+    "title": "ROC 外反例必须丢弃",
+    "steps": [
+      "sqrt((1-abs(z))^2); ROC: abs(z)<1",
+      "1-abs(z); ROC: abs(z)<1"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null
+  },
+  {
+    "id": "A05",
+    "category": "变换对",
+    "title": "同名 Fourier 与 Laplace 变换对按变量隔离",
+    "steps": [
+      "LT(x(t),t,s)",
+      "1/(s+1)"
+    ],
+    "context": {
+      "definitions": {
+        "X(w)": "1/(1+I*w)",
+        "X(s)": "1/(s+1)"
+      }
+    },
+    "expected": "correct",
+    "expectedFirstError": null
+  },
+  {
+    "id": "A06",
+    "category": "收敛域",
+    "title": "ROC 内恒零补项不能被域外抽样否定",
+    "steps": [
+      "ZT(-(1/2)^n*u(-n-1),n,z)",
+      "z/(z-1/2)+(sqrt((1/2-abs(z))^2)-(1/2-abs(z))); ROC: abs(z)<1/2"
+    ],
+    "context": {},
+    "expected": "unknown",
+    "expectedFirstError": null
+  }
+]
