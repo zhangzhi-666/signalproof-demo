@@ -5,10 +5,13 @@ async function initialize(){
   python=await loadPyodide({indexURL:new URL('runtime/',self.location.href).href});
   postMessage({stage:'正在初始化 SymPy 符号引擎'});
   await python.loadPackage('sympy');
-  const [source,tests,robust]=await Promise.all(['engine/service.py','data/tests.json','data/robustness.json'].map(async p=>{const r=await fetch(p+'?v=3');if(!r.ok)throw Error('无法读取 '+p);return r.text();}));
+  const modules=['__init__','syntax','formatting','rules','diagnostics','verification','service'];
+  const paths=[...modules.map(name=>`engine/${name}.py`),'data/tests.json','data/robustness.json'];
+  const files=await Promise.all(paths.map(async path=>{const response=await fetch(path+'?v=4');if(!response.ok)throw Error('无法读取 '+path);return response.text();}));
   python.FS.mkdirTree('/app/engine');python.FS.mkdirTree('/app/data');
-  python.FS.writeFile('/app/engine/service.py',source);python.FS.writeFile('/app/data/tests.json',tests);python.FS.writeFile('/app/data/robustness.json',robust);
-  await python.runPythonAsync("import sys,json\nsys.path.insert(0,'/app/engine')\nimport service");
+  paths.forEach((path,index)=>python.FS.writeFile('/app/'+path,files[index]));
+  const tests=files[modules.length];
+  await python.runPythonAsync("import sys,json\nsys.path.insert(0,'/app')\nfrom engine import service");
   postMessage({ready:true,catalog:call({action:'catalog'}),fixtures:JSON.parse(tests)});
 }
 function call(request){python.globals.set('_request_json',JSON.stringify(request));return JSON.parse(python.runPython("json.dumps(service.dispatch(json.loads(_request_json)),ensure_ascii=False)"));}

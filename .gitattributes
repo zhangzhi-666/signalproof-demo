@@ -1,0 +1,5 @@
+# Preserve measured bytes across Windows/Linux checkouts; reports bind these hashes.
+* whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+engine/*.py -text
+data/*.json -text
+tools/benchmark.py -text

@@ -1,6 +1,12 @@
-.openai/
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+.pytest_cache/
+build/
+dist/
+.DS_Store
+Thumbs.db
+.openai/
 .env
 .env.*
 !.env.example

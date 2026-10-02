@@ -4,7 +4,7 @@
   "failed": 0,
   "correctCount": 50,
   "wrongCount": 50,
-  "elapsedMs": 15084.300000000745,
+  "elapsedMs": 10276.122,
   "results": [
     {
       "id": "C01-OK",
@@ -20,7 +20,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 9.7415,
+      "measurementRepeat": 1
     },
     {
       "id": "C01-ERR",
@@ -36,7 +46,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 367.4505,
+      "measurementRepeat": 1
     },
     {
       "id": "C02-OK",
@@ -52,7 +72,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 76.5222,
+      "measurementRepeat": 1
     },
     {
       "id": "C02-ERR",
@@ -68,7 +98,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 563.9208,
+      "measurementRepeat": 1
     },
     {
       "id": "C03-OK",
@@ -84,7 +124,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 37.8009,
+      "measurementRepeat": 1
     },
     {
       "id": "C03-ERR",
@@ -100,7 +150,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 415.4511,
+      "measurementRepeat": 1
     },
     {
       "id": "C04-OK",
@@ -116,7 +176,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 21.2431,
+      "measurementRepeat": 1
     },
     {
       "id": "C04-ERR",
@@ -132,7 +202,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 126.5569,
+      "measurementRepeat": 1
     },
     {
       "id": "C05-OK",
@@ -148,7 +228,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 8.4628,
+      "measurementRepeat": 1
     },
     {
       "id": "C05-ERR",
@@ -164,7 +254,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 20.3123,
+      "measurementRepeat": 1
     },
     {
       "id": "C06-OK",
@@ -180,7 +280,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 34.022,
+      "measurementRepeat": 1
     },
     {
       "id": "C06-ERR",
@@ -196,7 +306,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 186.8158,
+      "measurementRepeat": 1
     },
     {
       "id": "C07-OK",
@@ -212,7 +332,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 3.5325,
+      "measurementRepeat": 1
     },
     {
       "id": "C07-ERR",
@@ -228,7 +358,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 38.2919,
+      "measurementRepeat": 1
     },
     {
       "id": "C08-OK",
@@ -244,7 +384,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 55.2337,
+      "measurementRepeat": 1
     },
     {
       "id": "C08-ERR",
@@ -260,7 +410,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 443.3156,
+      "measurementRepeat": 1
     },
     {
       "id": "C09-OK",
@@ -276,7 +436,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 42.1033,
+      "measurementRepeat": 1
     },
     {
       "id": "C09-ERR",
@@ -292,7 +462,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 151.5166,
+      "measurementRepeat": 1
     },
     {
       "id": "C10-OK",
@@ -309,7 +489,19 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "elapsedMs": 117.6801,
+      "measurementRepeat": 1
     },
     {
       "id": "C10-ERR",
@@ -326,7 +518,19 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong",
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "wrong",
+        "correct"
+      ],
+      "elapsedMs": 283.4908,
+      "measurementRepeat": 1
     },
     {
       "id": "F01-OK",
@@ -342,7 +546,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 67.5078,
+      "measurementRepeat": 1
     },
     {
       "id": "F01-ERR",
@@ -358,7 +572,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 229.9829,
+      "measurementRepeat": 1
     },
     {
       "id": "F02-OK",
@@ -374,7 +598,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 75.8275,
+      "measurementRepeat": 1
     },
     {
       "id": "F02-ERR",
@@ -390,7 +624,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 234.9923,
+      "measurementRepeat": 1
     },
     {
       "id": "F03-OK",
@@ -406,7 +650,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 52.3942,
+      "measurementRepeat": 1
     },
     {
       "id": "F03-ERR",
@@ -422,7 +676,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 165.5738,
+      "measurementRepeat": 1
     },
     {
       "id": "F04-OK",
@@ -438,7 +702,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 37.2552,
+      "measurementRepeat": 1
     },
     {
       "id": "F04-ERR",
@@ -454,7 +728,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 96.7701,
+      "measurementRepeat": 1
     },
     {
       "id": "F05-OK",
@@ -470,7 +754,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 18.7638,
+      "measurementRepeat": 1
     },
     {
       "id": "F05-ERR",
@@ -486,7 +780,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 116.0286,
+      "measurementRepeat": 1
     },
     {
       "id": "F06-OK",
@@ -502,7 +806,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 28.8654,
+      "measurementRepeat": 1
     },
     {
       "id": "F06-ERR",
@@ -518,7 +832,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 79.8576,
+      "measurementRepeat": 1
     },
     {
       "id": "F07-OK",
@@ -534,7 +858,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 22.7308,
+      "measurementRepeat": 1
     },
     {
       "id": "F07-ERR",
@@ -550,7 +884,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 152.1331,
+      "measurementRepeat": 1
     },
     {
       "id": "F08-OK",
@@ -566,7 +910,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 19.0616,
+      "measurementRepeat": 1
     },
     {
       "id": "F08-ERR",
@@ -582,7 +936,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 219.8652,
+      "measurementRepeat": 1
     },
     {
       "id": "F09-OK",
@@ -598,7 +962,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 49.9816,
+      "measurementRepeat": 1
     },
     {
       "id": "F09-ERR",
@@ -614,7 +988,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 231.2071,
+      "measurementRepeat": 1
     },
     {
       "id": "F10-OK",
@@ -630,7 +1014,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 5.2242,
+      "measurementRepeat": 1
     },
     {
       "id": "F10-ERR",
@@ -646,7 +1040,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 1.7505,
+      "measurementRepeat": 1
     },
     {
       "id": "F11-OK",
@@ -662,7 +1066,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 179.0005,
+      "measurementRepeat": 1
     },
     {
       "id": "F11-ERR",
@@ -678,7 +1092,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 140.1681,
+      "measurementRepeat": 1
     },
     {
       "id": "F12-OK",
@@ -694,7 +1118,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 77.6032,
+      "measurementRepeat": 1
     },
     {
       "id": "F12-ERR",
@@ -710,7 +1144,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 172.9174,
+      "measurementRepeat": 1
     },
     {
       "id": "F13-OK",
@@ -726,7 +1170,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 100.6535,
+      "measurementRepeat": 1
     },
     {
       "id": "F13-ERR",
@@ -742,7 +1196,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 343.5204,
+      "measurementRepeat": 1
     },
     {
       "id": "F14-OK",
@@ -760,7 +1224,21 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct",
+        "correct",
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct",
+        "correct",
+        "correct"
+      ],
+      "elapsedMs": 131.8971,
+      "measurementRepeat": 1
     },
     {
       "id": "F14-ERR",
@@ -778,7 +1256,21 @@
       "actual": "wrong",
       "actualFirstError": 4,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct",
+        "correct",
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "correct",
+        "correct",
+        "wrong"
+      ],
+      "elapsedMs": 255.3456,
+      "measurementRepeat": 1
     },
     {
       "id": "L01-OK",
@@ -794,7 +1286,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 48.0096,
+      "measurementRepeat": 1
     },
     {
       "id": "L01-ERR",
@@ -810,7 +1312,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 191.2676,
+      "measurementRepeat": 1
     },
     {
       "id": "L02-OK",
@@ -831,7 +1343,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 29.5171,
+      "measurementRepeat": 1
     },
     {
       "id": "L02-ERR",
@@ -852,7 +1374,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 36.2951,
+      "measurementRepeat": 1
     },
     {
       "id": "L03-OK",
@@ -873,7 +1405,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 42.3362,
+      "measurementRepeat": 1
     },
     {
       "id": "L03-ERR",
@@ -894,7 +1436,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 85.5089,
+      "measurementRepeat": 1
     },
     {
       "id": "L04-OK",
@@ -910,7 +1462,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 26.3119,
+      "measurementRepeat": 1
     },
     {
       "id": "L04-ERR",
@@ -926,7 +1488,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 92.3341,
+      "measurementRepeat": 1
     },
     {
       "id": "L05-OK",
@@ -942,7 +1514,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 63.0831,
+      "measurementRepeat": 1
     },
     {
       "id": "L05-ERR",
@@ -958,7 +1540,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 216.3324,
+      "measurementRepeat": 1
     },
     {
       "id": "L06-OK",
@@ -976,7 +1568,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 119.764,
+      "measurementRepeat": 1
     },
     {
       "id": "L06-ERR",
@@ -994,7 +1596,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 278.2639,
+      "measurementRepeat": 1
     },
     {
       "id": "L07-OK",
@@ -1012,7 +1624,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 24.5545,
+      "measurementRepeat": 1
     },
     {
       "id": "L07-ERR",
@@ -1030,7 +1652,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 224.021,
+      "measurementRepeat": 1
     },
     {
       "id": "L08-OK",
@@ -1048,7 +1680,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 40.1288,
+      "measurementRepeat": 1
     },
     {
       "id": "L08-ERR",
@@ -1066,7 +1708,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 108.4715,
+      "measurementRepeat": 1
     },
     {
       "id": "L09-OK",
@@ -1082,7 +1734,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 13.9737,
+      "measurementRepeat": 1
     },
     {
       "id": "L09-ERR",
@@ -1098,7 +1760,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 31.8221,
+      "measurementRepeat": 1
     },
     {
       "id": "L10-OK",
@@ -1114,7 +1786,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 71.683,
+      "measurementRepeat": 1
     },
     {
       "id": "L10-ERR",
@@ -1130,7 +1812,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 134.0696,
+      "measurementRepeat": 1
     },
     {
       "id": "L11-OK",
@@ -1151,7 +1843,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 16.91,
+      "measurementRepeat": 1
     },
     {
       "id": "L11-ERR",
@@ -1172,7 +1874,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 44.9521,
+      "measurementRepeat": 1
     },
     {
       "id": "L12-OK",
@@ -1193,7 +1905,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 34.0335,
+      "measurementRepeat": 1
     },
     {
       "id": "L12-ERR",
@@ -1214,7 +1936,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 79.8723,
+      "measurementRepeat": 1
     },
     {
       "id": "L13-OK",
@@ -1230,7 +1962,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 87.9626,
+      "measurementRepeat": 1
     },
     {
       "id": "L13-ERR",
@@ -1246,7 +1988,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 48.4548,
+      "measurementRepeat": 1
     },
     {
       "id": "L14-OK",
@@ -1263,7 +2015,19 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "elapsedMs": 95.1481,
+      "measurementRepeat": 1
     },
     {
       "id": "L14-ERR",
@@ -1280,7 +2044,19 @@
       "actual": "wrong",
       "actualFirstError": 3,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct",
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "correct",
+        "wrong"
+      ],
+      "elapsedMs": 116.5558,
+      "measurementRepeat": 1
     },
     {
       "id": "Z01-OK",
@@ -1296,7 +2072,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 58.6937,
+      "measurementRepeat": 1
     },
     {
       "id": "Z01-ERR",
@@ -1312,7 +2098,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 151.2447,
+      "measurementRepeat": 1
     },
     {
       "id": "Z02-OK",
@@ -1328,7 +2124,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 38.892,
+      "measurementRepeat": 1
     },
     {
       "id": "Z02-ERR",
@@ -1344,7 +2150,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 93.9779,
+      "measurementRepeat": 1
     },
     {
       "id": "Z03-OK",
@@ -1360,7 +2176,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 20.1323,
+      "measurementRepeat": 1
     },
     {
       "id": "Z03-ERR",
@@ -1376,7 +2202,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 77.1386,
+      "measurementRepeat": 1
     },
     {
       "id": "Z04-OK",
@@ -1392,7 +2228,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 24.9764,
+      "measurementRepeat": 1
     },
     {
       "id": "Z04-ERR",
@@ -1408,7 +2254,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 72.7721,
+      "measurementRepeat": 1
     },
     {
       "id": "Z05-OK",
@@ -1424,7 +2280,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 25.1195,
+      "measurementRepeat": 1
     },
     {
       "id": "Z05-ERR",
@@ -1440,7 +2306,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 72.7788,
+      "measurementRepeat": 1
     },
     {
       "id": "Z06-OK",
@@ -1456,7 +2332,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 23.0795,
+      "measurementRepeat": 1
     },
     {
       "id": "Z06-ERR",
@@ -1472,7 +2358,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 126.0597,
+      "measurementRepeat": 1
     },
     {
       "id": "Z07-OK",
@@ -1488,7 +2384,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 57.6263,
+      "measurementRepeat": 1
     },
     {
       "id": "Z07-ERR",
@@ -1504,7 +2410,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 73.6154,
+      "measurementRepeat": 1
     },
     {
       "id": "Z08-OK",
@@ -1520,7 +2436,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 4.7573,
+      "measurementRepeat": 1
     },
     {
       "id": "Z08-ERR",
@@ -1536,7 +2462,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 14.8837,
+      "measurementRepeat": 1
     },
     {
       "id": "Z09-OK",
@@ -1552,7 +2488,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 99.4268,
+      "measurementRepeat": 1
     },
     {
       "id": "Z09-ERR",
@@ -1568,7 +2514,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 48.8403,
+      "measurementRepeat": 1
     },
     {
       "id": "Z10-OK",
@@ -1584,7 +2540,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 110.8298,
+      "measurementRepeat": 1
     },
     {
       "id": "Z10-ERR",
@@ -1600,7 +2566,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 138.8594,
+      "measurementRepeat": 1
     },
     {
       "id": "Z11-OK",
@@ -1616,7 +2592,17 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct"
+      ],
+      "elapsedMs": 28.5497,
+      "measurementRepeat": 1
     },
     {
       "id": "Z11-ERR",
@@ -1632,7 +2618,17 @@
       "actual": "wrong",
       "actualFirstError": 2,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "wrong"
+      ],
+      "elapsedMs": 44.8815,
+      "measurementRepeat": 1
     },
     {
       "id": "Z12-OK",
@@ -1649,7 +2645,19 @@
       "actual": "correct",
       "actualFirstError": null,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "actualLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "elapsedMs": 40.5081,
+      "measurementRepeat": 1
     },
     {
       "id": "Z12-ERR",
@@ -1666,7 +2674,78 @@
       "actual": "wrong",
       "actualFirstError": 3,
       "passed": true,
-      "error": ""
+      "error": "",
+      "inputRejected": false,
+      "timedOut": false,
+      "expectedLocalStatuses": [
+        "correct",
+        "wrong"
+      ],
+      "actualLocalStatuses": [
+        "correct",
+        "wrong"
+      ],
+      "elapsedMs": 116.4977,
+      "measurementRepeat": 1
     }
-  ]
+  ],
+  "generatedAt": "2026-10-02T09:30:18.022023+00:00",
+  "measurementGeneratedAt": "2026-10-02T09:24:46.560723+00:00",
+  "runner": "Native Python; compatibility view of the first measured baseline repetition. This is not a browser measurement.",
+  "benchmarkReport": "benchmark-results.json",
+  "benchmarkSha256": "b838eb8cc91c12c68272ec65c2b8a6d76d20a6d004783b8c7d878d43d052bf0a",
+  "source": {
+    "sha256": "dbe21f2dd12e9b153a5f626f8ebc05ac0ce5da258b92195f17a9c8ee7f9d29c6",
+    "files": {
+      "engine/__init__.py": "ce86c25dbdb319c19f63a659915fbd4bf58d502a6dcfb03136105655cffc1218",
+      "engine/__main__.py": "e7845150431eefe9440880e3b82b2faea1b10ccdfe05cde426c246fd94975ad1",
+      "engine/diagnostics.py": "4dd81734a0c228d3d06b444bb61fb54c4bbc599a661e196de0ef6cde19b56681",
+      "engine/formatting.py": "aef72a566712a21db058574752a00b4ad936ca024bd6a4f87a3a4fc761570205",
+      "engine/rules.py": "08493d035d65af61694d3fd77901374235aa6d44cffb7b7e94a9f2c1647bd4df",
+      "engine/service.py": "05bcd2c0d214ce436571e8e202af64006695b5a376a4cc784fe3c2b8389e4597",
+      "engine/syntax.py": "36850a6f6e33d52297fd4d6b7942eebafcb302d092f2e53fee717587d7318a1e",
+      "engine/verification.py": "46a924129d11f0169a3f501abf707e27a5e55922ffc408d4cb7e9bd0ccefc298"
+    },
+    "unchangedDuringRun": true
+  },
+  "datasetSha256": "c57d81e719641e110fd9a60aa58754dc9085ed99b9a6d2864c384a29e703cf86",
+  "oracleSha256": "05f1190c27368eb8f6888ddfdebc647472ff032abf778a4c15ab29aee5dc65a7",
+  "environment": {
+    "python": "3.12.14",
+    "implementation": "CPython",
+    "sympy": "1.13.3",
+    "os": "Windows",
+    "osRelease": "11",
+    "machine": "AMD64",
+    "cpu": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+    "logicalCpus": 22
+  },
+  "elapsedDefinition": "Sum of completed first-repetition verify() kernel latencies; excludes imports, process start, warm-up, IPC, browser/WASM load and network. Not total browser or end-to-end duration.",
+  "metrics": {
+    "stepAccuracy": {
+      "correct": 110,
+      "total": 110,
+      "rate": 1.0
+    },
+    "chainAccuracy": {
+      "correct": 100,
+      "total": 100,
+      "rate": 1.0
+    },
+    "firstErrorOnWrong": {
+      "correct": 50,
+      "total": 50,
+      "rate": 1.0
+    },
+    "firstErrorIncludingNone": {
+      "correct": 100,
+      "total": 100,
+      "rate": 1.0
+    },
+    "exactCaseAccuracy": {
+      "correct": 100,
+      "total": 100,
+      "rate": 1.0
+    }
+  }
 }

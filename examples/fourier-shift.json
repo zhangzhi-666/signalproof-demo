@@ -1,0 +1,8 @@
+{
+  "steps": [
+    "FT(x(t-2),t,w)",
+    "exp(2*I*w)*X(w)",
+    "exp(2*I*w)/(1+I*w)"
+  ],
+  "context": {"definitions": {"X(w)": "1/(1+I*w)"}}
+}

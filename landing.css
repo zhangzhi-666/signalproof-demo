@@ -41,3 +41,5 @@
 @media(max-width:950px){.step-state{padding:0 2px 5px}}
 @media(max-width:760px){.step-formula,.analysis-formula .step-formula{font-size:17px}.formula-roc-value{font-size:13px}.step-state{padding:0}}
 @media(max-width:420px){.step-formula,.analysis-formula .step-formula{font-size:16px}.analysis-formula{padding-inline:11px}.formula-roc{gap:9px}.step-state{padding:0 2px 5px}}
+
+.course-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:0 0 20px}.course-metric{border-top:2px solid #80ad94;padding:22px 0 13px}.course-metric>span{font-size:13px;color:#648270;display:block}.course-metric>strong{display:block;font-size:39px;letter-spacing:-1.2px;font-weight:500;color:#244737;margin:12px 0}.course-metric>small{color:#809086;font-size:12px}.course-report{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:33px}.course-report p{font-size:12px;color:#849287;line-height:1.8;max-width:650px}.course-report a{white-space:nowrap}@media(max-width:700px){.course-metrics{gap:12px}.course-metric>strong{font-size:25px}.course-metric>small{font-size:10px}.course-report{align-items:flex-start;flex-direction:column;gap:5px}}

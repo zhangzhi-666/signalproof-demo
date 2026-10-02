@@ -7,7 +7,7 @@ let worker,sequence=0;const pending=new Map();
 function toast(s){$('#toast').textContent=s;$('#toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('show'),4200);}
 function math(tex,fallback,display=true){if(tex&&window.katex){try{return katex.renderToString(tex,{displayMode:display,throwOnError:true,strict:false,trust:false,output:'htmlAndMathml'});}catch(e){}}return esc(fallback??tex??'');}
 function formula(tex,fallback,roc=''){return `<div class="formula math-scroll">${math(tex,fallback)}</div>${roc?`<div class="formula-roc"><span>ROC</span><div class="math-scroll">${math(roc,roc,false)}</div></div>`:''}`;}
-let ruleLatex={};fetch('data/rule-latex.json?v=3').then(r=>r.ok?r.json():{}).then(data=>{ruleLatex=data;renderRules();}).catch(()=>{});
+let ruleLatex={};fetch('data/rule-latex.json?v=4').then(r=>r.ok?r.json():{}).then(data=>{ruleLatex=data;renderRules();}).catch(()=>{});
 function renderStaticMath(){$$('[data-math]').forEach(e=>{e.innerHTML=math(e.dataset.math,e.textContent,e.dataset.inline!=='true');});}
 let previewTimer,previewRunning=false,previewKey='';
 function queueFormulaPreview(){
@@ -22,7 +22,7 @@ $$('[data-view]').forEach(b=>b.onclick=()=>switchView(b.dataset.view));window.ad
 function setBusy(v){state.busy=v;$('#verify-btn').disabled=v||!state.ready;$('#run-tests').disabled=v||!state.ready;$('#verify-btn').classList.toggle('busy',v);$('#verify-btn').innerHTML=v?'正在符号验证…':'<span>▶</span> 验证推导';$$('.repair-button').forEach(x=>x.disabled=v);if(state.example)renderLearning();if(!v)queueFormulaPreview();}
 function request(payload,progress){return new Promise((resolve,reject)=>{if(!state.ready)return reject(Error('数学引擎尚未就绪，请稍候。'));const id=++sequence;const timeout=setTimeout(()=>{pending.delete(id);worker.terminate();state.ready=false;$('#engine-state').className='engine-pill error';$('#engine-state span').textContent='计算超时 · 点击重启';setBusy(false);reject(Error('计算超出时间上限。请拆分步骤，并点击右上角重启引擎。'));},payload.action==='tests'?300000:35000);pending.set(id,{resolve,reject,timeout,progress});worker.postMessage({id,request:payload});});}
 function startWorker(){
- if(worker)worker.terminate();state.ready=false;$('#engine-state').className='engine-pill';$('#engine-state span').textContent='正在载入数学引擎';worker=new Worker('worker.js?v=3');
+ if(worker)worker.terminate();state.ready=false;$('#engine-state').className='engine-pill';$('#engine-state span').textContent='正在载入数学引擎';worker=new Worker('worker.js?v=4');
  worker.onmessage=({data})=>{
   if(data.stage){$('#engine-state span').textContent=data.stage;return;}
   if(data.fatal){$('#engine-state').className='engine-pill error';$('#engine-state span').textContent='载入失败 · 点击重试';toast('数学引擎加载失败，请点击右上角重试。');return;}

@@ -1,0 +1,940 @@
+{
+  "schemaVersion": 1,
+  "dataset": "tests.json",
+  "datasetSha256": "c57d81e719641e110fd9a60aa58754dc9085ed99b9a6d2864c384a29e703cf86",
+  "provenance": {
+    "method": "Labels fixed before executing the evaluator; independent mathematical review of every adjacent pair; AI-assisted construction.",
+    "externallyHumanReviewed": false,
+    "blindHoldout": false,
+    "note": "No external human certification is claimed. Rationales make labels directly reviewable. Labels are never generated from actual engine output."
+  },
+  "labelSemantics": {
+    "correct": "Locally equivalent under stated conventions and conditions.",
+    "wrong": "A disproved local equivalence, even when earlier steps were already wrong.",
+    "unknown": "Missing conditions or proof beyond the bounded verifier, never counted as mathematical proof.",
+    "incomplete": "Required ROC is missing."
+  },
+  "lineConvention": "First-error line is the 1-based destination line of the first wrong adjacent pair.",
+  "cases": [
+    {
+      "id": "C01-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "卷积交换律 x*h=h*x。"
+      ]
+    },
+    {
+      "id": "C01-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "卷积累积平移信号的乘积，不等于逐点乘积 x(t)h(t)。"
+      ]
+    },
+    {
+      "id": "C02-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "在卷积存在条件下，(x*h)*g=x*(h*g)。"
+      ]
+    },
+    {
+      "id": "C02-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "内层卷积不能改成逐点乘积 h(t)g(t)。"
+      ]
+    },
+    {
+      "id": "C03-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "卷积对第二个输入的和满足分配律。"
+      ]
+    },
+    {
+      "id": "C03-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "h+g 的两路贡献应相加，不能将第二项相减。"
+      ]
+    },
+    {
+      "id": "C04-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "常数 3 可由卷积中提出。"
+      ]
+    },
+    {
+      "id": "C04-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "提出常数后必须保留因子 3。"
+      ]
+    },
+    {
+      "id": "C05-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "δ 是卷积单位元。"
+      ]
+    },
+    {
+      "id": "C05-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "冲激卷积结果 x(t) 不能凭空加 1。"
+      ]
+    },
+    {
+      "id": "C06-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "δ(t−2) 产生 x(t−2)。"
+      ]
+    },
+    {
+      "id": "C06-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "移位方向反了，延迟 2 不能写为超前 2。"
+      ]
+    },
+    {
+      "id": "C07-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "与零信号卷积得到零。"
+      ]
+    },
+    {
+      "id": "C07-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "对任意 x，与零卷积不能返回 x。"
+      ]
+    },
+    {
+      "id": "C08-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "可交换微分与卷积时，(x*h)′=x′*h。"
+      ]
+    },
+    {
+      "id": "C08-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "x′*h 与 x*h′ 各自等于同一个导数，二者相加会重复计算。"
+      ]
+    },
+    {
+      "id": "C09-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "整数序列延迟 3 对应 x[n−3]。"
+      ]
+    },
+    {
+      "id": "C09-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "离散冲激 δ[n−3] 不会产生超前序列 x[n+3]。"
+      ]
+    },
+    {
+      "id": "C10-OK",
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "rationales": [
+        "先把内层延迟 2。",
+        "对 x(t−2) 再延迟 3，得到 x(t−5)。"
+      ]
+    },
+    {
+      "id": "C10-ERR",
+      "expectedLocalStatuses": [
+        "wrong",
+        "correct"
+      ],
+      "rationales": [
+        "内层应延迟 2，却写为超前 2。",
+        "在已错误的 x(t+2) 前提上再延迟 3，局部确为 x(t−1)。"
+      ]
+    },
+    {
+      "id": "F01-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "线性变换保留两个系数 2 和 3。"
+      ]
+    },
+    {
+      "id": "F01-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "h 项的系数 3 被遗漏。"
+      ]
+    },
+    {
+      "id": "F02-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "以 exp(−jωt) 为核，延迟 2 对应 exp(−2jω)。"
+      ]
+    },
+    {
+      "id": "F02-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "延迟相位因子的符号写反。"
+      ]
+    },
+    {
+      "id": "F03-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "乘 exp(3jt) 后频谱变为 X(ω−3)。"
+      ]
+    },
+    {
+      "id": "F03-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "正向调制应得到 X(ω−3)，不是 X(ω+3)。"
+      ]
+    },
+    {
+      "id": "F04-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "尺度系数为 1/|−2|，频率变量为 −ω/2。"
+      ]
+    },
+    {
+      "id": "F04-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "幅度系数必须为正的 1/2。"
+      ]
+    },
+    {
+      "id": "F05-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "时域共轭对应频谱共轭且频率取负。"
+      ]
+    },
+    {
+      "id": "F05-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "遗漏共轭性质中的频率反转。"
+      ]
+    },
+    {
+      "id": "F06-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "时域求导对应 jωX(ω)。"
+      ]
+    },
+    {
+      "id": "F06-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "缺少虚数因子 j。"
+      ]
+    },
+    {
+      "id": "F07-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "乘以 t 对应 j dX/dω。"
+      ]
+    },
+    {
+      "id": "F07-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "应为 +j，而不是 −j。"
+      ]
+    },
+    {
+      "id": "F08-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "时域卷积对应频域乘积 XH。"
+      ]
+    },
+    {
+      "id": "F08-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "不能将频域乘积替换为频谱之和。"
+      ]
+    },
+    {
+      "id": "F09-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "本角频率约定的乘积定理带 1/(2π)。"
+      ]
+    },
+    {
+      "id": "F09-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "缺少频域卷积前的 1/(2π)。"
+      ]
+    },
+    {
+      "id": "F10-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "单位冲激的傅里叶变换为常数 1。"
+      ]
+    },
+    {
+      "id": "F10-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "单位冲激变换不是零。"
+      ]
+    },
+    {
+      "id": "F11-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "对 exp(−2t)u(t) 积分得到 1/(2+jω)。"
+      ]
+    },
+    {
+      "id": "F11-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "分母虚部符号应为 +jω。"
+      ]
+    },
+    {
+      "id": "F12-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "高斯参数 a=2，对应 sqrt(π/2)exp(−ω²/8)。"
+      ]
+    },
+    {
+      "id": "F12-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "指数分母应为 8，而非 4。"
+      ]
+    },
+    {
+      "id": "F13-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "换元 τ=2(t−3)：1/2 尺度和 exp(−3jω) 相位。"
+      ]
+    },
+    {
+      "id": "F13-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "平移量为 3，不可将相位额外乘以尺度 2。"
+      ]
+    },
+    {
+      "id": "F14-OK",
+      "expectedLocalStatuses": [
+        "correct",
+        "correct",
+        "correct"
+      ],
+      "rationales": [
+        "线性与延迟性质。",
+        "exp(−2jω)=1/exp(2jω)，指数函数非零。",
+        "X+X=2X。"
+      ]
+    },
+    {
+      "id": "F14-ERR",
+      "expectedLocalStatuses": [
+        "correct",
+        "correct",
+        "wrong"
+      ],
+      "rationales": [
+        "线性与延迟性质。",
+        "将指数写到分母完全等价。",
+        "X−X=0，不等于先前的 2X。"
+      ]
+    },
+    {
+      "id": "L01-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "单边变换线性保留 2 和 3。"
+      ]
+    },
+    {
+      "id": "L01-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "h 项的系数 3 被遗漏。"
+      ]
+    },
+    {
+      "id": "L02-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "一阶导数变换为 sX−x(0−)，给定 x(0−)=2。"
+      ]
+    },
+    {
+      "id": "L02-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "非零初值项 −2 被遗漏。"
+      ]
+    },
+    {
+      "id": "L03-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "二阶导数为 s²X−s·x0−x1，给定 x0=2、x1=3。"
+      ]
+    },
+    {
+      "id": "L03-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "初始速度项是 −3，符号不应改为正。"
+      ]
+    },
+    {
+      "id": "L04-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "乘以 t 对应 −dX/ds。"
+      ]
+    },
+    {
+      "id": "L04-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "缺少求导前的负号。"
+      ]
+    },
+    {
+      "id": "L05-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "乘 exp(2t) 将 s 替为 s−2。"
+      ]
+    },
+    {
+      "id": "L05-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "复频移方向应为 s−2。"
+      ]
+    },
+    {
+      "id": "L06-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "正延迟且匹配门控得到 exp(−3s)X(s)。"
+      ]
+    },
+    {
+      "id": "L06-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "延迟因子的指数符号错误。"
+      ]
+    },
+    {
+      "id": "L07-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "在声明因果的前提下，卷积变换为 XH。"
+      ]
+    },
+    {
+      "id": "L07-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "因果卷积对应乘积，不是相加。"
+      ]
+    },
+    {
+      "id": "L08-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "零起点积分对应 X(s)/s。"
+      ]
+    },
+    {
+      "id": "L08-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "积分应除以 s，不是乘以 s。"
+      ]
+    },
+    {
+      "id": "L09-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "阶跃变换为 1/s，积分要求 Re(s)>0。"
+      ]
+    },
+    {
+      "id": "L09-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "符号错误：应为正的 1/s。"
+      ]
+    },
+    {
+      "id": "L10-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "衰减指数给出 1/(s+2)，ROC 为 Re(s)>−2。"
+      ]
+    },
+    {
+      "id": "L10-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "分母应为 s+2。"
+      ]
+    },
+    {
+      "id": "L11-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "零初值使 sX−x0 化为 sX。"
+      ]
+    },
+    {
+      "id": "L11-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "已知初值为零，不能添加 −1。"
+      ]
+    },
+    {
+      "id": "L12-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "x0=0、x1=5，二阶公式给出 s²X−5。"
+      ]
+    },
+    {
+      "id": "L12-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "初始速度 x1 不再额外乘 s。"
+      ]
+    },
+    {
+      "id": "L13-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "衰减率 3 要求 Re(s)>−3。"
+      ]
+    },
+    {
+      "id": "L13-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "右边指数的 ROC 方向被反转。"
+      ]
+    },
+    {
+      "id": "L14-OK",
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "rationales": [
+        "变换对和 ROC 正确。",
+        "在相同 ROC 中分子分母同乘 s+2，原极点边界未变化。"
+      ]
+    },
+    {
+      "id": "L14-ERR",
+      "expectedLocalStatuses": [
+        "correct",
+        "wrong"
+      ],
+      "rationales": [
+        "变换对和 ROC 正确。",
+        "扩分分子必须为 s+2，s−2 使有理式改变。"
+      ]
+    },
+    {
+      "id": "Z01-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "双边 Z 变换的线性性保留两个系数。"
+      ]
+    },
+    {
+      "id": "Z01-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "h[n] 的系数 3 被遗漏。"
+      ]
+    },
+    {
+      "id": "Z02-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "延迟两拍对应 z^(−2)X(z)。"
+      ]
+    },
+    {
+      "id": "Z02-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "延迟不能写为 z²X(z)。"
+      ]
+    },
+    {
+      "id": "Z03-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "令 k=−n，反转对应 X(1/z)。"
+      ]
+    },
+    {
+      "id": "Z03-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "z 应取倒数，不是取负。"
+      ]
+    },
+    {
+      "id": "Z04-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "2^n z^(−n)=(z/2)^(−n)。"
+      ]
+    },
+    {
+      "id": "Z04-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "自变量应为 z/2，不能为 2z。"
+      ]
+    },
+    {
+      "id": "Z05-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "对 z^(−n) 求导带来 −n，故序号相乘对应 −zX′。"
+      ]
+    },
+    {
+      "id": "Z05-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "漏掉 −zX′ 中的负号。"
+      ]
+    },
+    {
+      "id": "Z06-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "离散卷积对应两个 Z 变换的乘积。"
+      ]
+    },
+    {
+      "id": "Z06-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "卷积变换不是两个谱相加。"
+      ]
+    },
+    {
+      "id": "Z07-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "序列共轭对应 conjugate(X(conjugate(z)))。"
+      ]
+    },
+    {
+      "id": "Z07-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "复变量 z 的内层共轭不能省略。"
+      ]
+    },
+    {
+      "id": "Z08-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "离散单位冲激的变换为常数 1。"
+      ]
+    },
+    {
+      "id": "Z08-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "z 对应另一条移位冲激，不是 δ[n]。"
+      ]
+    },
+    {
+      "id": "Z09-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "右边几何级数收敛于 |z|>1/2。"
+      ]
+    },
+    {
+      "id": "Z09-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "有理式正确，但 ROC 的内外方向反了。"
+      ]
+    },
+    {
+      "id": "Z10-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "负左边指数的结果为 z/(z−2)，ROC |z|<2。"
+      ]
+    },
+    {
+      "id": "Z10-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "序列前的负号已经进入求和，结果不应再加负号。"
+      ]
+    },
+    {
+      "id": "Z11-OK",
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationales": [
+        "δ[n−3] 的唯一非零项给出 z^(−3)。"
+      ]
+    },
+    {
+      "id": "Z11-ERR",
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationales": [
+        "延迟冲激的 z 指数符号错误。"
+      ]
+    },
+    {
+      "id": "Z12-OK",
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "rationales": [
+        "离散卷积定理。",
+        "普通乘法交换律。"
+      ]
+    },
+    {
+      "id": "Z12-ERR",
+      "expectedLocalStatuses": [
+        "correct",
+        "wrong"
+      ],
+      "rationales": [
+        "离散卷积定理。",
+        "两个谱的乘积不能改为相加。"
+      ]
+    }
+  ]
+}

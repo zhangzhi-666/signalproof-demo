@@ -1,0 +1,564 @@
+{
+  "schemaVersion": 1,
+  "name": "Additional composition and boundary evaluation",
+  "provenance": {
+    "method": "AI-assisted independent mathematical labels fixed before execution. Not generated from engine answers.",
+    "externallyHumanReviewed": false,
+    "blindHoldout": false,
+    "note": "Separate supplementary set, not merged into baseline 50-correct/50-wrong acceptance. Known-rule compositions and declared unknown boundaries; not evidence of generalization."
+  },
+  "cases": [
+    {
+      "id": "HC01",
+      "category": "卷积",
+      "title": "混合输入与负时移",
+      "steps": [
+        "Conv(3*x(t)-h(t),delta(t+2),t)",
+        "3*x(t+2)-h(t+2)"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationale": "线性分配后两项都超前 2，保留各自系数。"
+    },
+    {
+      "id": "HC02",
+      "category": "卷积",
+      "title": "两侧常数一起提出",
+      "steps": [
+        "Conv(-2*x(t),3*h(t),t)",
+        "-6*Conv(x(t),h(t),t)",
+        "-6*Conv(h(t),x(t),t)"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "rationale": "双线性给出系数 −6，再使用卷积交换律。"
+    },
+    {
+      "id": "HC03",
+      "category": "卷积",
+      "title": "级联中段符号错误仍可局部继续",
+      "steps": [
+        "Conv(Conv(x(t),delta(t-4),t),delta(t+1),t)",
+        "Conv(x(t+4),delta(t+1),t)",
+        "x(t+5)"
+      ],
+      "context": {},
+      "expected": "wrong",
+      "expectedFirstError": 2,
+      "expectedLocalStatuses": [
+        "wrong",
+        "correct"
+      ],
+      "rationale": "第2行延迟4误写超前4；后续超前1在错误前提上局部成立。"
+    },
+    {
+      "id": "HC04",
+      "category": "卷积",
+      "title": "两种卷积导数不能相减",
+      "steps": [
+        "D(Conv(x(t),h(t),t),t)",
+        "Conv(D(x(t),t),h(t),t)-Conv(x(t),D(h(t),t),t)"
+      ],
+      "context": {},
+      "expected": "wrong",
+      "expectedFirstError": 2,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationale": "两项各等于同一导数，相减为零，非一般卷积的导数。"
+    },
+    {
+      "id": "HC05",
+      "category": "卷积",
+      "title": "符号整数离散移位",
+      "steps": [
+        "Conv(x(n),delta(n-k),n)",
+        "x(n-k)"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationale": "k 在语法约定中是整数，因此离散冲激移位可用。"
+    },
+    {
+      "id": "HC06",
+      "category": "卷积",
+      "title": "分数采样点缺插值定义",
+      "steps": [
+        "Conv(h(n),delta(n-3/2),n)",
+        "h(n-3/2)"
+      ],
+      "context": {},
+      "expected": "unknown",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "unknown"
+      ],
+      "rationale": "没有插值定义，离散冲激移位规则不能用于非整数3/2。"
+    },
+    {
+      "id": "HC07",
+      "category": "卷积",
+      "title": "零元与单位元混合",
+      "steps": [
+        "Conv(x(t),0,t)+Conv(h(t),delta(t),t)",
+        "h(t)"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationale": "第一项为零，第二项为 h(t)。"
+    },
+    {
+      "id": "HC08",
+      "category": "卷积",
+      "title": "约分不能丢掉参数定义域",
+      "steps": [
+        "a*Conv(x(t),h(t),t)/a",
+        "Conv(x(t),h(t),t)"
+      ],
+      "context": {},
+      "expected": "unknown",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "unknown"
+      ],
+      "rationale": "a 可能为0；形式约分需要保留 a≠0。"
+    },
+    {
+      "id": "HF01",
+      "category": "傅里叶",
+      "title": "负尺度与平移的整体换元",
+      "steps": [
+        "FT(x(-3*t+6),t,w)",
+        "exp(-2*I*w)*X(-w/3)/3"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationale": "一般仿射 a=−3,b=6，幅度1/3，相位 exp(jωb/a)=exp(−2jω)。"
+    },
+    {
+      "id": "HF02",
+      "category": "傅里叶",
+      "title": "两路不同时移的线性组合",
+      "steps": [
+        "FT(3*x(t+1)-2*h(t-4),t,w)",
+        "3*exp(I*w)*X(w)-2*exp(-4*I*w)*H(w)"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationale": "x超前1而h延迟4，各自保留线性系数。"
+    },
+    {
+      "id": "HF03",
+      "category": "傅里叶",
+      "title": "负频率调制方向",
+      "steps": [
+        "FT(exp(-4*I*t)*h(t),t,w)",
+        "H(w-4)"
+      ],
+      "context": {},
+      "expected": "wrong",
+      "expectedFirstError": 2,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationale": "调制频率为−4，故正确是H(ω+4)。"
+    },
+    {
+      "id": "HF04",
+      "category": "傅里叶",
+      "title": "二阶导数后出现代数反号",
+      "steps": [
+        "FT(D(x(t),t,2),t,w)",
+        "-w^2*X(w)",
+        "w^2*X(w)"
+      ],
+      "context": {},
+      "expected": "wrong",
+      "expectedFirstError": 3,
+      "expectedLocalStatuses": [
+        "correct",
+        "wrong"
+      ],
+      "rationale": "(jω)²=−ω²，第3行才丢失负号。"
+    },
+    {
+      "id": "HF05",
+      "category": "傅里叶",
+      "title": "带正参数的高斯",
+      "steps": [
+        "FT(exp(-a*t^2),t,w)",
+        "sqrt(pi/a)*exp(-w^2/(4*a))"
+      ],
+      "context": {
+        "positive": [
+          "a"
+        ]
+      },
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationale": "正参数确保高斯可积并使规则前提满足。"
+    },
+    {
+      "id": "HF06",
+      "category": "傅里叶",
+      "title": "高斯参数未说明符号",
+      "steps": [
+        "FT(exp(-a*t^2),t,w)",
+        "sqrt(pi/a)*exp(-w^2/(4*a))"
+      ],
+      "context": {},
+      "expected": "unknown",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "unknown"
+      ],
+      "rationale": "a缺少正性条件，不能认定相关积分收敛。"
+    },
+    {
+      "id": "HF07",
+      "category": "傅里叶",
+      "title": "乘积变换后保留归一化",
+      "steps": [
+        "FT(x(t)*h(t),t,w)",
+        "Conv(X(w),H(w),w)/(2*pi)",
+        "Conv(H(w),X(w),w)/(2*pi)"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "rationale": "乘积定理含1/(2π)，随后只交换卷积顺序。"
+    },
+    {
+      "id": "HF08",
+      "category": "傅里叶",
+      "title": "二次相位超出常数频移规则",
+      "steps": [
+        "FT(exp(I*t^2)*h(t),t,w)",
+        "H(w-2)"
+      ],
+      "context": {},
+      "expected": "unknown",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "unknown"
+      ],
+      "rationale": "相位非t的线性函数；未给h具体形式，当前验证器不能完成该步证明或反证。"
+    },
+    {
+      "id": "HL01",
+      "category": "拉普拉斯",
+      "title": "另一信号的双初值代入",
+      "steps": [
+        "LT(D(h(t),t,2),t,s)",
+        "s^2*H(s)-s*h0-h1",
+        "s^2*H(s)+3*s-4"
+      ],
+      "context": {
+        "initial": {
+          "h0": -3,
+          "h1": 4
+        }
+      },
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "rationale": "二阶公式对h同样适用：−s(−3)−4=3s−4。"
+    },
+    {
+      "id": "HL02",
+      "category": "拉普拉斯",
+      "title": "正确规则后误代初始速度",
+      "steps": [
+        "LT(D(h(t),t,2),t,s)",
+        "s^2*H(s)-s*h0-h1",
+        "s^2*H(s)+3*s+4"
+      ],
+      "context": {
+        "initial": {
+          "h0": -3,
+          "h1": 4
+        }
+      },
+      "expected": "wrong",
+      "expectedFirstError": 3,
+      "expectedLocalStatuses": [
+        "correct",
+        "wrong"
+      ],
+      "rationale": "第一步完整，第二步将−h1误写为+4。"
+    },
+    {
+      "id": "HL03",
+      "category": "拉普拉斯",
+      "title": "未门控延迟保留历史问题",
+      "steps": [
+        "LT(x(t-4),t,s)",
+        "exp(-4*s)*X(s)"
+      ],
+      "context": {},
+      "expected": "unknown",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "unknown"
+      ],
+      "rationale": "单边换元后需考虑原信号[−4,0)历史；无因果条件不能直接套式。"
+    },
+    {
+      "id": "HL04",
+      "category": "拉普拉斯",
+      "title": "增长指数也可在更右侧收敛",
+      "steps": [
+        "LT(exp(5*t)*u(t),t,s)",
+        "1/(s-5); ROC: re(s)>5"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationale": "积分要求Re(s−5)>0，而非要求信号本身衰减。"
+    },
+    {
+      "id": "HL05",
+      "category": "拉普拉斯",
+      "title": "已知变换对遗漏ROC",
+      "steps": [
+        "LT(exp(-4*t)*u(t),t,s)",
+        "1/(s+4)"
+      ],
+      "context": {},
+      "expected": "incomplete",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "incomplete"
+      ],
+      "rationale": "有理式正确，完整答案仍需Re(s)>−4。"
+    },
+    {
+      "id": "HL06",
+      "category": "拉普拉斯",
+      "title": "已声明有理频谱再求导",
+      "steps": [
+        "LT(t*x(t),t,s)",
+        "-D(X(s),s)",
+        "3/(s+3)^2"
+      ],
+      "context": {
+        "definitions": {
+          "X(s)": "3/(s+3)"
+        }
+      },
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "rationale": "−d[3/(s+3)]/ds=3/(s+3)²，检验已知频谱替换和求导。"
+    },
+    {
+      "id": "HL07",
+      "category": "拉普拉斯",
+      "title": "未知初值不能视为零",
+      "steps": [
+        "LT(D(x(t),t),t,s)",
+        "s*X(s)"
+      ],
+      "context": {},
+      "expected": "unknown",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "unknown"
+      ],
+      "rationale": "x(0−)未给，不能从导数公式省略初值项。"
+    },
+    {
+      "id": "HL08",
+      "category": "拉普拉斯",
+      "title": "双边卷积的因果前提缺失",
+      "steps": [
+        "LT(Conv(x(t),h(t),t),t,s)",
+        "X(s)*H(s)"
+      ],
+      "context": {},
+      "expected": "unknown",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "unknown"
+      ],
+      "rationale": "此Conv表示通常全时域卷积；单边乘积公式需要适用的因果前提。"
+    },
+    {
+      "id": "HZ01",
+      "category": "Z变换",
+      "title": "负指数底数与半径绝对值",
+      "steps": [
+        "ZT((-1/3)^n*u(n),n,z)",
+        "z/(z+1/3); ROC: abs(z)>1/3"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationale": "底数−1/3使极点位于−1/3，半径是模1/3。"
+    },
+    {
+      "id": "HZ02",
+      "category": "Z变换",
+      "title": "左边序列的圆内收敛域",
+      "steps": [
+        "ZT(-3^n*u(-n-1),n,z)",
+        "z/(z-3); ROC: abs(z)<3"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationale": "左边序列积分方向对应圆内，前置负号已包含在有理式中。"
+    },
+    {
+      "id": "HZ03",
+      "category": "Z变换",
+      "title": "左边序列也不可遗漏ROC",
+      "steps": [
+        "ZT(-3^n*u(-n-1),n,z)",
+        "z/(z-3)"
+      ],
+      "context": {},
+      "expected": "incomplete",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "incomplete"
+      ],
+      "rationale": "同样有理式可对应右边序列，必须附上|z|<3。"
+    },
+    {
+      "id": "HZ04",
+      "category": "Z变换",
+      "title": "超前四拍后倒数误写",
+      "steps": [
+        "ZT(x(n+4),n,z)",
+        "z^4*X(z)",
+        "X(z)/z^4"
+      ],
+      "context": {},
+      "expected": "wrong",
+      "expectedFirstError": 3,
+      "expectedLocalStatuses": [
+        "correct",
+        "wrong"
+      ],
+      "rationale": "超前4对应z⁴；后续取倒数改变表达式。"
+    },
+    {
+      "id": "HZ05",
+      "category": "Z变换",
+      "title": "指数加权另一信号",
+      "steps": [
+        "ZT(3^n*h(n),n,z)",
+        "H(z/3)"
+      ],
+      "context": {},
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct"
+      ],
+      "rationale": "合并3^n与z^(−n)得到自变量z/3。"
+    },
+    {
+      "id": "HZ06",
+      "category": "Z变换",
+      "title": "有理频谱的序号乘法",
+      "steps": [
+        "ZT(n*x(n),n,z)",
+        "-z*D(X(z),z)",
+        "2*z/(z-2)^2"
+      ],
+      "context": {
+        "definitions": {
+          "X(z)": "z/(z-2)"
+        }
+      },
+      "expected": "correct",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "correct",
+        "correct"
+      ],
+      "rationale": "X′=−2/(z−2)²，乘−z后为正的2z/(z−2)²。"
+    },
+    {
+      "id": "HZ07",
+      "category": "Z变换",
+      "title": "指数底数可能为零",
+      "steps": [
+        "ZT(a^n*x(n),n,z)",
+        "X(z/a)"
+      ],
+      "context": {},
+      "expected": "unknown",
+      "expectedFirstError": null,
+      "expectedLocalStatuses": [
+        "unknown"
+      ],
+      "rationale": "a未声明非零，不能作z/a替换；双边序列还包含负指数。"
+    },
+    {
+      "id": "HZ08",
+      "category": "Z变换",
+      "title": "收敛圆不能包含极点",
+      "steps": [
+        "ZT((1/4)^n*u(n),n,z)",
+        "z/(z-1/4); ROC: abs(z)>=1/4"
+      ],
+      "context": {},
+      "expected": "wrong",
+      "expectedFirstError": 2,
+      "expectedLocalStatuses": [
+        "wrong"
+      ],
+      "rationale": "边界|z|=1/4不能包含在几何级数收敛域内。"
+    }
+  ]
+}

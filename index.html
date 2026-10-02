@@ -7,14 +7,14 @@
   <meta name="description" content="SignalProof：覆盖卷积、傅里叶、拉普拉斯与 Z 变换的符号规则推导验证。逐步求证，定位首错，解释依据，修正复核。">
   <title>SignalProof · 每一步推导，都有可追溯的依据</title>
   <link rel="stylesheet" href="katex/katex.min.css">
-  <link rel="stylesheet" href="landing.css?v=3">
+  <link rel="stylesheet" href="landing.css?v=4">
   <script>
     if (/^#(verify|rules|tests|guide)(?:$|[/?])/.test(location.hash)) {
       location.replace('lab.html' + location.search + location.hash);
     }
   </script>
   <script defer src="katex/katex.min.js"></script>
-  <script defer src="landing.js?v=3"></script>
+  <script defer src="landing.js?v=4"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -106,6 +106,8 @@
     <section class="evidence-section" id="evidence" aria-labelledby="evidence-title">
       <div class="shell section">
         <div class="section-heading"><div><p class="eyebrow">04 / EVIDENCE YOU CAN INSPECT</p><h2 id="evidence-title">把验证结果，<br>也交给你验证。</h2></div><p class="section-intro">读取项目保存的真实测试报告。<br>每一个方格，都对应一条可查看的推导链。</p></div>
+        <div class="course-metrics" id="course-metrics"><p class="loading-note">正在读取三项课程验收指标…</p></div>
+        <div class="course-report"><p id="course-protocol">指标来自可复现的原生环境测量。</p><a class="text-link" href="docs/experiment-report.html">阅读完整实验报告 ↗</a></div>
         <div class="evidence-grid">
           <article class="test-card"><div class="card-heading"><div><span class="small-tag">固定验收集</span><h3>状态分类 + 首错位置</h3></div><div class="test-ratio"><strong id="test-ratio">—</strong><span>用例符合预期</span></div></div><div class="test-tiles" id="test-tiles" aria-label="测试结果，按方向键切换用例"></div><div class="test-legend"><span><i class="legend-correct"></i><b id="correct-count">—</b> 正确推导</span><span><i class="legend-wrong"></i><b id="wrong-count">—</b> 错误推导</span><span class="legend-explain">填色表示测试符合预期</span></div><div class="test-preview" id="test-preview" aria-live="polite"><p>正在读取固定验收报告…</p></div><a class="text-link" href="docs/test-results.json" target="_blank" rel="noopener">查看完整原始报告 <span aria-hidden="true">↗</span></a></article>
           <div class="evidence-side"><article class="teaching-evidence"><span class="small-tag">教学案例 · 独立核验</span><strong id="examples-ratio">—</strong><h3>不止一条公式的匹配。</h3><p id="examples-summary">正在读取教学案例验证报告…</p><div id="examples-breakdown" class="examples-breakdown"></div><a class="text-link" href="docs/examples-validation.json" target="_blank" rel="noopener">查看案例核验报告 <span aria-hidden="true">↗</span></a></article><aside class="evidence-boundary"><h3>这些数字说明什么？</h3><p>它们反映这组固定输入是否得到预期状态与首错位置，不是未知题目的泛化正确率。教学案例报告来自原生 Python 引擎运行；浏览器运行情况请在实验室复验。</p><a href="lab.html#tests">亲自运行测试台 <span aria-hidden="true">↗</span></a></aside></div>

@@ -37,7 +37,7 @@ function renderStaticMath() {
   $$('[data-math]').forEach(node => math(node, node.dataset.math));
 }
 async function getJSON(path) {
-  const response = await fetch(`${path}?v=3`);
+  const response = await fetch(`${path}?v=4`);
   if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
   return response.json();
 }
@@ -242,11 +242,32 @@ function renderValidation(report) {
   if (state.examples.length) setCase(state.activeCase, state.revealed);
 }
 
+function renderCourseMetrics(report) {
+  const suite = report.suites.baseline;
+  const scores = suite.uniqueMetrics;
+  const container = $('#course-metrics');
+  container.replaceChildren();
+  const percentage = metric => `${(metric.rate * 100).toFixed(1)}%`;
+  [
+    [percentage(scores.stepAccuracy), '步骤判断准确率', `${scores.stepAccuracy.correct} / ${scores.stepAccuracy.total} 个相邻步骤`],
+    [percentage(scores.firstErrorOnWrong), '首错定位准确率', `${scores.firstErrorOnWrong.correct} / ${scores.firstErrorOnWrong.total} 条错误推导`],
+    [suite.latencyMs.mean === null ? '无测量' : `${suite.latencyMs.mean.toFixed(2)} ms`, '平均每链处理时间', `${suite.latencyMs.count} 次已完成的原生 Python 调用`]
+  ].forEach(([value, label, detail]) => {
+    const card = element('article', 'course-metric');
+    card.append(element('span', '', label), element('strong', '', value), element('small', '', detail));
+    container.append(card);
+  });
+  $('#course-protocol').textContent = `${report.protocol.repeats} 轮重复测量 · 准确率按唯一案例计数 · 耗时不含环境载入与浏览器渲染 · 固定样本结果不代表泛化准确率`;
+}
+
 async function initialize() {
   renderStaticMath();
   setupTabs();
   $('#reveal-button').disabled = true;
   const jobs = [
+    getJSON('docs/benchmark-results.json').then(renderCourseMetrics).catch(() => {
+      $('#course-metrics').replaceChildren(errorNote('实测指标未载入。请查看实验报告中的原始测量。'));
+    }),
     getJSON('data/examples.json').then(examples => {
       if (!Array.isArray(examples) || !examples.length) throw new Error('案例数据为空');
       state.examples = examples;
